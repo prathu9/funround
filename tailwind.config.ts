@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "login-btn-gradient": "linear-gradient(to right, #9555FF 89.08%, #6C5DD3, #1500A9 8.52%)",
+        "btn-gradient-1": "linear-gradient(to right, rgba(149, 85, 255) 0%, #6C5DD3 20%, rgba(21, 0, 169) 180%)",
       }
     },
   },
