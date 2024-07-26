@@ -1,3 +1,4 @@
+import GradientButton from "@/components/GradientButton";
 import { archivo, inter, poppins } from "@/fonts/fonts";
 import { pages } from "next/dist/build/templates/app-page";
 import Image from "next/image";
@@ -27,11 +28,11 @@ export default function Home() {
         {/* container for buttons */}
         <div className="mt-12 flex gap-8 text-2xl leading-[26.54px] ">
           {/* play button */}
-          <button className="px-[72.5px] py-[36.5px] rounded-2xl font-bold tracking-[0.04em] bg-btn-gradient-1">
+          <GradientButton className="px-[72.5px] py-[36.5px] rounded-2xl font-bold tracking-[0.04em]">
             LET'S PLAY
-          </button>
+          </GradientButton>
           {/* learn more button */}
-          <button className="px-12 py-[36.5px] rounded-2xl tracking-[0.04em] bg-[#353535]/[40%]">
+          <button className="px-12 py-[36.5px] rounded-2xl tracking-[0.04em] bg-[#353535]/[40%] hover:bg-[#717171]/[66%]">
             LEARN MORE
           </button>
         </div>

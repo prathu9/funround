@@ -1,4 +1,5 @@
 import Image from "next/image";
+import GradientButton from "./GradientButton";
 
 
 const Header = () => {
@@ -24,7 +25,7 @@ const Header = () => {
                     We Are FunRound
                 </div>
                 {/* login button */}
-                <button className="p-6 flex gap-[7px] rounded-2xl bg-btn-gradient-1">
+                <GradientButton className="p-6 flex gap-[7px] rounded-2xl">
                     {/* container for login button icon */}
                     <div className="w-5 h-5">
                         {/* login button icon */}
@@ -34,7 +35,7 @@ const Header = () => {
                     <div className="font-bold">
                      Login / Sign up 
                     </div>
-                </button>
+                </GradientButton>
             </div>
         </div>
     )
