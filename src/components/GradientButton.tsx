@@ -25,7 +25,7 @@ const GradientButton = ({
       ) : (
         // button
         <button
-          className={`bg-btn-gradient-1 hover:bg-btn-gradient-hover-1 ${className}`}
+          className={`bg-btn-gradient-1 whitespace-nowrap hover:bg-btn-gradient-hover-1 ${className}`}
           onClick={handleClick}
         >
           {children}

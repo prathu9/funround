@@ -5,9 +5,9 @@ import GradientButton from "./GradientButton";
 const Header = () => {
     return(
         // header
-        <div className="px-[120px] py-8 flex justify-between items-center">
+        <div className="px-[40px] py-8 flex justify-between items-center lg:px-[120px]">
             {/* container for header left content */}
-            <div className="flex gap-4">
+            <div className="basis-full flex flex-row-reverse gap-4 sm:flex-row sm:basis-auto">
                 {/* logo container */}
                 <div className="w-[72px] h-[29px]">
                     {/* logo */}
@@ -19,7 +19,7 @@ const Header = () => {
                 </div>
             </div>
             {/* container for header right content */}
-            <div className="flex items-center gap-8  text-sm">
+            <div className="hidden items-center gap-8 text-sm sm:flex">
                 {/* header right text */}
                 <div className="font-semibold">
                     We Are FunRound

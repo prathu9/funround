@@ -7,13 +7,13 @@ import Image from "next/image";
 export default function Home() {
   return (
     // container for home pages
-    <main className={`pt-[155px] px-[120px] pb-[139px] flex justify-between items-center ${archivo.className}`}>
+    <main className={`px-6 py-8 flex flex-wrap justify-between items-center lg:pt-[155px] lg:px-[120px] lg:pb-[139px] lg:flex-nowrap ${archivo.className}`}>
       {/* container for title and buttons */}
-      <div className="basis-[37.86%]">
+      <div className="basis-full lg:basis-[37.86%]">
         {/* subtitle */}
-          <h3 className="mb-4 text-[#B4A1FF] text-2xl font-bold">WELCOME TO FUNROUND BETA</h3>
+          <h3 className="mb-4 text-[#B4A1FF] text-[1.25vw] leading-[1.36vw] font-bold">WELCOME TO FUNROUND BETA</h3>
         {/* title */}
-        <h1 className="relative font-black text-[70px] leading-[77.42px] tracking-[0.04em]">
+        <h1 className="relative font-black text-[3.6vw] leading-[4.03vw] tracking-[0.04em]">
           PLAY, WIN, TAKE PROFIT.
           {/* container for crown image */}
           <div className="w-[60px] h-[58px] absolute -top-[25px] right-[34%]">
@@ -21,18 +21,18 @@ export default function Home() {
           </div>
         </h1>
         {/* decription */}
-        <p className="mt-3 w-[79%] text-[32px] leading-[34.82px]">
+        <p className="mt-3 w-[79%] text-[1.6vw] leading-[1.8vw]">
           Here you can play mini-games agains players around the world, bet on
           crypto, and win the pot.
         </p>
         {/* container for buttons */}
         <div className="mt-12 flex gap-8 text-2xl leading-[26.54px] ">
           {/* play button */}
-          <GradientButton className="px-[72.5px] py-[36.5px] rounded-2xl font-bold tracking-[0.04em]">
+          <GradientButton className="lg:px-[3.8vw] lg:py-[1.9vw] rounded-2xl text-[1.25vw] font-bold tracking-[0.04em]">
             LET'S PLAY
           </GradientButton>
           {/* learn more button */}
-          <button className="px-12 py-[36.5px] rounded-2xl tracking-[0.04em] bg-[#353535]/[40%] hover:bg-[#717171]/[66%]">
+          <button className="lg:px-[2.5vw] lg:py-[1.9vw] rounded-2xl text-[1.25vw] tracking-[0.04em] whitespace-nowrap bg-[#353535]/[40%] hover:bg-[#717171]/[66%]">
             LEARN MORE
           </button>
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
                 BETA
             </div>
             {/* container for caption text */}
-            <div className={`${poppins.className} my-[5px] w-[53%] text-[32px] leading-[48px]`}>
+            <div className={`${poppins.className} my-[5px] w-[57%] text-[1.6vw] leading-[2.6vw]`}>
               {/* caption title */}
               <h2 className="font-black">Crypto roads</h2>
               {/* caption description */}

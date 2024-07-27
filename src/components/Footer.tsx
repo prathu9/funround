@@ -1,8 +1,6 @@
+import { archivo } from "@/fonts/fonts";
 import Image from "next/image";
 import Link from "next/link";
-import { Archivo } from "next/font/google";
-
-const archivo = Archivo({subsets: ['latin']});
 
 const Footer = () => {
     return(
