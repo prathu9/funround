@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { inter } from "@/fonts/fonts";
+import { usePathname } from "next/navigation";
 
 
 export const metadata: Metadata = {
@@ -12,9 +13,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -22,6 +26,7 @@ export default function RootLayout({
         <div className="min-h-[calc(100%_-_216px)]">
           {children}
         </div>
+        {modal}
         <Footer />
       </body>
     </html>
