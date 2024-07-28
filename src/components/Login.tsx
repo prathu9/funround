@@ -46,7 +46,7 @@ const Login = () => {
             By creating an account, you agree to the <span className="text-white">Terms of Use.</span> 
         </p>
         <GradientButton type="submit" className="w-full py-6 text-lg text-center rounded-2xl">
-            Sign up
+            Login
         </GradientButton>
         <p className="my-12 text-center text-lg">
             Already have an account? <Link href="./signup" className="text-[#AB97FF]">Sign up</Link>
