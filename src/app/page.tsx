@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     // container for home pages
-    <main className={`px-6 py-8 flex flex-wrap justify-between items-center lg:pt-[155px] lg:px-[120px] lg:pb-[139px] lg:flex-nowrap ${archivo.className}`}>
+    <main className={`px-6 py-8 flex flex-wrap justify-between items-center lg:px-[120px] lg:flex-nowrap ${archivo.className}`}>
       {/* container for title and buttons */}
       <div className="basis-full lg:basis-[37.86%]">
         {/* subtitle */}
