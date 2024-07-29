@@ -7,7 +7,7 @@ const Header = () => {
 
     return(
         // header
-        <div className="px-[28px] py-8 flex justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] lg:px-[120px]">
+        <div className="p-8 flex justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] md:px-[40px] xl:px-[120px]">
             {/* container for header left content */}
             <div className="basis-full flex justify-between items-center flex-row-reverse gap-4 sm: sm:flex-row sm:basis-auto">
                 {/* logo container */}

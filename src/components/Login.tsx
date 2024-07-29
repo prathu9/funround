@@ -4,6 +4,7 @@ import InputWrapper from "./InputWrapper";
 import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "./GradientButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface LoginInput {
   email: string;
@@ -12,9 +13,11 @@ interface LoginInput {
 
 const Login = () => {
   const methods = useForm<LoginInput>();
+  const router = useRouter();
 
   const onSubmit = (data: LoginInput) => {
     console.log(data)
+    router.push("/login/confirm")
   }
 
   return (
@@ -35,6 +38,7 @@ const Login = () => {
           </div>
         <div className="mb-6">
           <InputWrapper
+          rightIcon="/eye-off-icon.svg"
             type="password"
             placeholder="Password"
             label="Password"

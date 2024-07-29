@@ -1,13 +1,12 @@
-import Login from "@/components/Login";
+import ConfirmEmail from "@/components/Confirm";
 import ModalOverlay from "@/components/ModalOverlay";
 import Portal from "@/components/Portal";
-import Link from "next/link";
 
 const Page = () => {
   return (
     <Portal>
       <ModalOverlay>
-        <Login/>
+        <ConfirmEmail/>
       </ModalOverlay>
     </Portal>
   );
