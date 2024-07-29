@@ -5,33 +5,33 @@ import Link from "next/link";
 const Footer = () => {
     return(
         // Footer container
-        <div className="px-[120px] py-[20.52px] flex justify-between border-t border-white">
+        <div className="px-8 py-[20.52px] flex justify-between border-t border-white md:px-[40px] xl:px-[120px]">
             {/* Container for footer logo */}
             <div className="w-[91px] h-[38.95px]">
                 <Image src="/logo.svg" width="100" height="100" className="object-cover" alt="logo" />
             </div>
             {/* Container for footer right content */}
-            <div className={`flex gap-12 text-lg tracking-[0.04em] ${archivo.className}`}>
+            <div className={`flex flex-wrap gap-2 justify-end text-lg tracking-[0.04em] md:flex-nowrap md:gap-12 ${archivo.className}`}>
                 {/* Container for footer nav */}
-                <ul className="flex gap-8">
-                    <li className="flex gap-8">
+                <ul className="flex gap-[10px] lg:gap-8">
+                    <li className="hidden gap-8 lg:flex">
                         <Link href="/">
                             About FunRound
                         </Link>
                     </li>
-                    <li className="flex gap-8">
+                    <li className="flex gap-8 text-xs sm:text-base">
                         <Link href="/">
                             Privacy policy
                         </Link>
                     </li>
-                    <li className="flex gap-8">
+                    <li className="flex gap-8 text-xs sm:text-base">
                         <Link href="/">
                             Terms of use
                         </Link>
                     </li>
                 </ul>
                 {/* Container for footer copyright text */}
-                <div className="text-[#545867]">
+                <div className="text-[#545867] text-xs sm:text-base">
                     FunRound ©2024 All rights reserved
                 </div>
             </div>

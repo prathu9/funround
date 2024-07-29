@@ -7,38 +7,38 @@ import Image from "next/image";
 export default function Home() {
   return (
     // container for home pages
-    <main className={`px-6 py-8 flex flex-wrap justify-between items-center lg:px-[120px] lg:flex-nowrap ${archivo.className}`}>
+    <main className={`px-6 pt-8 pb-[120px] flex flex-wrap justify-between items-center gap-y-8 md:py-12 lg:px-[120px] lg:flex-nowrap ${archivo.className}`}>
       {/* container for title and buttons */}
-      <div className="basis-full lg:basis-[37.86%]">
+      <div className="basis-full text-center lg:basis-[37.86%] lg:text-left">
         {/* subtitle */}
-          <h3 className="mb-4 text-[#B4A1FF] text-[1.25vw] leading-[1.36vw] font-bold">WELCOME TO FUNROUND BETA</h3>
+          <h3 className="mb-4 text-[#B4A1FF] text-sm leading-[1.36vw] font-bold md:text-[1.25vw] md:text-sm">WELCOME TO FUNROUND BETA</h3>
         {/* title */}
-        <h1 className="relative font-black text-[3.6vw] leading-[4.03vw] tracking-[0.04em]">
+        <h1 className="relative font-black text-[32px] md:text-[3.6vw] md:leading-[4.03vw] md:tracking-[0.04em]">
           PLAY, WIN, TAKE PROFIT.
           {/* container for crown image */}
-          <div className="w-[60px] h-[58px] absolute -top-[25px] right-[34%]">
+          <div className="w-[60px] h-[58px] absolute -top-[25px] left-[25%]">
             <Image src="/crown-icon.svg" width="100" height="100"  alt="icon" />
           </div>
         </h1>
         {/* decription */}
-        <p className="mt-3 w-[79%] text-[1.6vw] leading-[1.8vw]">
+        <p className="mt-3 mx-auto w-full text-lg md:w-[79%] md:text-[1.6vw] md:leading-[1.8vw] lg:mx-0">
           Here you can play mini-games agains players around the world, bet on
           crypto, and win the pot.
         </p>
         {/* container for buttons */}
-        <div className="mt-12 flex gap-8 text-2xl leading-[26.54px] ">
+        <div className="mt-12 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col md:flex-row lg:items-start">
           {/* play button */}
-          <GradientButton className="lg:px-[3.8vw] lg:py-[1.9vw] rounded-2xl text-[1.25vw] font-bold tracking-[0.04em]">
+          <GradientButton className="min-w-[181px] w-[48%] px-[51px] py-[26px] text-sm rounded-2xl font-bold tracking-[0.04em] md:text-[1.25vw] md:max-w-none md:px-[3.8vw] md:py-[1.9vw]">
             LET'S PLAY
           </GradientButton>
           {/* learn more button */}
-          <button className="lg:px-[2.5vw] lg:py-[1.9vw] rounded-2xl text-[1.25vw] tracking-[0.04em] whitespace-nowrap bg-[#353535]/[40%] hover:bg-[#717171]/[66%]">
+          <button className="min-w-[181px] w-[48%] px-[51px] py-[26px]  rounded-2xl text-sm tracking-[0.04em] whitespace-nowrap bg-[#353535]/[40%] hover:bg-[#717171]/[66%] md:px-[2.5vw] md:py-[1.9vw] md:text-[1.25vw] md:max-w-none">
             LEARN MORE
           </button>
         </div>
       </div>
       {/* Container for cover image and text */}
-      <div className="basis-[46.73%]">
+      <div className="basis-full md:basis-[46.73%]">
         {/* container for cover image */}
         <div className="relative w-full aspect-[1.4]">
           {/* cover image */}
@@ -50,7 +50,7 @@ export default function Home() {
                 BETA
             </div>
             {/* container for caption text */}
-            <div className={`${poppins.className} my-[5px] w-[57%] text-[1.6vw] leading-[2.6vw]`}>
+            <div className={`${poppins.className} my-[5px] w-[80%] text-[20px] leading-[30px] sm:w-[57%] sm:text-[1.6vw] sm:leading-[2.6vw]`}>
               {/* caption title */}
               <h2 className="font-black">Crypto roads</h2>
               {/* caption description */}
