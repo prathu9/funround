@@ -20,7 +20,7 @@ const Header = () => {
                     BETA
                 </div>
                 {/* Menu container */}
-                <div className="w-8 h-[10px]">
+                <div className="w-8 h-[10px] block sm:hidden">
                     <Image src="/menu-icon.svg" width="100" height="100" alt="menu"/>
                 </div>
             </div>
