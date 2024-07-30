@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <Portal>
       <ModalOverlay>
-        <ConfirmEmail forwardLink="/wallet-setup" backLink="/login"/>
+        <ConfirmEmail forwardLink="/wallet-setup/setup-form" backLink="/wallet-setup"/>
       </ModalOverlay>
     </Portal>
   );

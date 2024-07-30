@@ -1,9 +1,25 @@
 "use client";
 import Image from "next/image";
 import GradientButton from "./GradientButton";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { archivo } from "@/fonts/fonts";
 
 const Header = () => {
-  
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+    useEffect(() => {
+        if(showMobileMenu){
+            document.body.style.overflowY = "hidden";
+        }
+        else{
+            document.body.style.overflowY = "auto";
+        }
+    },[showMobileMenu])
+
+    const toggleMobileMenu = () => {
+        setShowMobileMenu(!showMobileMenu);
+    }
 
     return(
         // header
@@ -20,9 +36,21 @@ const Header = () => {
                     BETA
                 </div>
                 {/* Menu container */}
-                <div className="w-8 h-[10px] block sm:hidden">
+                <div onClick={toggleMobileMenu} className="w-8 h-[10px] block sm:hidden">
                     <Image src="/menu-icon.svg" width="100" height="100" alt="menu"/>
                 </div>
+                <ul className={`mt-[92.98px] p-8 flex gap-6 flex-col absolute top-0 left-0 w-screen h-[calc(100vh_-_92.98px)] bg-[#242731] z-10 transition-all ${showMobileMenu?"-translate-x-0":"-translate-x-full"}  sm:hidden ${archivo.className}`}>
+                            <li>
+                                <Link href="/">
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/">
+                                    Register
+                                </Link>
+                            </li>
+                        </ul>
             </div>
             {/* container for header right content */}
             <div className="hidden items-center gap-8 text-sm sm:flex">
