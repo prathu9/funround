@@ -1,11 +1,12 @@
 "use client";
 import { archivo } from "@/fonts/fonts";
 import InputWrapper from "./form-elements/InputWrapper";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, UseFormReturn } from "react-hook-form";
 import GradientButton from "./GradientButton";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import InputFileWrapper from "./form-elements/InputFileWrapper";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 interface SetUpWalletInput {
   password: string;
@@ -13,12 +14,33 @@ interface SetUpWalletInput {
 
 const WalletSetUp = () => {
   const methods = useForm<SetUpWalletInput>();
+  const [showLoader, setShowLoader] = useState(false);
   const router = useRouter();
 
   const onSubmit = (data: SetUpWalletInput) => {
     console.log(data);
-    router.push("/wallet-setup/confirm");
+    setShowLoader(true);
+    setTimeout(() => {
+      setShowLoader(false);
+      router.push("/wallet-setup/confirm");
+    }, 2000);
   };
+
+  if (showLoader) {
+    return (
+      // container for confirm identity
+      <div
+        className={`w-full max-w-[696px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white rounded-2xl bg-black ${archivo.className}`}
+      >
+        {/* title */}
+        <h1 className="mb-[69.5px] text-5xl text-center font-black">
+          CONFIRMING IDENTITY
+        </h1>
+        {/* Loader */}
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     // context provider for input wrapper
