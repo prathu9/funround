@@ -1,8 +1,8 @@
 "use client";
 import { archivo } from "@/fonts/fonts";
-import InputWrapper from "./form-elements/InputWrapper";
+import InputWrapper from "../form-elements/InputWrapper";
 import { FormProvider, useForm } from "react-hook-form";
-import GradientButton from "./GradientButton";
+import GradientButton from "../form-elements/GradientButton";
 import Link from "next/link";
 
 interface SignUpInput {

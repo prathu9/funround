@@ -1,6 +1,7 @@
-import ModalOverlay from "@/components/ModalOverlay";
-import Portal from "@/components/Portal";
-import SignUp from "@/components/SignUp";
+import SignUp from "@/components/auth/SignUp";
+import ModalOverlay from "@/components/layout/ModalOverlay";
+import Portal from "@/components/layout/Portal";
+
 
 const Page = () => {
   return (

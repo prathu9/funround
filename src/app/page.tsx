@@ -1,4 +1,4 @@
-import GradientButton from "@/components/GradientButton";
+import GradientButton from "@/components/form-elements/GradientButton";
 import { archivo, inter, poppins } from "@/fonts/fonts";
 import { pages } from "next/dist/build/templates/app-page";
 import Image from "next/image";

@@ -1,6 +1,7 @@
-import ModalOverlay from "@/components/ModalOverlay";
-import Portal from "@/components/Portal";
-import WalletSetUp from "@/components/WalletSetUpForm";
+import ModalOverlay from "@/components/layout/ModalOverlay";
+import Portal from "@/components/layout/Portal";
+import WalletSetUp from "@/components/wallet-setup/WalletSetUpForm";
+
 
 const Page = () => {
   return (

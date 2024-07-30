@@ -11,7 +11,7 @@ const config: Config = {
       backgroundImage: {
         "btn-gradient-1": "linear-gradient(to right, rgba(149, 85, 255) 0%, #6C5DD3 20%, rgba(21, 0, 169) 180%)",
         "btn-gradient-hover-1": "linear-gradient(to right, #9988e5, #a197e4)",
-      }
+      },
     },
   },
   plugins: [],

@@ -1,10 +1,12 @@
 "use client";
 import { archivo } from "@/fonts/fonts";
-import InputWrapper from "./form-elements/InputWrapper";
+
 import { FormProvider, useForm } from "react-hook-form";
-import GradientButton from "./GradientButton";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import InputWrapper from "../form-elements/InputWrapper";
+import GradientButton from "../form-elements/GradientButton";
 
 interface SetUpEmailConfirmationInput {
   password: string;

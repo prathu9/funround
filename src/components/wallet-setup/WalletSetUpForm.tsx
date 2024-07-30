@@ -1,12 +1,12 @@
 "use client";
 import { archivo } from "@/fonts/fonts";
-import InputWrapper from "./form-elements/InputWrapper";
+import InputWrapper from "../form-elements/InputWrapper";
 import { FormProvider, useForm, UseFormReturn } from "react-hook-form";
-import GradientButton from "./GradientButton";
+import GradientButton from "../form-elements/GradientButton";
 import { useRouter } from "next/navigation";
-import InputFileWrapper from "./form-elements/InputFileWrapper";
+import InputFileWrapper from "../form-elements/InputFileWrapper";
 import { useState } from "react";
-import Spinner from "./Spinner";
+import Spinner from "../layout/Spinner";
 
 interface SetUpWalletInput {
   password: string;

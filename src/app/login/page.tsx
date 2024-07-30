@@ -1,7 +1,7 @@
 'use client';
-import ModalOverlay from "@/components/ModalOverlay";
-import Portal from "@/components/Portal";
-import Spinner from "@/components/Spinner";
+import ModalOverlay from "@/components/layout/ModalOverlay";
+import Portal from "@/components/layout/Portal";
+import Spinner from "@/components/layout/Spinner";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect } from "react";
 

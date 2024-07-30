@@ -1,6 +1,7 @@
-import ModalOverlay from "@/components/ModalOverlay";
-import Portal from "@/components/Portal";
-import SetUpEmailConfirmation from "@/components/SetUpEmailConfirmation";
+import ModalOverlay from "@/components/layout/ModalOverlay";
+import Portal from "@/components/layout/Portal";
+import SetUpEmailConfirmation from "@/components/wallet-setup/SetUpEmailConfirmation";
+
 
 const Page = () => {
   return (
