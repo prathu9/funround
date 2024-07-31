@@ -26,9 +26,9 @@ const Login = () => {
     // context provider for input wrapper
     <FormProvider {...methods}>
       {/* Container for signup form */}
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={`w-full max-w-[696px] px-12 py-[47px] absolute top-[6vw] left-1/2 -translate-x-1/2  border border-white rounded-2xl bg-black ${archivo.className}`}>
-        <h1 className="mb-12 text-5xl text-center font-black">
-          Login
+      <form onSubmit={methods.handleSubmit(onSubmit)} className={`w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm-px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0 ${archivo.className}`}>
+        <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
+          LOGIN
         </h1>
         <div className="mb-6">
             <InputWrapper

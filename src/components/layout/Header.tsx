@@ -20,6 +20,10 @@ const Header = () => {
     setShowMobileMenu(!showMobileMenu);
   };
 
+  const hideMenu = () => {
+    setShowMobileMenu(false);
+  }
+
   return (
     // header
     <div className="p-8 flex justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] md:px-[40px] xl:px-[120px]">
@@ -44,7 +48,7 @@ const Header = () => {
         {/* Menu container */}
         <div
           onClick={toggleMobileMenu}
-          className="w-8 h-[10px] block sm:hidden"
+          className="w-8 h-[10px] block cursor-pointer sm:hidden"
         >
           <Image src="/menu-icon.svg" width="100" height="100" alt="menu" />
         </div>
@@ -54,10 +58,10 @@ const Header = () => {
           }  sm:hidden ${archivo.className}`}
         >
           <li>
-            <Link href="/">Login</Link>
+            <Link href="/" onClick={hideMenu}>Login</Link>
           </li>
           <li>
-            <Link href="/">Register</Link>
+            <Link href="/signup" onClick={hideMenu}>Register</Link>
           </li>
         </ul>
       </div>

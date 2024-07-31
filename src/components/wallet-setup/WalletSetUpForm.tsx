@@ -22,7 +22,7 @@ const WalletSetUp = () => {
     setShowLoader(true);
     setTimeout(() => {
       setShowLoader(false);
-      router.push("/wallet-setup/confirm");
+      router.push("/wallet-setup/top-up");
     }, 2000);
   };
 
@@ -48,7 +48,7 @@ const WalletSetUp = () => {
       {/* Container for Wallet setup email confirmation */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className={`w-full max-w-[696px] px-12 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white rounded-2xl bg-black ${archivo.className}`}
+        className={`w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm-px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0 ${archivo.className}`}
       >
         {/* Title of form */}
         <h1 className="mb-6 text-5xl text-center font-black">WALLET SET UP</h1>
