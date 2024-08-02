@@ -21,7 +21,7 @@ const TabButton = ({ id, name, value, children, onClick, defaultChecked }: TabBu
       />
       <label
         htmlFor={id}
-        className="w-full h-full py-[18px] flex justify-center items-center rounded-full text-2xl bg-transparent cursor-pointer peer-checked:bg-black"
+        className="w-full h-full py-[12px] flex justify-center items-center rounded-full text-[15px] leading-[16.59px] bg-transparent cursor-pointer peer-checked:bg-black sm:text-2xl sm:py-[18px]"
       >
         {children}
       </label>

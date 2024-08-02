@@ -80,7 +80,7 @@ const SignUp = () => {
         </div>
         {/* Agreement text */}
         <p className="py-6 text-lg text-[#8996A9]">
-            By creating an account, you agree to the <span className="text-white">Terms of Use.</span> 
+            By creating an account, you agree to the <Link href="/terms-of-use" className="text-white">Terms of Use.</Link> 
         </p>
         <GradientButton type="submit" className="mb-2 w-full py-6 text-lg text-center rounded-2xl">
             Sign up

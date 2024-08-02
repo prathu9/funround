@@ -23,7 +23,7 @@ const ModalOverlay = ({children}:{children: ReactNode}) => {
 
     return(
         // Modal overlay
-        <div ref={modalRef} onClick={handleClose} className="absolute top-0 left-0 w-screen h-screen bg-black overflow-auto sm:bg-[#000]/[80%]">
+        <div ref={modalRef} onClick={handleClose} className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-black overflow-auto sm:bg-[#000]/[80%]">
             {children}
         </div>
     )

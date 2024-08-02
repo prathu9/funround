@@ -21,13 +21,17 @@ const SetUpEmailConfirmation = () => {
     router.push("/wallet-setup/confirm");
   };
 
+  const GoBack = () => {
+    router.back();
+  }
+
   return (
     // context provider for input wrapper
     <FormProvider {...methods}>
       {/* Container for Wallet setup email confirmation */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className={`w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm-px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0 ${archivo.className}`}
+        className={`w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0 ${archivo.className}`}
       >
         {/* Title of form */}
         <h1 className="mb-3 text-[28px] leading-[30.97px] text-center font-black sm:mb-6 sm:text-5xl">LET'S GET YOUR WALLET SET UP</h1>
@@ -48,14 +52,14 @@ const SetUpEmailConfirmation = () => {
         {/* Confirm button */}
         <GradientButton
           type="submit"
-          className="w-full py-6 text-lg text-center rounded-2xl"
+          className="mb-3 w-full py-6 text-lg text-center rounded-2xl"
         >
           Confirm email
         </GradientButton>
         {/* Back button */}
-        <Link href="/wallet-setup" className="block w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
+        <button onClick={GoBack} className="block w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
           Back
-        </Link>
+        </button>
       </form>
     </FormProvider>
   );
