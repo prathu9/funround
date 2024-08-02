@@ -42,8 +42,8 @@ const Terms = () => {
           ref={termsContainerRef}
           className="h-full text-sm overflow-y-scroll"
         >
-          <h3>1. FunRound.io</h3>
-          <p>
+          <h3 className="mb-2">1. FunRound.io</h3>
+          <p className="mb-2">
             1.1 FunRound.io is owned and operated by Medium Rare, N.V.
             (hereinafter "FunRound", "We" or "Us"), a company with head office
             at Korporaalweg 10, Willemstad, Curaçao. FunRound is licensed and
@@ -51,8 +51,8 @@ const Terms = () => {
             8048/JAZ issued to Antillephone. Some credit card payment processing
             are handled by its wholly owned subsidiary, Medium Rare Limited.
           </p>
-          <h3>2. IMPORTANT NOTICE</h3>
-          <p>
+          <h3 className="mb-2">2. IMPORTANT NOTICE</h3>
+          <p className="mb-2">
             2.1 By registering on www.funround.io (the “Website”), you enter
             into a contract with Medium Rare N.V., and agree to be bound by (i)
             these Terms and Conditions; (ii) our Privacy Policy; (iii) our
@@ -62,7 +62,7 @@ const Terms = () => {
             gaming specific rules, and are deemed to have accepted and
             understood all the terms.
           </p>
-          <p>
+          <p className="mb-2">
             2.2 Please read this Agreement carefully to make sure you fully
             understand its content. If you have any doubts as to your rights and
             obligations resulting from the acceptance of this Agreement, please
@@ -72,20 +72,20 @@ const Terms = () => {
             limited to, sub-domains, source code and/or website APIs, whether
             visible or not) of the Website.
           </p>
-          <h3>3. GENERAL</h3>
-          <p>
+          <h3 className="mb-2">3. GENERAL</h3>
+          <p className="mb-2">
             3.1 When registering on{" "}
             <span className="underline">www.funround.io</span> You (“You”,
             “Your”, Yourself” or the “Player” interchangeably) enter into an
             agreement with FunRound.
           </p>
-          <p>
+          <p className="mb-2">
             3.2 This Agreement should be read by You in its entirety prior to
             your use of FunRound's service or products. Please note that the
             Agreement constitutes a legally binding agreement between you and
             FunRound.
           </p>
-          <p>
+          <p className="mb-2">
             3.3 These Terms and Conditions come into force as soon as you
             complete the registration process, which includes checking the box
             accepting these Terms and Conditions and successfully creating an
@@ -93,7 +93,7 @@ const Terms = () => {
             creation, you agree to these Terms and Conditions applying to the
             use of the Website.
           </p>
-          <p>
+          <p className="mb-2">
             3.4 We are entitled to make amendments to these Terms and Conditions
             at any time and without advanced notice. If we make such amendments,
             we may take appropriate steps to bring such changes to your
@@ -105,13 +105,13 @@ const Terms = () => {
             Conditions will be deemed as your acceptance and agreement to be
             bound by such amendments, updates and/or modifications.
           </p>
-          <p>
+          <p className="mb-2">
             3.5 The terms of this Terms and Conditions shall prevail in the
             event of any conflict between the terms of this Terms and Conditions
             and of any of the game rules or other documents referred to in this
             Terms and Conditions.
           </p>
-          <p>
+          <p className="mb-2">
             3.6 These Terms and Conditions may be published in several languages
             for informational purposes and ease of access by players. The
             English version is the only legal basis of the relationship between
@@ -119,13 +119,13 @@ const Terms = () => {
             translation of any kind, the English version of these Terms and
             Conditions shall prevail.
           </p>
-          <h3>4. FunRound ACCOUNT Registration</h3>
-          <p>
+          <h3 className="mb-2">4. FunRound ACCOUNT Registration</h3>
+          <p className="mb-2">
             4.1 In order for you to be able to place bets on funround.io, you
             must first personally register an account with us ("FunRound
             Account").
           </p>
-          <p>
+          <p className="mb-2">
             4.2 For a person to be registered as a player with FunRound and use
             the Website, that person must submit an application for registration
             and opening of a FunRound account. The application for the opening
@@ -133,7 +133,7 @@ const Terms = () => {
             require You to provide a set of personal information, namely e-mail,
             full name, date of birth, address, etc.
           </p>
-          <p>
+          <p className="mb-2">
             4.3 Where the information stipulated in 4.2. is not provided and/or
             is not deemed to be complete, accurate or up-to-date at any point in
             time, FunRound reserves the right to suspend the FunRound Account
@@ -143,7 +143,7 @@ const Terms = () => {
             suspended, You should contact customer support at
             support@funround.io.
           </p>
-          <p>
+          <p className="mb-2">
             4.4 All applicants must be 18 or such other legal age of majority as
             determined by any laws which are applicable to you, whichever age is
             greater or older. FunRound reserves the right to ask for proof of
@@ -152,8 +152,8 @@ const Terms = () => {
             responsibilities in respect of under age and responsible gambling
             very seriously.
           </p>
-          <p>4.5 FunRound will not accept registration from individuals:</p>
-          <ul>
+          <p className="mb-2">4.5 FunRound will not accept registration from individuals:</p>
+          <ul className="mb-2">
             <li>
               a) Under 18 years old or under the legal age of majority or
               gambling in their jurisdiction;
@@ -168,16 +168,16 @@ const Terms = () => {
               c) Provide misleading information or try to pass by third parties.
             </li>
           </ul>
-          <p>
+          <p className="mb-2">
             4.6 FunRound reserves the right to refuse any application for a
             FunRound Account, at its sole discretion.
           </p>
           <h4>Know Your Customer</h4>
-          <p>
+          <p className="mb-2">
             4.7 You represent and warrant that any information provided by You
             on Your application form is true, updated and correct.
           </p>
-          <p>
+          <p className="mb-2">
             4.8 FunRound reserves the right, at any time, to ask for any KYC
             documentation it deems necessary to determine the identity and
             location of a Player. FunRound reserves the right to restrict the
@@ -189,8 +189,8 @@ const Terms = () => {
             FunRound), and by using the Service, you acknowledge and consent to
             the possibility of such disclosure.
           </p>
-          <h4>Multiple Accounts</h4>
-          <p>
+          <h4 className="mb-2">Multiple Accounts</h4>
+          <p className="mb-2">
             4.9 Only one FunRound Account per Player is allowed. Should You
             attempt or successfully open more than one FunRound Account, under
             Your own name or under any other name, or should You attempt or
@@ -199,7 +199,7 @@ const Terms = () => {
             FunRound Account(s), retain all monies in such FunRound Accounts and
             ban You from future use of the Website.
           </p>
-          <p>
+          <p className="mb-2">
             4.10 Should FunRound have reason to believe that You have registered
             and/or used more than one FunRound Account, or colluded with one or
             more other individuals using a number of different FunRound
@@ -209,51 +209,51 @@ const Terms = () => {
             funds till the Player proves that he did not attempt to create
             multiple accounts.
           </p>
-          <p>
+          <p className="mb-2">
             4.11 If you notice that you have more than one registered FunRound
             Account you must notify us immediately. Failure to do so may lead to
             your FunRound Account being blocked and the funds retained.
           </p>
-          <h4>User Responsibility</h4>
-          <p>
+          <h4 className="mb-2">User Responsibility</h4>
+          <p className="mb-2">
             4.12 It is your sole and exclusive responsibility to ensure that
             your login details are kept securely. You must not disclose your
             login details to anyone.
           </p>
-          <p>
+          <p className="mb-2">
             4.13 We are not liable or responsible for any abuse or misuse of
             your FunRound Account by third parties due to your disclosure,
             whether intentional, accidental, active or passive, of your login
             details to any third party.
           </p>
-          <p>
+          <p className="mb-2">
             4.14 You are prohibited from selling, transferring or acquiring
             FunRound Accounts to or from other Players.
           </p>
-          <p>
+          <p className="mb-2">
             4.15 You will inform us as soon as you become aware of any errors
             with respect to your account or any calculations with respect to any
             bet you have placed. We reserve the right to declare null and void
             any bets that are subject to such an error.
           </p>
-          <p>
+          <p className="mb-2">
             4.16 You are responsible for all activities that occur under your
             account. Security Features
           </p>
-          <p>
+          <p className="mb-2">
             4.17 We recommend that you enable two-factor authentication to
             enhance the security of your account.
           </p>
-          <p>
+          <p className="mb-2">
             4.18 We may provide other security measures from time to time, and
             we encourage you to use them.
           </p>
-          <h4>Suspension and Closure by FunRound</h4>
-          <p>
+          <h4 className="mb-2">Suspension and Closure by FunRound</h4>
+          <p className="mb-2">
             4.19 FunRound shall be entitled to close or suspend Your FunRound
             Account if:
           </p>
-          <ul>
+          <ul className="mb-2">
             <li>
               a) FunRound considers that You are using or have used the Website
               in a fraudulent or collusive manner or for illegal and/or unlawful
@@ -282,7 +282,7 @@ const Terms = () => {
               (e) above may have occurred or are likely to occur.
             </li>
           </ul>
-          <p>
+          <p className="mb-2">
             4.20 If FunRound closes or suspends Your FunRound Account for any of
             the reasons referred to in 4.19, You shall, to the extent permitted
             by applicable laws, be liable for any and all claims, direct losses,
@@ -291,39 +291,39 @@ const Terms = () => {
             the extent permitted by applicable laws, indemnify and hold FunRound
             harmless on demand for such Claims.
           </p>
-          <p>
+          <p className="mb-2">
             4.21 In the circumstances referred to in 4.19, FunRound shall also
             be entitled to void any bets placed by You following such actions by
             You or to withhold and/or retain any and all amounts which would
             otherwise have been paid or payable to you (including any winnings)
             to the extent permitted by law.
           </p>
-          <p>
+          <p className="mb-2">
             4.22 We reserve the right to suspend or terminate your account at
             any time, with or without notice, if we suspect that you account has
             been compromised or is being used in breach of our Terms of Service.
           </p>
-          <p>
+          <p className="mb-2">
             4.23 If FunRound closes Your FunRound Account it will inform You of
             the available means to withdraw the remaining balance on Your
             FunRound Account. Our Liability
           </p>
-          <p>
+          <p className="mb-2">
             4.24 We take no responsibility for any loss or damage that you may
             suffer as a result of unauthorised access to your account.
           </p>
-          <p>
+          <p className="mb-2">
             4.25 We take no responsibility for any loss or damage that you may
             suffer as a result of your failure to keep your login secure and
             private.
           </p>
-          <h3>5. YOUR WARRANTIES</h3>
-          <p>
+          <h3 className="mb-2">5. YOUR WARRANTIES</h3>
+          <p className="mb-2">
             5.1 Prior to your use of the Service and on an ongoing basis you
             represent, warrant, covenant and agree that:
           </p>
-          <h4>Capacity</h4>
-          <ul>
+          <h4 className="mb-2">Capacity</h4>
+          <ul className="mb-2">
             <li>
               a) You are over 18 or such other legal age of majority as
               determined by any laws which are applicable to you, whichever age
@@ -344,8 +344,8 @@ const Terms = () => {
               enter into a self-exclusion agreement with any gambling provider.
             </li>
           </ul>
-          <h3>Jurisdiction</h3>
-          <ul>
+          <h3 className="mb-2">Jurisdiction</h3>
+          <ul className="mb-2">
             <li>
               e) You are accessing funround.io from a jurisdiction in which it
               is legal to do so;
@@ -365,8 +365,8 @@ const Terms = () => {
               masking, transactions and blockchain analysis;
             </li>
           </ul>
-          <h3>Funds & Tax</h3>
-          <ul>
+          <h3 className="mb-2">Funds & Tax</h3>
+          <ul className="mb-2">
             <li>
               h) You are solely responsible for reporting and accounting for any
               taxes applicable to you under relevant laws for any winnings that
@@ -410,8 +410,8 @@ const Terms = () => {
               q) FunRound shall not be treated as a financial institution;
             </li>
           </ul>
-          <h3>Others</h3>
-          <ul>
+          <h3 className="mb-2">Others</h3>
+          <ul className="mb-2">
             <li>
               r) Your use of the Service is at your sole option, discretion and
               risk;
@@ -478,7 +478,7 @@ const Terms = () => {
               You are involved.
             </li>
           </ul>
-          <p>
+          <p className="mb-2">
             5.2 In case of a breach of any of the representations, warrants or
             covenants mentioned in 5.1, FunRound reserves the right to close or
             suspend Your FunRound account at its own discretion and void any
