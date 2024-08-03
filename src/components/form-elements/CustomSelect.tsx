@@ -9,6 +9,7 @@ import React, {
   useRef,
 } from "react";
 import { useFormContext } from "react-hook-form";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 interface CustomSelectProp {
   children: ReactNode;
@@ -24,11 +25,13 @@ const options = [
 interface SelectContextType {
   name: string;
   setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const SelectContext = createContext({
   name: "",
   setSelectedValue: () => {},
+  setIsOpen: () => {}
 } as SelectContextType);
 
 // Custom select component
@@ -50,15 +53,18 @@ export const CustomSelect = ({
   };
 
   return (
-    <SelectContext.Provider value={{ name, setSelectedValue }}>
+    <SelectContext.Provider value={{ name, setSelectedValue, setIsOpen }}>
       <div className="relative">
         <button
           ref={triggerButtonRef}
           type="button"
-          className="w-full rounded-lg overflow-hidden bg-[#35353E]"
+          className="pr-4 w-full flex justify-between items-center rounded-lg overflow-hidden bg-[#35353E]"
           onClick={toggleOpen}
         >
           {selectedLabel && (selectedLabel as ReactElement).props.children}
+          <span>
+            {isOpen? <FaChevronUp/>:<FaChevronDown/>}
+          </span>
         </button>
         {isOpen && children && (
           <ul className="w-full absolute bg-[#35353E] z-10">
@@ -83,11 +89,12 @@ interface CustomOptionProp {
 
 // Custom option component
 export const CustomOption = ({ children, value }: CustomOptionProp) => {
-  const { name, setSelectedValue } = useContext(SelectContext);
+  const { name, setSelectedValue, setIsOpen } = useContext(SelectContext);
   const { register } = useFormContext();
 
   const changeSelectedValue = (value: string) => {
     setSelectedValue(value);
+    setIsOpen(false);
   };
   return (
     <>

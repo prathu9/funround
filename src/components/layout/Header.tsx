@@ -58,7 +58,7 @@ const Header = () => {
           }  sm:hidden ${archivo.className}`}
         >
           <li>
-            <Link href="/" onClick={hideMenu}>Login</Link>
+            <Link href="/login" onClick={hideMenu}>Login</Link>
           </li>
           <li>
             <Link href="/signup" onClick={hideMenu}>Register</Link>
