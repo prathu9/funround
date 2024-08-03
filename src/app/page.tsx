@@ -2,6 +2,7 @@ import GradientButton from "@/components/form-elements/GradientButton";
 import { archivo, inter, poppins } from "@/fonts/fonts";
 import { pages } from "next/dist/build/templates/app-page";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -73,9 +74,9 @@ export default function Home() {
               <p>Go fast, go long, you only have 60 seconds!</p>
             </div>
             {/* caption button */}
-            <button className="max-w-[137px] px-8 py-4 bg-[#6C5DD3] whitespace-nowrap rounded-2xl">
+            <Link href="/demo-play" className="max-w-[137px] px-8 py-4 bg-[#6C5DD3] whitespace-nowrap rounded-2xl">
               Play Demo
-            </button>
+            </Link>
           </div>
         </div>
       </div>

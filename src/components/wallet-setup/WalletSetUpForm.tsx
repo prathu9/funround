@@ -22,7 +22,7 @@ const WalletSetUp = () => {
     setShowLoader(true);
     setTimeout(() => {
       router.push("/wallet-setup/top-up");
-    }, 2000);
+    }, 1000);
   };
 
   if (showLoader) {

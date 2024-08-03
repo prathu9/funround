@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <div className="md:min-h-[calc(100%_-_216px)]">
+        <div className="min-h-[calc(100%_-_216px)]">
           {children}
         </div>
         {modal}

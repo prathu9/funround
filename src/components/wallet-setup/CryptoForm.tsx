@@ -6,6 +6,7 @@ import { useState } from "react";
 import { archivo } from "@/fonts/fonts";
 import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
 import Image from "next/image";
+import CryptoOptions from "./crypto-options";
 
 interface BuyCryptoInput {
   postalCode: string;
@@ -30,16 +31,15 @@ const BuyCryptoForm = () => {
           <div className="mb-6">
             <h4 className="mb-2 text-xs font-medium text-[#808191]">Postal code</h4>
             <CustomSelect defaultValue="USDT" name="postalCode">
-              <CustomOption value="USDT">
-                <div className="p-4 flex h-[49px] bg-[#35353E]">
-                  Tether
-                </div>
-              </CustomOption>
-              <CustomOption value="ETH">
-                <div className="p-4 flex h-[49px] bg-[#35353E]">
-                  ETHEREUM
-                </div>
-              </CustomOption>
+              {CryptoOptions.map((crypto) => (
+                <CustomOption value={crypto.symbol} key={crypto.symbol}>
+                  <div className="p-4 flex gap-[10px] items-center h-[49px] bg-[#35353E]">
+                    <span>{crypto.icon}</span>
+                    <span className="text-sm">{crypto.symbol}</span>
+                    <span className="capitalize text-white/[32%]">{crypto.name}</span>
+                  </div>
+                </CustomOption>
+              ))}
             </CustomSelect>
           </div>
           <div>
