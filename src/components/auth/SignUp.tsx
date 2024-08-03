@@ -4,6 +4,7 @@ import InputWrapper from "../form-elements/InputWrapper";
 import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "../form-elements/GradientButton";
 import Link from "next/link";
+import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
 
 interface SignUpInput {
   email: string;
@@ -18,6 +19,7 @@ const SignUp = () => {
 
   const onSubmit = (data: SignUpInput) => {
     console.log(data)
+    localStorage.setItem("user-detail", JSON.stringify(data));
   }
 
   return (
@@ -61,18 +63,16 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-6">
-          <InputWrapper
+          <InputPasswordWrapper
             rightIcon="/eye-off-icon.svg"
-            type="password"
             placeholder="Password"
             label="Password"
             name="password"
           />
         </div>
         <div className="mb-6">
-          <InputWrapper
+          <InputPasswordWrapper
             rightIcon="/eye-off-icon.svg"
-            type="password"
             placeholder="Password"
             label="Confirm password"
             name="confirmPassword"
