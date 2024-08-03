@@ -48,7 +48,7 @@ const InputWrapper = ({
           </div>
         )}
         {/* input */}
-        <input type={type} placeholder={placeholder} {...register(name, registerOptions)} className={`w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg 
+        <input type={type} placeholder={placeholder} {...register(name, registerOptions)} className={`min-w-full w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg 
           ${leftIcon && "pl-[50px]"}`} />
       </div>
     </div>
