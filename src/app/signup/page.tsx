@@ -8,9 +8,10 @@ import { useLayoutEffect } from "react";
 const Page = () => {
   const router = useRouter();
 
-  // useLayoutEffect(() => {
-  //   router.push("/")
-  // },[router])
+  useLayoutEffect(() => {
+    console.log("nav")
+    router.push("/")
+  },[router])
 
   return (
     <Portal>
