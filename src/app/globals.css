@@ -18,6 +18,10 @@ body {
   background: #1F2128;
 }
 
+input{
+  -webkit-appearance: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:enabled,
 input:-webkit-autofill:hover,

@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "./form-elements/GradientButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import OTPField from "./form-elements/OTPField";
 
 interface ConfirmEmailInput {
   password: string;
@@ -40,13 +41,7 @@ const ConfirmEmail = ({backLink, forwardLink}: ConfirmEmailProps) => {
           </Link>
         </p>
         <div className="mb-6">
-          <InputWrapper
-            rightIcon="/eye-off-icon.svg"
-            type="password"
-            placeholder="_ _ _ _"
-            label="4 digits code"
-            name="password"
-          />
+          <OTPField/>
         </div>
         <GradientButton
           type="submit"

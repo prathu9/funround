@@ -19,7 +19,7 @@ const Login = () => {
 
   const onSubmit = (data: LoginInput) => {
     console.log(data)
-    router.push("/login/confirm")
+    router.push("/login/confirm");
   }
 
   return (
