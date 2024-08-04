@@ -8,9 +8,11 @@ const ModalOverlay = ({children}:{children: ReactNode}) => {
 
     useEffect(() => {
         document.body.style.overflowY = "hidden";
+        document.documentElement.style.overflowY ="hidden";
 
         return () => {
             document.body.style.overflowY = "scroll";
+            document.documentElement.style.overflowY = "scroll";
         }
     },[])
 
