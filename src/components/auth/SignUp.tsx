@@ -29,7 +29,7 @@ const SignUp = () => {
     // context provider for input wrapper
     <FormProvider {...methods}>
       {/* Container for signup form */}
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={`w-full h-full max-w-[696px] px-6 py-[47px] absolute top-[6vw] left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:h-fit sm:px-12 sm:border sm:border-white ${archivo.className}`}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className={`w-full h-full max-w-[696px] py-[47px] absolute top-[1.2vw] left-1/2 -translate-x-1/2 scale-90 rounded-2xl bg-black sm:h-fit sm:px-12 sm:border sm:border-white ${archivo.className}`}>
         <h1 className={`mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl ${archivo.className}`}>
           CREATE ACCOUNT
         </h1>
