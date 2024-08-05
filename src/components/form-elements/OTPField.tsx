@@ -10,13 +10,13 @@ const OTPField = () => {
             inputRef.current?.addEventListener("input", (e: Event) => {
 
                 const value = (e.target as HTMLInputElement).value;
-                if(value && OTP.length <= 4){
-                    setOTP(OTP+value);
-                    console.log(e.target.nextSibling)
-                    if()
-                    inputRef.current = e.target.nextSibling;
-                    inputRef.current.focus();
-                }
+                // if(value && OTP.length <= 4){
+                //     setOTP(OTP+value);
+                //     console.log(e.target.nextSibling)
+                //     if()
+                //     inputRef.current = e.target.nextSibling;
+                //     inputRef.current.focus();
+                // }
             })
         }
        
