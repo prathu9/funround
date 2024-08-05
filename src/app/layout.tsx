@@ -3,7 +3,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { inter } from "@/fonts/fonts";
-import { usePathname } from "next/navigation";
+import UserProvider from "@/context/user-context";
+import RootMain from "./RootMain";
 
 
 export const metadata: Metadata = {
@@ -13,27 +14,23 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   initialScale: 1,
-  width: 'device-width',
-  maximumScale: 1
-}
+  width: "device-width",
+  maximumScale: 1,
+};
 
 export default function RootLayout({
   children,
-  modal
+  modal,
 }: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <div className="min-h-[calc(100%_-_216px)]">
-          {children}
-        </div>
-        {modal}
-        <Footer />
+       <RootMain modal={modal}>
+        {children}
+       </RootMain>
       </body>
     </html>
   );

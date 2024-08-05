@@ -6,6 +6,8 @@ import GradientButton from "../form-elements/GradientButton";
 import Link from "next/link";
 import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { UserContext } from "@/context/user-context";
 
 interface SignUpInput {
   email: string;
@@ -18,10 +20,25 @@ interface SignUpInput {
 const SignUp = () => {
   const methods = useForm<SignUpInput>();
   const router = useRouter();
+  const {userDetail, setUserDetail} = useContext(UserContext);
 
   const onSubmit = (data: SignUpInput) => {
-    console.log(data)
-    localStorage.setItem("user-detail", JSON.stringify(data));
+    // storing data in local storage for testing
+    localStorage.setItem("user-detail", JSON.stringify({...data, isLoggedIn: true}));
+
+    // save user filled data in user context
+    setUserDetail({
+      ...userDetail,
+      ...{
+        email: data.email,
+        username: data.username,
+        password: data.password,
+        termsOfUse: false,
+        isLoggedIn: true
+      }
+    });
+
+    // navigate to home page after sign up
     router.push("/");
   }
 

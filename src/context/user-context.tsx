@@ -1,44 +1,62 @@
-import { createContext, ReactNode, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 type UserContextType = {
-    username: string,
-    email: string,
-    password: string,
-    termsOfUse: boolean,
-    updateInputField?: (key: string, value: string) => void
-}
+  userDetail: UserDetailType;
+  setUserDetail: Dispatch<SetStateAction<UserDetailType>>;
+};
 
 export const UserContext = createContext<UserContextType>({
+  userDetail: {
     username: "",
     email: "",
     password: "",
-    termsOfUse: false
+    termsOfUse: false,
+    isLoggedIn: false,
+  },
+  setUserDetail: () => {},
 });
 
 type UserProviderProps = {
-    children: ReactNode
+  children: ReactNode;
+};
+
+interface UserDetailType {
+  username: string;
+  email: string;
+  password: string;
+  termsOfUse: boolean;
+  isLoggedIn: boolean;
 }
 
-const UserProvider = ({children}: UserProviderProps) => {
-    const [userDetail, setUserDetail] = useState<UserContextType>({
-        username: "",
-        email: "",
-        password: "",
-        termsOfUse: false
-    });
+const UserProvider = ({ children }: UserProviderProps) => {
+  const [userDetail, setUserDetail] = useState<UserDetailType>({
+    username: "",
+    email: "",
+    password: "",
+    termsOfUse: false,
+    isLoggedIn: false,
+  });
 
-    const updateInputField = (key: string, value: string) => {
-        setUserDetail({
-            ...userDetail,
-            [key]: value
-        })
+  useEffect(() => {
+    console.log(JSON.parse(localStorage.getItem("user-detail")!));
+    const storedData = localStorage.getItem("user-detail");
+    if(storedData){
+        setUserDetail(JSON.parse(storedData));
     }
+  }, []);
 
-    return(
-        <UserContext.Provider value={{...userDetail, updateInputField}}>
-            {children}
-        </UserContext.Provider>
-    )
-}
+  return (
+    <UserContext.Provider value={{ userDetail, setUserDetail }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
 
 export default UserProvider;
