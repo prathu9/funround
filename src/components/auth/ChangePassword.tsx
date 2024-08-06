@@ -5,16 +5,16 @@ import GradientButton from "../form-elements/GradientButton";
 import { useState } from "react";
 import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
 
-interface NewPasswordInput {
+interface ChangePasswordInput {
   password: string;
   confirmPassword: string;
 }
 
 const ChangePassword = () => {
-  const methods = useForm<NewPasswordInput>();
+  const methods = useForm<ChangePasswordInput>();
   const [isUpdated, setIsUpdated] = useState(false);
 
-  const onSubmit = (data: NewPasswordInput) => {
+  const onSubmit = (data: ChangePasswordInput) => {
     console.log(data);
     setIsUpdated(true);
   };

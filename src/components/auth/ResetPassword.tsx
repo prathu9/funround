@@ -16,7 +16,6 @@ const ResetPassword = () => {
   const methods = useForm<ResetPasswordInput>();
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
-  const router = useRouter();
 
   const onSubmit = (data: ResetPasswordInput) => {
     console.log(data);

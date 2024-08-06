@@ -81,8 +81,8 @@ export const WalletDesktop = () => {
   };
 
   return (
-    <div className="relative hidden basis-[405px] h-[65px] bg-[#2C2E37] rounded-2xl sm:block">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#2C2E37] rounded-2xl z-10">
+    <div className="relative hidden basis-[405px] h-[65px] bg-[#2C2E37] rounded-2xl sm:block z-10">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-[#2C2E37] rounded-2xl z-5">
         <button
           onClick={toggleDropDown}
           className="px-[18px] py-[15px] w-full flex gap-[9px] justify-between items-center "
@@ -102,14 +102,14 @@ export const WalletDesktop = () => {
         {showDropDown && (
           <div className="w-full px-[18px] py-[15px] bg-[#2C2E37] z-10 rounded-b-2xl">
             <Link
-              href="/"
+              href="/wallet-setup/withdraw"
               className="py-2 inline-block w-full text-[18px] leading-[19.91px] bg-[#1F2128] text-center rounded-lg"
             >
               WITHDRAW
             </Link>
             <ul className="mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72]">
               {data.map((crypto) => (
-                <li key="cryto" className="flex gap-[9px] items-center">
+                <li key={crypto.name} className="flex gap-[9px] items-center">
                   {crypto.icon}
                   <span>{crypto.amount}</span>
                   <span className="text-[#5F5A72]">
@@ -161,7 +161,7 @@ export const WalletMobile = () => {
               </span>
           </div>
           <Link
-            href="/"
+             href="/wallet-setup/withdraw"
             className="py-2 inline-block w-full text-[18px] leading-[19.91px] bg-[#1F2128] text-center rounded-lg"
           >
             WITHDRAW

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     // container for home pages
     <main
-      className={`px-8 pt-8 pb-[120px] flex flex-wrap justify-between items-center gap-y-8 md:py-12 md:px-[40px] xl:px-[120px] lg:flex-nowrap ${archivo.className}`}
+      className="px-8 pt-8 pb-[120px] flex flex-wrap justify-between items-center gap-y-8 md:py-12 md:px-[40px] xl:px-[120px] lg:flex-nowrap"
     >
       {/* container for title and buttons */}
       <div className="basis-full text-center lg:basis-[37.86%] lg:text-left">

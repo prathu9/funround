@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { archivo } from "@/fonts/fonts";
 import { UserContext } from "@/context/user-context";
-import Wallet from "../Wallet";
+import Wallet from "../wallet-setup/Wallet";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
