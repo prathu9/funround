@@ -13,16 +13,20 @@ interface ConfirmEmailInput {
 
 type ConfirmEmailProps = {
   forwardLink: string,
-  backLink: string
+  backLink: string,
+  submitHandler?: (data: ConfirmEmailInput) => void
 }
 
-const ConfirmEmail = ({backLink, forwardLink}: ConfirmEmailProps) => {
+const ConfirmEmail = ({backLink, forwardLink, submitHandler}: ConfirmEmailProps) => {
   const methods = useForm<ConfirmEmailInput>();
   const router = useRouter();
 
   const onSubmit = (data: ConfirmEmailInput) => {
     console.log(data);
     router.push(forwardLink);
+    if(submitHandler){
+    submitHandler(data);
+    }
   };
 
   return (

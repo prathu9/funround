@@ -149,8 +149,8 @@ export const WalletMobile = () => {
         <span>Wallet</span>
       </button>
       {showDropDown && (
-        <div className="absolute h-[calc(100%-115px)] top-[115px] left-0 w-full px-[18px] py-[15px] bg-[#242731] z-10 rounded-b-2xl">
-          <div className="py-[15px] w-full flex gap-[9px] items-center">
+        <div className="absolute h-[calc(100%-115px)] top-[119px] left-0 w-full px-[18px] py-[15px] bg-[#242731] z-10 rounded-b-2xl overflow-hidden">
+          <div className="pb-[15px] w-full flex gap-[9px] items-center">
               <span className="pr-[9px] text-[18px] leading-[19.91px] border-r">
                 WALLET
               </span>
@@ -166,9 +166,9 @@ export const WalletMobile = () => {
           >
             WITHDRAW
           </Link>
-          <ul className="mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72]">
+          <ul className="h-[calc(100%-120px)] mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72] overflow-auto">
             {data.map((crypto) => (
-              <li key="cryto" className="flex gap-[9px] items-center">
+              <li key={crypto.name} className="flex gap-[9px] items-center">
                 {crypto.icon}
                 <span>{crypto.amount}</span>
                 <span className="text-[#5F5A72]">{crypto.valueInDollars}</span>
