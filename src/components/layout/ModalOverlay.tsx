@@ -11,8 +11,8 @@ const ModalOverlay = ({children}:{children: ReactNode}) => {
         document.documentElement.style.overflowY ="hidden";
 
         return () => {
-            document.body.style.overflowY = "scroll";
-            document.documentElement.style.overflowY = "scroll";
+            document.body.style.overflowY = "auto";
+            document.documentElement.style.overflowY = "auto";
         }
     },[])
 

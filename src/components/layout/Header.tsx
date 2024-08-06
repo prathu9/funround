@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { archivo } from "@/fonts/fonts";
 import { UserContext } from "@/context/user-context";
+import Wallet from "../Wallet";
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -45,7 +46,7 @@ const Header = () => {
 const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     // container for desktop header
-    <div className="hidden justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] px-[40px] py-8 xl:px-[120px] sm:flex">
+    <div className="hidden justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] px-[40px] py-8 xl:px-[120px] sm:flex">
       {/* container for logo and meta tag */}
       <div className="flex items-center gap-4">
         {/* logo container */}
@@ -67,7 +68,9 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </div>
       {isLoggedIn ? (
         <>
-          <div>selector</div>
+          <div>
+            <Wallet />
+          </div>
           <div className="w-12 h-12">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </div>
@@ -115,11 +118,11 @@ const MobileHeader = ({
   hideMenu: () => void;
 }) => {
   return (
-    <div className="p-8 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] sm:hidden">
+    <div className="p-8 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
       {isLoggedIn ? (
         // Header Mobile view when logged in
         <>
-          <div>Wallet</div>
+          <Wallet />
           <div className="w-10 h-10">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </div>
