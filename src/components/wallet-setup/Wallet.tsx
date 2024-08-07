@@ -126,21 +126,21 @@ export const WalletDesktop = () => {
 };
 
 export const WalletMobile = () => {
-  const [showDropDown, setShowDropDown] = useState(false);
+  const [showWallets, setShowWallets] = useState(false);
 
-  const toggleDropDown = () => {
-    if (!showDropDown) {
+  const toggleShowWallets = () => {
+    if (!showWallets) {
         document.body.style.overflowY = "hidden";
       } else {
         document.body.style.overflowY = "auto";
       }
-    setShowDropDown(!showDropDown);
+    setShowWallets(!showWallets);
   };
 
   return (
     <div className="sm:hidden">
       <button
-        onClick={toggleDropDown}
+        onClick={toggleShowWallets}
         className="px-6 py-[14px] flex gap-[10px] bg-black rounded-full cursor-pointer"
       >
         <span>
@@ -148,8 +148,8 @@ export const WalletMobile = () => {
         </span>
         <span>Wallet</span>
       </button>
-      {showDropDown && (
-        <div className="absolute h-[calc(100%-115px)] top-[119px] left-0 w-full px-[18px] py-[15px] bg-[#242731] z-10 rounded-b-2xl overflow-hidden">
+      {showWallets && (
+        <div className="absolute h-[calc(100vh-115px)] top-[119px] left-0 w-full px-[18px] py-[15px] bg-[#242731] z-10 rounded-b-2xl overflow-hidden">
           <div className="pb-[15px] w-full flex gap-[9px] items-center">
               <span className="pr-[9px] text-[18px] leading-[19.91px] border-r">
                 WALLET
