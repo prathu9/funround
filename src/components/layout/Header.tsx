@@ -46,7 +46,7 @@ const Header = () => {
 const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     // container for desktop header
-    <div className="hidden justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] px-[40px] py-8 xl:px-[120px] sm:flex">
+    <div className="hidden px-[40px] py-4 justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] xl:px-[120px] sm:flex">
       {/* container for logo and meta tag */}
       <div className="flex items-center gap-4">
         {/* logo container */}
@@ -118,7 +118,7 @@ const MobileHeader = ({
   hideMenu: () => void;
 }) => {
   return (
-    <div className="p-8 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
+    <div className="px-8 py-4 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
       {isLoggedIn ? (
         // Header Mobile view when logged in
         <>

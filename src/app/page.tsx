@@ -45,9 +45,9 @@ export default function Home() {
             LET'S PLAY
           </GradientButton>
           {/* learn more button */}
-          <button className="min-w-[181px] w-[48%] py-[26px]  rounded-2xl text-sm tracking-[0.04em] whitespace-nowrap bg-[#353535]/[40%] hover:bg-[#717171]/[66%] md:px-[2.5vw] md:py-[1.9vw] md:text-[1.25vw] md:max-w-none">
+          <Link href="/learn-more" className="min-w-[181px] w-[48%] py-[26px]  rounded-2xl text-sm tracking-[0.04em] whitespace-nowrap bg-[#353535]/[40%] hover:bg-[#717171]/[66%] md:px-[2.5vw] md:py-[1.9vw] md:text-[1.25vw] md:max-w-none">
             LEARN MORE
-          </button>
+          </Link>
         </div>
       </div>
       {/* Container for cover image and text */}
