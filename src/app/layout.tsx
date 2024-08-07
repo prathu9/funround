@@ -25,8 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={archivo.className}>
-       <RootMain modal={modal}>
+       <RootMain>
         {children}
+        {modal}
        </RootMain>
       </body>
     </html>

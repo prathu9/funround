@@ -6,16 +6,15 @@ import { ReactNode } from "react";
 
 const RootMain = ({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: ReactNode;
 }) => {
   return (
     <UserProvider>
       <Header />
-      <div className="min-h-[calc(100%_-_216px)]">{children}</div>
-      {modal}
+      <div className="min-h-[calc(100vh_-_180px)]">
+        {children}
+      </div>
       <Footer />
     </UserProvider>
   );

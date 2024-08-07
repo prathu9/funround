@@ -71,9 +71,9 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           <div>
             <Wallet />
           </div>
-          <div className="w-12 h-12">
+          <Link href="/profile" className="w-12 h-12">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
-          </div>
+          </Link>
         </>
       ) : (
         // container for header right content logged in
@@ -118,14 +118,14 @@ const MobileHeader = ({
   hideMenu: () => void;
 }) => {
   return (
-    <div className="px-8 py-4 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
+    <div className="p-8 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
       {isLoggedIn ? (
         // Header Mobile view when logged in
         <>
           <Wallet />
-          <div className="w-10 h-10">
+          <Link href="/profile" className="w-10 h-10">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
-          </div>
+          </Link>
         </>
       ) : (
         // Header Mobile view when logged in
