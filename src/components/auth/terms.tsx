@@ -1,17 +1,26 @@
 "use client";
 import { archivo } from "@/fonts/fonts";
 import GradientButton from "../form-elements/GradientButton";
-import { UIEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext, SetStateAction, Dispatch } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { UserContext } from "@/context/user-context";
 
-const Terms = () => {
+interface TermProps {
+  setShowTerms?: Dispatch<SetStateAction<boolean>>
+}
+
+const Terms = ({setShowTerms}:TermProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const termsContainerRef = useRef<HTMLDivElement>(null);
   const [disableBtn, setDisableBtn] = useState(true);
+  const {userDetail, setUserDetail} = useContext(UserContext);
+
 
   useEffect(() => {
     let termsContainer = termsContainerRef.current;
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLDivElement;
-      console.log(target.scrollTop, target.clientHeight, target.scrollHeight)
       if (Math.ceil(target.scrollTop) + target.clientHeight >= target.scrollHeight) {
         setDisableBtn(false);
       } else {
@@ -29,6 +38,27 @@ const Terms = () => {
       }
     };
   }, [termsContainerRef]);
+
+  const handleBtnClick = () => {
+    const userData = localStorage.getItem("user-detail")
+    if(userData){
+      const userDataParsed = JSON.parse(userData);
+      localStorage.setItem("user-detail", JSON.stringify({...userDataParsed, termsOfUse: true}));
+      router.push("/");
+    }
+    else if(pathname === "/signup"){
+      setUserDetail({
+        ...userDetail,
+        termsOfUse: true
+      });
+      if(setShowTerms){
+        setShowTerms(false);
+      }
+    }
+    else{
+      router.back();
+    }
+  }
 
   return (
     <div
@@ -487,6 +517,7 @@ const Terms = () => {
         </div>
       </div>
       <GradientButton
+        handleClick={handleBtnClick}
         className={`mt-12 w-full py-[26px] text-lg rounded-2xl ${
           disableBtn && "opacity-45"
         }`}

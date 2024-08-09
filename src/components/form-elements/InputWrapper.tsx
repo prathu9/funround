@@ -10,6 +10,7 @@ type InputWrapperPropsType = {
   placeholder: string;
 leftIcon?: string;
 rightIcon?: string;
+errorMessage? :string;
   registerOptions?: RegisterOptions;
 };
 
@@ -21,6 +22,7 @@ const InputWrapper = ({
   registerOptions,
   leftIcon,
   rightIcon,
+  errorMessage
 }: InputWrapperPropsType) => {
   const { register } = useFormContext();
 
@@ -29,9 +31,10 @@ const InputWrapper = ({
     <div>
       {/* input Label */}
       <label
-        className={`mb-2 inline-block text-xs font-medium text-[#808191] ${inter.className}`}
+        className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}
       >
-        {label}
+        <span>{label}</span>
+        <span className="text-[#F24D4D]">{errorMessage}</span>
       </label>
       {/* container for input */}
       <div className="relative">
