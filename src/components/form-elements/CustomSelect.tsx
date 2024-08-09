@@ -67,7 +67,7 @@ export const CustomSelect = ({
           </span>
         </button>
         {isOpen && children && (
-          <ul className="w-full absolute bg-[#35353E] z-10">
+          <ul className="pb-4 w-full max-h-[220px] absolute bg-[#35353E] z-10 overflow-auto">
             {React.Children.map(children, (child, index) => {
               return (
                 <li className="w-full h-fit" key={index}>

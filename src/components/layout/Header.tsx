@@ -6,39 +6,19 @@ import Link from "next/link";
 import { archivo } from "@/fonts/fonts";
 import { UserContext } from "@/context/user-context";
 import Wallet from "../wallet-setup/Wallet";
+import walletBalanceData from "@/data/walletBalanceData";
+import { WalletContext } from "@/context/wallet-context";
 
 const Header = () => {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const {
-    userDetail: { isLoggedIn, username },
+    userDetail: { isLoggedIn },
   } = useContext(UserContext);
 
-  useEffect(() => {
-    if (showMobileMenu) {
-      document.body.style.overflowY = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
-    }
-  }, [showMobileMenu]);
-
-  const toggleMobileMenu = () => {
-    setShowMobileMenu(!showMobileMenu);
-  };
-
-  const hideMenu = () => {
-    setShowMobileMenu(false);
-  };
-
   return (
-    <div>
+    <>
       <DesktopHeader isLoggedIn={isLoggedIn} />
-      <MobileHeader
-        isLoggedIn={isLoggedIn}
-        toggleMobileMenu={toggleMobileMenu}
-        hideMenu={hideMenu}
-        showMobileMenu={showMobileMenu}
-      />
-    </div>
+      <MobileHeader isLoggedIn={isLoggedIn} />
+    </>
   );
 };
 
@@ -68,9 +48,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </div>
       {isLoggedIn ? (
         <>
-          <div>
-            <Wallet />
-          </div>
+          <Wallet walletBalanceData={walletBalanceData} />
           <Link href="/profile" className="w-12 h-12">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>
@@ -106,23 +84,29 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   );
 };
 
-const MobileHeader = ({
-  isLoggedIn,
-  showMobileMenu,
-  toggleMobileMenu,
-  hideMenu,
-}: {
-  isLoggedIn: boolean;
-  showMobileMenu: boolean;
-  toggleMobileMenu: () => void;
-  hideMenu: () => void;
-}) => {
+const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [showMobileMenu]);
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
+
+  const hideMenu = () => {
+    setShowMobileMenu(false);
+  };
   return (
-    <div className="p-8 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
+    <div className="px-8 py-4 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
       {isLoggedIn ? (
         // Header Mobile view when logged in
         <>
-          <Wallet />
+          <Wallet walletBalanceData={walletBalanceData} />
           <Link href="/profile" className="w-10 h-10">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>
@@ -139,7 +123,7 @@ const MobileHeader = ({
           </div>
           {/* Mobile navigation */}
           <ul
-            className={`mt-[92.98px] p-8 flex gap-6 flex-col absolute top-0 left-0 w-screen h-[calc(100vh_-_92.98px)] bg-[#242731] z-10 transition-all ${
+            className={`mt-[61px] p-8 flex gap-6 flex-col absolute top-0 left-0 w-screen h-[calc(100vh_-_61px)] bg-[#242731] z-10 transition-all ${
               showMobileMenu ? "-translate-x-0" : "-translate-x-full"
             }  sm:hidden ${archivo.className}`}
           >

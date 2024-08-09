@@ -62,7 +62,7 @@ const Terms = ({setShowTerms}:TermProps) => {
 
   return (
     <div
-      className={`w-full max-w-[696px] px-6 py-[47px] absolute top-[6vw] left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white ${archivo.className}`}
+      className="w-full max-w-[696px] px-3 py-[47px] absolute top-[6vw] left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
     >
       <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
         TERMS <br /> & CONDITIONS
@@ -518,7 +518,7 @@ const Terms = ({setShowTerms}:TermProps) => {
       </div>
       <GradientButton
         handleClick={handleBtnClick}
-        className={`mt-12 w-full py-[26px] text-lg rounded-2xl ${
+        className={`mt-12 w-full px-4 py-[26px] text-sm rounded-2xl whitespace-normal text-wrap sm:text-lg ${
           disableBtn && "opacity-45"
         }`}
       >
