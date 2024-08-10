@@ -1,31 +1,39 @@
 "use client";
-import { archivo } from "@/fonts/fonts";
-import InputWrapper from "./form-elements/InputWrapper";
 import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "./form-elements/GradientButton";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import OTPField from "./form-elements/OTPField";
+import { useEffect } from "react";
 
 interface ConfirmEmailInput {
-  password: string;
+  firstDigit: string,
+  secondDigit: string,
+  thirdDigit: string,
+  fourthDigit: string
 }
 
 type ConfirmEmailProps = {
-  forwardLink: string,
+  errorMessage?: string | undefined,
   backLink: string,
-  submitHandler?: (data: ConfirmEmailInput) => void
+  submitHandler?: (otp: string) => void
 }
 
-const ConfirmEmail = ({backLink, forwardLink, submitHandler}: ConfirmEmailProps) => {
+const ConfirmEmail = ({errorMessage, backLink, submitHandler}: ConfirmEmailProps) => {
   const methods = useForm<ConfirmEmailInput>();
-  const router = useRouter();
+  const {formState: {errors}, setError} = methods;
+
+  useEffect(() => {
+    if(errorMessage){
+      setError("firstDigit", {message: errorMessage})
+    }
+    
+  }, [errorMessage, setError])
 
   const onSubmit = (data: ConfirmEmailInput) => {
-    console.log(data);
-    router.push(forwardLink);
+    const {firstDigit, secondDigit, thirdDigit, fourthDigit} = data;
+    const concateDigit = firstDigit+ secondDigit+ thirdDigit+ fourthDigit;
     if(submitHandler){
-    submitHandler(data);
+      submitHandler(concateDigit);
     }
   };
 
@@ -35,17 +43,17 @@ const ConfirmEmail = ({backLink, forwardLink, submitHandler}: ConfirmEmailProps)
       {/* Container for signup form */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className={`w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0 ${archivo.className}`}
+        className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
       >
         <h1 className="mb-3 text-[28px] leading-[30.97px] text-center font-black sm:mb-6 sm:text-5xl">CONFIRM EMAIL</h1>
         <p className="mb-6 text-center text-[15px] leading-[20px] sm:mb-12 sm:text-2xl">
           A 4 digit code has been emailed to you.{" "}
-          <Link href="./signup" className="text-[#AB97FF]">
+          <span className="text-[#AB97FF]">
             Resend
-          </Link>
+          </span>
         </p>
         <div className="mb-6">
-          <OTPField/>
+          <OTPField errorMessages={errors}/>
         </div>
         <GradientButton
           type="submit"

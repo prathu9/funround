@@ -8,7 +8,7 @@ type CountryObjectType = {
 
 const CountrySelector = () => {
   const [countries, setCountries] = useState<CountryObjectType[] | null>(null);
-  console.log(countries);
+
   useEffect(() => {
     fetch(
       "https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"

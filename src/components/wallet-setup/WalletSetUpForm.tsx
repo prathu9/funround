@@ -101,6 +101,7 @@ const WalletSetUp = () => {
               placeholder="First name"
               label="First name"
               name="firstname"
+              errorMessage={errors.firstname?.message}
               registerOptions={{
                 required: "Please enter firstname",
                 validate: validateName,
@@ -116,6 +117,7 @@ const WalletSetUp = () => {
               placeholder="Last name"
               label="Last name"
               name="lastname"
+              errorMessage={errors.lastname?.message}
               registerOptions={{
                 required: "Please enter lastname",
                 validate: validateName,
@@ -140,12 +142,6 @@ const WalletSetUp = () => {
           {/* container for country */}
           <div className="basis-full sm:basis-[33%]">
             {/* selector for country */}
-            {/* <InputWrapper
-              type="text"
-              placeholder="Country"
-              label="Country"
-              name="country"
-            /> */}
             <CountrySelector/>
           </div>
           {/* container for postal code */}

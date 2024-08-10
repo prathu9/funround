@@ -1,12 +1,26 @@
+"use client"
 import ConfirmEmail from "@/components/ConfirmEmail";
 import ModalOverlay from "@/components/layout/ModalOverlay";
 import Portal from "@/components/layout/Portal";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Page = () => {
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
+  const submitHandler = (otp: string) => {
+    if(otp !== "1234"){
+      setErrorMessage("Wrong digits");
+    }
+    else{
+      router.push("/wallet-setup/setup-form");
+    }
+  }
+
   return (
     <Portal>
       <ModalOverlay>
-        <ConfirmEmail forwardLink="/wallet-setup/setup-form" backLink="/wallet-setup"/>
+        <ConfirmEmail errorMessage={errorMessage} submitHandler={submitHandler} backLink="/wallet-setup"/>
       </ModalOverlay>
     </Portal>
   );
