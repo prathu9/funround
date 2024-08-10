@@ -22,14 +22,14 @@ const ResetPassword = () => {
     setIsEmailSent(true);
   };
 
-  const confirmEmailHandler = (data: {password: string}) => {
-    console.log(data)
+  const confirmEmailHandler = (otp: string) => {
+    console.log(otp)
     setIsEmailSent(false);
     setIsVerified(true);
   }
 
   if(isEmailSent){
-    return <ConfirmEmail backLink="/login" forwardLink="/login/reset-password" submitHandler={confirmEmailHandler}/>
+    return <ConfirmEmail backLink="/login" submitHandler={confirmEmailHandler}/>
   }
 
   if(isVerified){
