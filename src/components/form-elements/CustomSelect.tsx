@@ -7,14 +7,17 @@ import React, {
   useState,
   createContext,
   useRef,
+  useEffect,
+  useMemo,
 } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 interface CustomSelectProp {
   children: ReactNode;
-  defaultValue: string;
   name: string;
+  defaultValue?: string;
+  placeholder?: string;
 }
 
 const options = [
@@ -25,22 +28,23 @@ const options = [
 interface SelectContextType {
   name: string;
   setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SelectContext = createContext({
   name: "",
   setSelectedValue: () => {},
-  setIsOpen: () => {}
+  setIsOpen: () => {},
 } as SelectContextType);
 
 // Custom select component
 export const CustomSelect = ({
+  placeholder,
   children,
   name,
   defaultValue,
 }: CustomSelectProp) => {
-  const [selectedValue, setSelectedValue] = useState(defaultValue);
+  const [selectedValue, setSelectedValue] = useState(defaultValue || "");
   const [isOpen, setIsOpen] = useState(false);
   const triggerButtonRef = useRef(null);
 
@@ -48,7 +52,7 @@ export const CustomSelect = ({
     (child) => (child as ReactElement)!.props.value === selectedValue
   );
 
-  const toggleOpen = (event:any) => {
+  const toggleOpen = (event: any) => {
     setIsOpen(!isOpen);
   };
 
@@ -61,10 +65,14 @@ export const CustomSelect = ({
           className="pr-4 w-full flex justify-between items-center rounded-lg overflow-hidden bg-[#35353E]"
           onClick={toggleOpen}
         >
-          {selectedLabel && (selectedLabel as ReactElement).props.children}
-          <span>
-            {isOpen? <FaChevronUp/>:<FaChevronDown/>}
-          </span>
+          {selectedLabel ? (
+            <div className="max-w-[80%] basis-[80%] whitespace-nowrap overflow-hidden text-ellipsis">
+              {(selectedLabel as ReactElement).props.children}
+            </div>
+          ) : (
+            <div className="p-4">{placeholder}</div>
+          )}
+          <span>{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
         </button>
         {isOpen && children && (
           <ul className="pb-4 w-full max-h-[220px] absolute bg-[#35353E] z-10 overflow-auto">
@@ -85,23 +93,36 @@ export const CustomSelect = ({
 interface CustomOptionProp {
   children: ReactNode;
   value: string;
+  id?: string;
 }
 
 // Custom option component
-export const CustomOption = ({ children, value }: CustomOptionProp) => {
+export const CustomOption = ({ children, value, id }: CustomOptionProp) => {
   const { name, setSelectedValue, setIsOpen } = useContext(SelectContext);
-  const { register } = useFormContext();
+  const { register, setValue } = useFormContext();
 
   const changeSelectedValue = (value: string) => {
     setSelectedValue(value);
     setIsOpen(false);
+    setValue(name, value);
   };
   return (
     <>
-      <label htmlFor={value} className="cursor-pointer" onClick={() => changeSelectedValue(value)}>
+      <input
+        id={id}
+        {...register(name)}
+        type="radio"
+        value={value}
+        className="hidden peer"
+        checked={value === "aruba"}
+      />
+      <label
+        htmlFor={id}
+        className="cursor-pointer peer-checked:bg-slate-500"
+        onClick={() => changeSelectedValue(value)}
+      >
         {children}
       </label>
-      <input id={value} {...register(name)} type="radio" value={value} className="hidden peer" />
     </>
   );
 };

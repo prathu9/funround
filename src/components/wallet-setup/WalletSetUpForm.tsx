@@ -140,7 +140,7 @@ const WalletSetUp = () => {
         {/* container for country, postal code, address */}
         <div className="mb-6 flex gap-6">
           {/* container for country */}
-          <div className="basis-full sm:basis-[33%]">
+          <div className="basis-full sm:basis-[33%] sm:max-w-[33%]">
             {/* selector for country */}
             <CountrySelector/>
           </div>

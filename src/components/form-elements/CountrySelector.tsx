@@ -23,10 +23,10 @@ const CountrySelector = () => {
     <div>
       <h4 className="mb-2 text-xs font-medium text-[#808191]">Country</h4>
       {countries ? (
-        <CustomSelect defaultValue={countries[0].value} name="country">
+        <CustomSelect placeholder="country" name="country">
           {countries.map((country) => (
-            <CustomOption value={country.value} key={country.value}>
-              <div className="p-4">{country.label}</div>
+            <CustomOption id={country.value} value={country.label} key={country.value}>
+              <div className="pl-4 py-4 w-full text-left overflow-hidden text-ellipsis">{country.label}</div>
             </CustomOption>
           ))}
         </CustomSelect>

@@ -1,7 +1,8 @@
+"use client";
 import ConfirmEmail from "@/components/ConfirmEmail";
 import ModalOverlay from "@/components/layout/ModalOverlay";
 import Portal from "@/components/layout/Portal";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Page = () => {
