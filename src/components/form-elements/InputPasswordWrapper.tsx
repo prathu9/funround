@@ -39,7 +39,7 @@ const InputPasswordWrapper = ({
         className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}
       >
         <span>{label}</span>
-        <span className="text-[#F24D4D]">{errorMessage}</span>
+        {errorMessage && <span className="text-[#F24D4D]">{errorMessage}</span>}
       </label>
       {/* container for input */}
       <div className="relative">
@@ -56,7 +56,7 @@ const InputPasswordWrapper = ({
           type={type}
           placeholder={placeholder}
           {...register(name, registerOptions)}
-          className={`min-w-full w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg`}
+          className={`min-w-full w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg outline-none ${errorMessage && "border border-[#F24D4D]"}`}
         />
       </div>
     </div>

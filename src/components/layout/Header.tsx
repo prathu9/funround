@@ -5,9 +5,10 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { archivo } from "@/fonts/fonts";
 import { UserContext } from "@/context/user-context";
-import Wallet from "../wallet-setup/Wallet";
-import walletBalanceData from "@/data/walletBalanceData";
+import WalletBalance from "../wallet-setup/wallet-balance/WalletBalance";
+
 import { WalletContext } from "@/context/wallet-context";
+import walletBalanceData from "@/data/walletBalanceData";
 
 const Header = () => {
   const {
@@ -48,7 +49,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </div>
       {isLoggedIn ? (
         <>
-          <Wallet walletBalanceData={walletBalanceData} />
+          <WalletBalance walletBalanceData={walletBalanceData} />
           <Link href="/profile" className="w-12 h-12">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>
@@ -106,7 +107,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       {isLoggedIn ? (
         // Header Mobile view when logged in
         <>
-          <Wallet walletBalanceData={walletBalanceData} />
+          <WalletBalance walletBalanceData={walletBalanceData} />
           <Link href="/profile" className="w-10 h-10">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>

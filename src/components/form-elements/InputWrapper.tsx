@@ -8,9 +8,9 @@ type InputWrapperPropsType = {
   name: string;
   type: string;
   placeholder: string;
-leftIcon?: string;
-rightIcon?: string;
-errorMessage? :string;
+  leftIcon?: string;
+  rightIcon?: string;
+  errorMessage?: string;
   registerOptions?: RegisterOptions;
 };
 
@@ -22,7 +22,7 @@ const InputWrapper = ({
   registerOptions,
   leftIcon,
   rightIcon,
-  errorMessage
+  errorMessage,
 }: InputWrapperPropsType) => {
   const { register } = useFormContext();
 
@@ -34,7 +34,7 @@ const InputWrapper = ({
         className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}
       >
         <span>{label}</span>
-        <span className="text-[#F24D4D]">{errorMessage}</span>
+        {errorMessage && <span className="text-[#F24D4D]">{errorMessage}</span>}
       </label>
       {/* container for input */}
       <div className="relative">
@@ -51,8 +51,15 @@ const InputWrapper = ({
           </div>
         )}
         {/* input */}
-        <input type={type} placeholder={placeholder} {...register(name, registerOptions)} className={`min-w-full min-h-[53.93x] w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg sm:min-h-[51.96px]
-          ${leftIcon && "pl-[50px]"}`} />
+        <input
+          type={type}
+          placeholder={placeholder}
+          {...register(name, registerOptions)}
+          className={`min-w-full min-h-[53.93x] w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg outline-none sm:min-h-[51.96px] ${
+            errorMessage && "border border-[#F24D4D]"
+          }
+          ${leftIcon && "pl-[50px]"}`}
+        />
       </div>
     </div>
   );

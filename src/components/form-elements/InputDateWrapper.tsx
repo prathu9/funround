@@ -36,7 +36,7 @@ console.log(errorMessage)
         {/* input label */}
         <label>{label}</label>
         {/* error message */}
-        <span className="text-[#F24D4D]">{errorMessage}</span>
+        {errorMessage && <span className="text-[#F24D4D]">{errorMessage}</span>}
       </h5>
       {/* container for date input */}
       <div className="relative flex flex-col w-full">
@@ -57,7 +57,7 @@ console.log(errorMessage)
               onChange={onChange}
               showYearDropdown
               showMonthDropdown
-              className="flex w-full p-4 pl-[50px] text-sm placeholder-white bg-[#35353E] rounded-lg"
+              className={`flex w-full p-4 pl-[50px] text-sm placeholder-white bg-[#35353E] rounded-lg ${errorMessage && "border border-[#F24D4D]"}`}
             />
           )}
         />

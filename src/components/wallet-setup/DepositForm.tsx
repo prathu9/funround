@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
 import CryptoOptions from "./crypto-options";
+import Link from "next/link";
 
 interface DepositCryptoInput {
   postalCode: string;
@@ -20,7 +21,6 @@ const DepositCryptoForm = ({
   setIsDone,
 }: DepositCryptoFormProps) => {
   const methods = useForm<DepositCryptoInput>();
-  const router = useRouter();
 
   const onSubmit = (data: DepositCryptoInput) => {
     console.log(data);
@@ -99,9 +99,9 @@ const DepositCryptoForm = ({
           >
             Done
           </GradientButton>
-          <button className="w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
+          <Link href="/" className="w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
             Later
-          </button>
+          </Link>
         </div>
       </form>
     </FormProvider>

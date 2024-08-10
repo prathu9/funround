@@ -151,7 +151,11 @@ const WalletSetUp = () => {
               type="text"
               placeholder="Postal code"
               label="Postal code"
-              name="postal-code"
+              name="postalCode"
+              errorMessage={errors.postalCode?.message}
+              registerOptions={{
+                required: "Please enter code"
+              }}
             />
           </div>
           {/* container for address */}
@@ -175,6 +179,10 @@ const WalletSetUp = () => {
               placeholder="Occupation"
               label="Occupation"
               name="occupation"
+              errorMessage={errors.occupation?.message}
+              registerOptions={{
+                required: "Please enter occupation",
+              }}
             />
           </div>
           {/* container for document type */}
