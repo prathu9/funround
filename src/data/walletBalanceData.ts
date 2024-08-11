@@ -1,13 +1,13 @@
 const walletBalanceData = [
     {
       name: "bitcoin",
-      amount: "0.1293129BTC",
-      valueInDollars: "235.12"
+      amount: "00.00",
+      valueInDollars: "00"
     },  
     {
       name: "tether",
-      amount: "13.40",
-      valueInDollars: "13.40",
+      amount: "00.00",
+      valueInDollars: "00",
     },
     {
       name: "etherium",

@@ -1,12 +1,13 @@
 import { FormProvider, useForm } from "react-hook-form";
-import GradientButton from "../form-elements/GradientButton";
-import InputWrapper from "../form-elements/InputWrapper";
+import GradientButton from "../../form-elements/GradientButton";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { archivo } from "@/fonts/fonts";
-import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
+import { CustomOption, CustomSelect } from "../../form-elements/CustomSelect";
 import Image from "next/image";
 import CryptoOptions from "./crypto-options";
+import InputWrapper from "@/components/form-elements/InputWrapper";
 
 interface BuyCryptoInput {
   postalCode: string;

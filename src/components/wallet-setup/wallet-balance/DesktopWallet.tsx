@@ -4,6 +4,9 @@ import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
+import { AnimatePresence } from "framer-motion"
+import AnimateHeight from "@/components/animate/AnimateHeight";
+import WalletItem from "./walletItem";
 
 // wallet component for desktop
 export const DesktopWallet = ({ data }: WalletItemType) => {
@@ -39,7 +42,7 @@ export const DesktopWallet = ({ data }: WalletItemType) => {
               </span>
             </Link>
           ) : (
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
               {/* button to trigger dropdown */}
               <button
                 onClick={toggleDropDown}
@@ -66,9 +69,10 @@ export const DesktopWallet = ({ data }: WalletItemType) => {
                 {/* drop down icon */}
                 <FaChevronDown />
               </button>
+              <AnimatePresence>
               {showDropDown && (
                 // container for dropdown
-                <div className="w-full px-[18px] py-[15px] bg-[#2C2E37] z-10 rounded-b-2xl">
+                <AnimateHeight className="w-full -mt-[10px] px-[18px] py-[15px] bg-[#2C2E37] z-10 rounded-b-2xl">
                   {/* link to withdraw form page */}
                   <Link
                     href="/wallet-setup/withdraw"
@@ -79,24 +83,17 @@ export const DesktopWallet = ({ data }: WalletItemType) => {
                   {/* drop down list */}
                   <ul className="mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72]">
                     {/* rendering from second data item exclude bitcoin */}
-                    {data.slice(1).map((crypto) => (
+                    {data.slice(1).map((crypto, index) => (
                       <li
                         key={crypto.name}
-                        className="flex gap-[9px] items-center"
                       >
-                        {/* crypto icon */}
-                        {crypto.icon}
-                        {/* crypto balance amount */}
-                        <span>{crypto.amount}</span>
-                        {/* crypto balance in dollars */}
-                        <span className="text-[#5F5A72]">
-                          ${crypto.valueInDollars}
-                        </span>
+                        <WalletItem index={index} cryptoData={crypto}/>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </AnimateHeight>
               )}
+            </AnimatePresence>
             </div>
           )}
         </div>

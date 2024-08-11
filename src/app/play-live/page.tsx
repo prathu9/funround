@@ -1,0 +1,44 @@
+"use client";
+import Spinner from "@/components/layout/Spinner";
+import { BalanceContext } from "@/context/balance-context";
+import { UserContext } from "@/context/user-context";
+import { WalletContext } from "@/context/wallet-context";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
+
+const Page = () => {
+    const {isBalanceAvailable} = useContext(BalanceContext); // get wallet balance 
+    const {userDetail: {isLoggedIn}} = useContext(UserContext); // get user login status
+    const router = useRouter();
+
+    useEffect(() => {
+        console.log(isLoggedIn)
+        // if not logged in take to sign up page
+        if(!isLoggedIn){
+            router.push("/signup");
+        }
+        // if wallet balance is zero take to top up page
+        else if(!isBalanceAvailable){
+            router.push("/wallet-setup/top-up");
+        }
+    },[isBalanceAvailable, router, isLoggedIn])
+
+    // show loading page if balance is not available or user not logged in
+    if(!isBalanceAvailable && !isLoggedIn){
+        return (
+            <div className="w-full min-h-[calc(100vh_-_180px)] flex justify-center items-center">
+                <Spinner bgColor="bg-[#1F2128]" />
+            </div>
+        )
+        
+    }
+
+    return(
+        // container for play live
+        <div className="min-h-[calc(100vh_-_180px)] flex justify-center items-center">
+            <h1 className="text-5xl">Play Live</h1>
+        </div>
+    )
+}
+
+export default Page;

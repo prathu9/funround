@@ -1,9 +1,9 @@
 "use client";
 import { FormProvider, useForm } from "react-hook-form";
-import GradientButton from "../form-elements/GradientButton";
-import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
-import CryptoOptions from "./crypto-options";
-import InputWrapper from "../form-elements/InputWrapper";
+import GradientButton from "../../form-elements/GradientButton";
+import { CustomOption, CustomSelect } from "../../form-elements/CustomSelect";
+import CryptoOptions from "./../top-up/crypto-options";
+import InputWrapper from "../../form-elements/InputWrapper";
 import Link from "next/link";
 import Image from "next/image";
 

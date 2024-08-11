@@ -13,56 +13,38 @@ const WalletIcons = [
     {
       icon: <BitcoinIcon />,
       name: "bitcoin",
-      amount: "0.1293129BTC",
-      valueInDollars: "235.12",
     },
     {
       icon: <TetherIcon />,
       name: "tether",
-      amount: "13.40",
-      valueInDollars: "13.40",
     },
     {
       icon: <EtheriumIcon />,
       name: "etherium",
-      amount: "00.00",
-      valueInDollars: "00",
     },
     {
       icon: <SolanaIcon />,
       name: "solana",
-      amount: "00.00",
-      valueInDollars: "00",
     },
     {
       icon: <PepeIcon />,
       name: "pepe",
-      amount: "00.00",
-      valueInDollars: "00",
     },
     {
       icon: <DogeIcon />,
       name: "doge",
-      amount: "00.00",
-      valueInDollars: "00",
     },
     {
       icon: <ShibaInuIcon />,
       name: "shiba inu",
-      amount: "00.00",
-      valueInDollars: "00",
     },
     {
       icon: <BNBIcon />,
       name: "bnb",
-      amount: "00.00",
-      valueInDollars: "00",
     },
     {
       icon: <XRPIcon />,
       name: "xrp",
-      amount: "00.00",
-      valueInDollars: "00",
     },
   ];
   

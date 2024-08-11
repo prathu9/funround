@@ -1,10 +1,19 @@
+"use client";
 import GradientButton from "@/components/form-elements/GradientButton";
 import { archivo, inter, poppins } from "@/fonts/fonts";
 import { pages } from "next/dist/build/templates/app-page";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+  const router = useRouter();
+
+  const handlePlayBtnClick = () => {
+      router.push("/play-live");
+  }
+
   return (
     // container for home pages
     <main
@@ -41,7 +50,7 @@ export default function Home() {
         {/* container for buttons */}
         <div className="mt-12 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col md:flex-row lg:items-start">
           {/* play button */}
-          <GradientButton className="min-w-[181px] w-[48%] px-[51px] py-[26px] text-sm rounded-2xl font-bold tracking-[0.04em] md:text-[1.25vw] md:max-w-none md:px-[3.8vw] md:py-[1.9vw]">
+          <GradientButton handleClick={handlePlayBtnClick} className="min-w-[181px] w-[48%] px-[51px] py-[26px] text-sm rounded-2xl font-bold tracking-[0.04em] md:text-[1.25vw] md:max-w-none md:px-[3.8vw] md:py-[1.9vw]">
             LET'S PLAY
           </GradientButton>
           {/* learn more button */}

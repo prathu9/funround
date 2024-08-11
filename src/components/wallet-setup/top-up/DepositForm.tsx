@@ -1,11 +1,12 @@
 import { FormProvider, useForm } from "react-hook-form";
-import GradientButton from "../form-elements/GradientButton";
+import GradientButton from "../../form-elements/GradientButton";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import Image from "next/image";
-import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
+import { CustomOption, CustomSelect } from "../../form-elements/CustomSelect";
 import CryptoOptions from "./crypto-options";
 import Link from "next/link";
+import { BalanceContext } from "@/context/balance-context";
 
 interface DepositCryptoInput {
   postalCode: string;
@@ -21,6 +22,7 @@ const DepositCryptoForm = ({
   setIsDone,
 }: DepositCryptoFormProps) => {
   const methods = useForm<DepositCryptoInput>();
+  const { walletBalance, setWalletBalance } = useContext(BalanceContext);
 
   const onSubmit = (data: DepositCryptoInput) => {
     console.log(data);
@@ -28,6 +30,18 @@ const DepositCryptoForm = ({
     setTimeout(() => {
       setIsDone(true);
       setShowLoader(false);
+      const updatedWalletBalance = walletBalance.map((walletCrypto) => {
+        if (walletCrypto.name === data.postalCode) {
+          return {
+            ...walletCrypto,
+            amount: "10",
+            valueInDollars: "10.10",
+          };
+        }
+        return walletCrypto;
+      });
+      console.log(updatedWalletBalance)
+      setWalletBalance([...updatedWalletBalance]);
     }, 2000);
   };
 
@@ -41,13 +55,18 @@ const DepositCryptoForm = ({
             <h4 className="mb-2 text-xs font-medium text-[#808191]">
               Postal code
             </h4>
-            <CustomSelect defaultValue="USDT" name="postalCode">
+            <CustomSelect
+              defaultValue={CryptoOptions[0].name}
+              name="postalCode"
+            >
               {CryptoOptions.map((crypto) => (
-                <CustomOption value={crypto.symbol} key={crypto.symbol}>
+                <CustomOption value={crypto.name} key={crypto.symbol}>
                   <div className="p-4 flex gap-[10px] items-center h-[49px] bg-[#35353E]">
                     <span>{crypto.icon}</span>
                     <span className="text-sm">{crypto.symbol}</span>
-                    <span className="capitalize text-white/[32%]">{crypto.name}</span>
+                    <span className="capitalize text-white/[32%]">
+                      {crypto.name}
+                    </span>
                   </div>
                 </CustomOption>
               ))}
@@ -99,7 +118,10 @@ const DepositCryptoForm = ({
           >
             Done
           </GradientButton>
-          <Link href="/" className="w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
+          <Link
+            href="/"
+            className="w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]"
+          >
             Later
           </Link>
         </div>

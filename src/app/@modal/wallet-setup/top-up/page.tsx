@@ -1,7 +1,7 @@
 import ModalOverlay from "@/components/layout/ModalOverlay";
 import Portal from "@/components/layout/Portal";
-import TopUp from "@/components/wallet-setup/TopUp";
-import WalletSetUp from "@/components/wallet-setup/WalletSetUpForm";
+import TopUp from "@/components/wallet-setup/top-up/TopUp";
+
 
 
 const Page = () => {

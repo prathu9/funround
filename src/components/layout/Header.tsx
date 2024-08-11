@@ -49,7 +49,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </div>
       {isLoggedIn ? (
         <>
-          <WalletBalance walletBalanceData={walletBalanceData} />
+          <WalletBalance/>
           <Link href="/profile" className="w-12 h-12">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>
@@ -107,7 +107,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       {isLoggedIn ? (
         // Header Mobile view when logged in
         <>
-          <WalletBalance walletBalanceData={walletBalanceData} />
+          <WalletBalance />
           <Link href="/profile" className="w-10 h-10">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>
