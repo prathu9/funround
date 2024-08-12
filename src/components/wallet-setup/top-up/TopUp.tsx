@@ -8,9 +8,13 @@ import Spinner from "../../layout/Spinner";
 import TabButton from "./TabButton";
 import BuyCryptoForm from "./CryptoForm";
 import AllSet from "../AllSet";
+import { useSearchParams } from "next/navigation";
 
 // Top up component
 const TopUp = () => {
+  const searchParams = useSearchParams();
+  const selectedCrypto = searchParams.get("selectedcrypto");
+
   const [topUpOption, setTopUpOption] = useState<"buy"|"deposit">("deposit");
   const [showLoader, setShowLoader] = useState(false);
   const [isDone, setIsDone] = useState(false);
@@ -68,7 +72,7 @@ const TopUp = () => {
       <div>
         {
           topUpOption === "deposit"?
-          <DepositCryptoForm setShowLoader={setShowLoader} setIsDone={setIsDone}/>:
+          <DepositCryptoForm defaultCryptoOption={selectedCrypto} setShowLoader={setShowLoader} setIsDone={setIsDone}/>:
           topUpOption === "buy"?
           <BuyCryptoForm/>:null
         }

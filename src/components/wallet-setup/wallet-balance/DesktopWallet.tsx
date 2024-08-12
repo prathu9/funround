@@ -81,7 +81,7 @@ export const DesktopWallet = ({ data }: WalletItemType) => {
                     WITHDRAW
                   </Link>
                   {/* drop down list */}
-                  <ul className="mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72]">
+                  <ul className="mt-6 pt-6 flex flex-col gap-2 border-t-2 border-[#5F5A72]">
                     {/* rendering from second data item exclude bitcoin */}
                     {data.slice(1).map((crypto, index) => (
                       <li

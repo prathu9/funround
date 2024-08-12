@@ -32,7 +32,7 @@ const WalletIcons = [
     },
     {
       icon: <DogeIcon />,
-      name: "doge",
+      name: "dogecoin",
     },
     {
       icon: <ShibaInuIcon />,
@@ -40,11 +40,11 @@ const WalletIcons = [
     },
     {
       icon: <BNBIcon />,
-      name: "bnb",
+      name: "BNB",
     },
     {
       icon: <XRPIcon />,
-      name: "xrp",
+      name: "XRP",
     },
   ];
   

@@ -13,11 +13,13 @@ interface DepositCryptoInput {
 }
 
 type DepositCryptoFormProps = {
+  defaultCryptoOption?: string | null;
   setShowLoader: Dispatch<SetStateAction<boolean>>;
   setIsDone: Dispatch<SetStateAction<boolean>>;
 };
 
 const DepositCryptoForm = ({
+  defaultCryptoOption,
   setShowLoader,
   setIsDone,
 }: DepositCryptoFormProps) => {
@@ -56,7 +58,7 @@ const DepositCryptoForm = ({
               Postal code
             </h4>
             <CustomSelect
-              defaultValue={CryptoOptions[0].name}
+              defaultValue={defaultCryptoOption || CryptoOptions[0].name}
               name="postalCode"
             >
               {CryptoOptions.map((crypto) => (

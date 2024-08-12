@@ -25,7 +25,7 @@ const walletBalanceData = [
       valueInDollars: "00",
     },
     {
-      name: "doge",
+      name: "dogecoin",
       amount: "00.00",
       valueInDollars: "00",
     },
@@ -35,12 +35,12 @@ const walletBalanceData = [
       valueInDollars: "00",
     },
     {
-      name: "bnb",
+      name: "BNB",
       amount: "00.00",
       valueInDollars: "00",
     },
     {
-      name: "xrp",
+      name: "XRP",
       amount: "00.00",
       valueInDollars: "00",
     },

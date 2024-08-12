@@ -17,6 +17,7 @@ export interface WalletItemType {
 // Wallet for mobile and desktop
 const WalletBalance = () => {
   const {walletBalance} = useContext(BalanceContext);
+
   const walletBalanceDataWithIcon = walletBalance.map((walletData) => {
     const matchedCrypto = WalletIcons.find((d) => d.name === walletData.name)!;
 
