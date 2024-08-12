@@ -27,12 +27,14 @@ const options = [
 
 interface SelectContextType {
   name: string;
+  selectedValue: string;
   setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SelectContext = createContext({
   name: "",
+  selectedValue: "",
   setSelectedValue: () => {},
   setIsOpen: () => {},
 } as SelectContextType);
@@ -57,7 +59,7 @@ export const CustomSelect = ({
   };
 
   return (
-    <SelectContext.Provider value={{ name, setSelectedValue, setIsOpen }}>
+    <SelectContext.Provider value={{ name, selectedValue, setSelectedValue, setIsOpen }}>
       <div className="relative">
         <button
           ref={triggerButtonRef}
@@ -98,7 +100,7 @@ interface CustomOptionProp {
 
 // Custom option component
 export const CustomOption = ({ children, value, id }: CustomOptionProp) => {
-  const { name, setSelectedValue, setIsOpen } = useContext(SelectContext);
+  const { name, setSelectedValue, selectedValue, setIsOpen } = useContext(SelectContext);
   const { register, setValue } = useFormContext();
 
   const changeSelectedValue = (value: string) => {
@@ -114,7 +116,7 @@ export const CustomOption = ({ children, value, id }: CustomOptionProp) => {
         type="radio"
         value={value}
         className="hidden peer"
-        checked={value === "aruba"}
+        checked={value===selectedValue}
       />
       <label
         htmlFor={id}

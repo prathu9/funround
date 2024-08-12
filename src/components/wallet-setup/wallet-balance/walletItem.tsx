@@ -52,7 +52,7 @@ const WalletItem = ({ cryptoData, index }: WalletItemProps) => {
         ref={refs.setReference}
         {...getReferenceProps()}
         delay={index * 0.05}
-        className="p-2 flex gap-[9px] items-center cursor-pointer rounded-lg hover:bg-[#1F2128] select-none"
+        className="w-full p-2 flex gap-[9px] items-center cursor-pointer rounded-lg hover:bg-[#1F2128] select-none"
       >
         {/* crypto icon */}
         {cryptoData.icon}

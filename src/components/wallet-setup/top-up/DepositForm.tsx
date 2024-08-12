@@ -23,8 +23,13 @@ const DepositCryptoForm = ({
   setShowLoader,
   setIsDone,
 }: DepositCryptoFormProps) => {
-  const methods = useForm<DepositCryptoInput>();
   const { walletBalance, setWalletBalance } = useContext(BalanceContext);
+  const methods = useForm<DepositCryptoInput>({
+    defaultValues: {
+      postalCode: defaultCryptoOption || CryptoOptions[0].name
+    }
+  });
+ 
 
   const onSubmit = (data: DepositCryptoInput) => {
     console.log(data);
@@ -33,6 +38,7 @@ const DepositCryptoForm = ({
       setIsDone(true);
       setShowLoader(false);
       const updatedWalletBalance = walletBalance.map((walletCrypto) => {
+        console.log(walletCrypto.name, data.postalCode)
         if (walletCrypto.name === data.postalCode) {
           return {
             ...walletCrypto,

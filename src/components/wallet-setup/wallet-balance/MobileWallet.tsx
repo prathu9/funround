@@ -4,6 +4,7 @@ import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
 import WalletIcon from "/public/wallet-icon.svg";
 import Link from "next/link";
+import WalletItem from "./walletItem";
 
 // wallet component for mobile
 export const MobileWallet = ({ data }: WalletItemType) => {
@@ -67,16 +68,12 @@ export const MobileWallet = ({ data }: WalletItemType) => {
                 WITHDRAW
               </Link>
               <ul className="h-[calc(100%-120px)] mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72] overflow-auto">
-                {data.slice(1).map((crypto) =>  (
+                {data.slice(1).map((crypto, index) =>  (
                     <li
                       key={crypto.name}
                       className="flex gap-[9px] items-center"
                     >
-                      <span>{crypto.icon}</span>
-                      <span>{crypto.amount}</span>
-                      <span className="text-[#5F5A72]">
-                        ${crypto.valueInDollars}
-                      </span>
+                      <WalletItem index={index} cryptoData={crypto}/>
                     </li>
                   ))}
               </ul>
@@ -87,5 +84,9 @@ export const MobileWallet = ({ data }: WalletItemType) => {
     </div>
   );
 };
-
+{/* <span>{crypto.icon}</span>
+                      <span>{crypto.amount}</span>
+                      <span className="text-[#5F5A72]">
+                        ${crypto.valueInDollars}
+                      </span> */}
 export default MobileWallet;
