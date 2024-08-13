@@ -23,7 +23,7 @@ const page = () => {
           alt="thumbnail"
         />
       </div>
-      <GradientButton className="mt-[30px] mb-[63.31px] p-6 rounded-2xl sm:mt-[100px]">
+      <GradientButton as="link" link="/play-live" className="mt-[30px] mb-[63.31px] p-6 rounded-2xl sm:mt-[100px]">
         Im Ready to play live
       </GradientButton>
     </div>

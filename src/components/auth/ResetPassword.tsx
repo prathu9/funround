@@ -13,6 +13,9 @@ interface ResetPasswordInput {
 
 const ResetPassword = () => {
   const methods = useForm<ResetPasswordInput>();
+  const {
+    formState: { errors },
+  } = methods;
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
 
@@ -22,17 +25,19 @@ const ResetPassword = () => {
   };
 
   const confirmEmailHandler = (otp: string) => {
-    console.log(otp)
+    console.log(otp);
     setIsEmailSent(false);
     setIsVerified(true);
+  };
+
+  if (isEmailSent) {
+    return (
+      <ConfirmEmail backLink="/login" submitHandler={confirmEmailHandler} />
+    );
   }
 
-  if(isEmailSent){
-    return <ConfirmEmail backLink="/login" submitHandler={confirmEmailHandler}/>
-  }
-
-  if(isVerified){
-    return <ChangePassword />
+  if (isVerified) {
+    return <ChangePassword />;
   }
 
   return (
@@ -47,20 +52,33 @@ const ResetPassword = () => {
           RESET PASSWORD
         </h1>
         <div className="mb-12">
-        <InputWrapper
-          leftIcon={<EmailIcon/>}
-          label="Email Address"
-          name="email"
-          type="email"
-          placeholder="Email Address"
-        />
+          <InputWrapper
+            leftIcon={<EmailIcon />}
+            label="Email Address"
+            name="email"
+            type="email"
+            placeholder="Email Address"
+            errorMessage={errors.email?.message}
+            registerOptions={{
+              required: "Please enter email",
+              validate: validateEmail,
+            }}
+          />
         </div>
         <GradientButton className="w-full py-[26px] rounded-2xl">
-            Send Email
+          Send Email
         </GradientButton>
       </form>
     </FormProvider>
   );
+};
+
+const validateEmail = (value: string) => {
+  const emailRegex = /[^@\s]+@[^@\s]+/;
+
+  if (!emailRegex.test(value)) {
+    return "Invalid email format";
+  }
 };
 
 export default ResetPassword;
