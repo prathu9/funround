@@ -12,6 +12,10 @@ interface ChangePasswordInput {
 
 const ChangePassword = () => {
   const methods = useForm<ChangePasswordInput>();
+  const {
+    formState: { errors },
+    watch,
+  } = methods;
   const [isUpdated, setIsUpdated] = useState(false);
 
   const onSubmit = (data: ChangePasswordInput) => {
@@ -39,6 +43,11 @@ const ChangePassword = () => {
             placeholder="Password"
             label="Password"
             name="password"
+            errorMessage={errors.password?.message}
+            registerOptions={{
+              required: "Please enter password",
+              validate: validatePassword,
+            }}
           />
         </div>
         <div className="mb-6">
@@ -46,6 +55,12 @@ const ChangePassword = () => {
             placeholder="Password"
             label="Password"
             name="confirmPassword"
+            errorMessage={errors.confirmPassword?.message}
+            registerOptions={{
+              required: "Please enter password",
+              validate: (value) =>
+                validateConfirmPassword(value, watch("password")), //watch used to check password matching in real time
+            }}
           />
         </div>
         <GradientButton className="w-full py-[26px] rounded-2xl">
@@ -71,6 +86,32 @@ const SuccessMessage = () => {
       </GradientButton>
     </div>
   );
+};
+
+// valiadate function for password
+const validatePassword = (value: string) => {
+  // checking length of password
+  if (value.length < 8) {
+    return "Must be at least 8 characters";
+  }
+
+  // checking if password contains uppercase
+  if (!/[A-Z]/.test(value)) {
+    return "Must have one uppercase letter";
+  }
+
+  // checking id password have number
+  if (!/\d/.test(value)) {
+    return "Must have one number";
+  }
+};
+
+// validate confirm password
+const validateConfirmPassword = (value: string, password: string | null) => {
+  // checking if confirm password matches with password
+  if (value !== password) {
+    return "Passwords do not match";
+  }
 };
 
 export default ChangePassword;

@@ -1,5 +1,4 @@
 import BitcoinIcon from "/public/crypto-brand/bitcoin-icon.svg";
-
 import TetherIcon from "/public/crypto-brand/tether-icon.svg";
 import EtheriumIcon from "/public/crypto-brand/etherium-icon.svg";
 import SolanaIcon from "/public/crypto-brand/solana-icon.svg";
@@ -9,43 +8,52 @@ import ShibaInuIcon from "/public/crypto-brand/shiba-inu-icon.svg";
 import BNBIcon from "/public/crypto-brand/bnb-icon.svg";
 import XRPIcon from "/public/crypto-brand/xrp-icon.svg";
 
-const WalletIcons = [
-    {
-      icon: <BitcoinIcon />,
+const CryptoOptions = [
+    { 
+      symbol: "BTC",
       name: "bitcoin",
+      icon: <BitcoinIcon />
     },
     {
-      icon: <TetherIcon />,
+      symbol: "USDT",
       name: "tether",
+      icon: <TetherIcon/>,
     },
     {
-      icon: <EtheriumIcon />,
+      symbol: "ETH",
       name: "etherium",
+      icon: <EtheriumIcon/>,
     },
     {
-      icon: <SolanaIcon />,
+      symbol: "SOL",
       name: "solana",
+      icon: <SolanaIcon/>,
     },
     {
-      icon: <PepeIcon />,
+      symbol: "PEPE",
       name: "pepe",
+      icon: <PepeIcon/>
     },
     {
-      icon: <DogeIcon />,
+      symbol: "DOGE",
       name: "dogecoin",
+      icon: <DogeIcon/>
     },
     {
-      icon: <ShibaInuIcon />,
+      symbol: "SHIB",
       name: "shiba inu",
+      icon: <ShibaInuIcon/>
     },
     {
-      icon: <BNBIcon />,
+      symbol: "BNB",
       name: "BNB",
+      icon: <BNBIcon/>
     },
     {
-      icon: <XRPIcon />,
+      symbol: "XRP",
       name: "XRP",
-    },
+      icon: <XRPIcon/>
+    }
   ];
-  
-  export default WalletIcons;
+
+  export default CryptoOptions;

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import GradientButton from "../form-elements/GradientButton";
 import InputWrapper from "../form-elements/InputWrapper";
 import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
+import EmailIcon from "/public/email-icon.svg";
 
 // type for login form
 interface LoginInput {
@@ -46,7 +47,7 @@ const Login = () => {
         <div className="mb-6">
           {/* input wrapper for email */}
           <InputWrapper
-            leftIcon="/email-icon.svg"
+            leftIcon={<EmailIcon/>}
             type="email"
             placeholder="Email address"
             label="Email address"

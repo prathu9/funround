@@ -15,6 +15,8 @@ const Header = () => {
     userDetail: { isLoggedIn },
   } = useContext(UserContext);
 
+  console.log("is logged in",isLoggedIn)
+
   return (
     <>
       <DesktopHeader isLoggedIn={isLoggedIn} />
@@ -31,7 +33,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       {/* container for logo and meta tag */}
       <div className="flex items-center gap-4">
         {/* logo container */}
-        <div className="w-[72px] h-[29px]">
+        <Link href="/" className="w-[72px] h-[29px]">
           {/* logo */}
           <Image
             src="/logo.svg"
@@ -41,7 +43,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             alt="logo"
             priority
           />
-        </div>
+        </Link>
         {/* container for beta tag */}
         <div className="px-2 py-1 flex justify-center items-center font-medium text-[13px] leading-[18px] rounded-lg bg-[#FF754C]">
           BETA

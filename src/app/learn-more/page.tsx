@@ -1,6 +1,15 @@
+import { RouterContext } from "@/context/router-context";
 import Image from "next/image";
+import { useContext, useEffect } from "react";
 
 const LearnMorePage = () => {
+  const {setParentRoute} = useContext(RouterContext); 
+
+  useEffect(() => {
+    setParentRoute("/learn-more"); // setting parent route to current route
+  },[])
+
+
   return (
     // container for Learn more page
     <div className="mt-[62px] px-6 h-full sm:px-10 lg:px-[99px]">

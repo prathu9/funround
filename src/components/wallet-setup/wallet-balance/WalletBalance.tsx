@@ -1,28 +1,23 @@
-import WalletIcons from "./walletIcons";
 import MobileWallet from "./MobileWallet";
 import DesktopWallet from "./DesktopWallet";
 import { useContext } from "react";
 import { BalanceContext } from "@/context/balance-context";
+import { getWalletBalanceWithIcon } from "@/utils/getWalletBalanceWithIcon";
 
 // wallet item type
 export interface WalletItemType {
-  data: {
     icon: JSX.Element;
     name: string;
     amount: string;
     valueInDollars: string;
-  }[];
+    symbol: string;
 }
 
 // Wallet for mobile and desktop
 const WalletBalance = () => {
   const {walletBalance} = useContext(BalanceContext);
 
-  const walletBalanceDataWithIcon = walletBalance.map((walletData) => {
-    const matchedCrypto = WalletIcons.find((d) => d.name === walletData.name)!;
-
-    return { ...walletData, icon: matchedCrypto.icon };
-  });
+  const walletBalanceDataWithIcon = walletBalance.map(getWalletBalanceWithIcon);
 
   return (
     <>

@@ -1,12 +1,9 @@
 "use client";
-import { archivo } from "@/fonts/fonts";
-
 import { FormProvider, useForm } from "react-hook-form";
-
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import InputWrapper from "../form-elements/InputWrapper";
 import GradientButton from "../form-elements/GradientButton";
+import EmailIcon from "/public/email-icon.svg";
 
 interface SetUpEmailConfirmationInput {
   password: string;
@@ -31,7 +28,7 @@ const SetUpEmailConfirmation = () => {
       {/* Container for Wallet setup email confirmation */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0"
+        className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
       >
         {/* Title of form */}
         <h1 className="mb-3 text-[28px] leading-[30.97px] text-center font-black sm:mb-6 sm:text-5xl">LET'S GET YOUR WALLET SET UP</h1>
@@ -42,7 +39,7 @@ const SetUpEmailConfirmation = () => {
         {/* Container for email */}
         <div className="mb-16 sm:mb-6">
           <InputWrapper
-            leftIcon="/email-icon.svg"
+            leftIcon={<EmailIcon/>}
             type="email"
             placeholder="johnplayer@gmail.com"
             label="Your email address"

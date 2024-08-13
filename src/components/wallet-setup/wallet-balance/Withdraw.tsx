@@ -2,10 +2,12 @@
 import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "../../form-elements/GradientButton";
 import { CustomOption, CustomSelect } from "../../form-elements/CustomSelect";
-import CryptoOptions from "./../top-up/crypto-options";
 import InputWrapper from "../../form-elements/InputWrapper";
 import Link from "next/link";
 import Image from "next/image";
+import { useContext } from "react";
+import { BalanceContext } from "@/context/balance-context";
+import { getWalletBalanceWithIcon } from "@/utils/getWalletBalanceWithIcon";
 
 interface WithdrawInput {
   currency: string;
@@ -22,6 +24,9 @@ const networkData = [
 
 const Withdraw = () => {
   const methods = useForm<WithdrawInput>();
+  const {walletBalance} = useContext(BalanceContext);
+
+  const walletBalanceDataWithIcon = walletBalance.map(getWalletBalanceWithIcon);
 
   const onSubmit = (data: WithdrawInput) => {
     console.log("withdraw", data);
@@ -43,7 +48,7 @@ const Withdraw = () => {
             Choose Currency
           </h4>
           <CustomSelect defaultValue="USDT" name="postalCode">
-            {CryptoOptions.map((crypto) => (
+            {walletBalanceDataWithIcon.map((crypto) => (
               <CustomOption value={crypto.symbol} key={crypto.symbol}>
                 <div className="p-4 flex gap-[10px] items-center h-[49px] bg-[#35353E]">
                   <span>{crypto.icon}</span>
@@ -56,12 +61,13 @@ const Withdraw = () => {
             ))}
           </CustomSelect>
         </div>
-        <div className="mb-6">
+        <div className="relative mb-6">
           <InputWrapper
             type="text"
             placeholder="Choose Amount"
             label="Choose Amount"
             name="amount"
+            rightIcon="Max"
           />
         </div>
         <div className="mb-6">

@@ -10,6 +10,9 @@ import { UserContext } from "@/context/user-context";
 import InputDateWrapper from "../form-elements/InputDateWrapper";
 import CalendarIcon from "/public/calendar-icon.svg";
 import Terms from "./terms";
+import EmailIcon from "/public/email-icon.svg";
+import UserIcon from "/public/user-icon.svg";
+
 
 // type for signup input form
 interface SignUpInput {
@@ -87,7 +90,7 @@ const SignUp = () => {
           <div className="basis-full sm:basis-[48%]">
             {/* input wrapper for email */}
             <InputWrapper
-              leftIcon="/email-icon.svg"
+              leftIcon={<EmailIcon/>}
               type="email"
               placeholder="Email address"
               label="Email address"
@@ -103,7 +106,7 @@ const SignUp = () => {
           <div className="basis-full sm:basis-[48%]">
             {/* input wrapper for username */}
             <InputWrapper
-              leftIcon="/user-icon.svg"
+              leftIcon={<UserIcon/>}
               type="text"
               placeholder="Username"
               label="Username"

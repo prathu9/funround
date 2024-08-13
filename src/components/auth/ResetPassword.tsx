@@ -1,12 +1,11 @@
 "use client";
-import { archivo } from "@/fonts/fonts";
-import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import InputWrapper from "../form-elements/InputWrapper";
 import GradientButton from "../form-elements/GradientButton";
 import { useState } from "react";
 import ConfirmEmail from "../ConfirmEmail";
 import ChangePassword from "./ChangePassword";
+import EmailIcon from "/public/email-icon.svg";
 
 interface ResetPasswordInput {
   email: string;
@@ -49,7 +48,7 @@ const ResetPassword = () => {
         </h1>
         <div className="mb-12">
         <InputWrapper
-          leftIcon="/email-icon.svg"
+          leftIcon={<EmailIcon/>}
           label="Email Address"
           name="email"
           type="email"

@@ -1,12 +1,12 @@
 import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "../../form-elements/GradientButton";
-import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useContext } from "react";
 import Image from "next/image";
 import { CustomOption, CustomSelect } from "../../form-elements/CustomSelect";
-import CryptoOptions from "./crypto-options";
+
 import Link from "next/link";
 import { BalanceContext } from "@/context/balance-context";
+import CryptoOptions from "@/data/cryptoOptions";
 
 interface DepositCryptoInput {
   postalCode: string;
@@ -14,13 +14,13 @@ interface DepositCryptoInput {
 
 type DepositCryptoFormProps = {
   defaultCryptoOption?: string | null;
-  setShowLoader: Dispatch<SetStateAction<boolean>>;
+  setIsDepositing: Dispatch<SetStateAction<boolean>>;
   setIsDone: Dispatch<SetStateAction<boolean>>;
 };
 
 const DepositCryptoForm = ({
   defaultCryptoOption,
-  setShowLoader,
+  setIsDepositing,
   setIsDone,
 }: DepositCryptoFormProps) => {
   const { walletBalance, setWalletBalance } = useContext(BalanceContext);
@@ -33,22 +33,22 @@ const DepositCryptoForm = ({
 
   const onSubmit = (data: DepositCryptoInput) => {
     console.log(data);
-    setShowLoader(true);
+     setIsDepositing(true);
     setTimeout(() => {
       setIsDone(true);
-      setShowLoader(false);
-      const updatedWalletBalance = walletBalance.map((walletCrypto) => {
-        console.log(walletCrypto.name, data.postalCode)
+       setIsDepositing(false);
+      const updatedWalletBalance = walletBalance.map((walletCrypto, index) => {
         if (walletCrypto.name === data.postalCode) {
+          const currentValue = JSON.parse(localStorage.getItem("wallet-balance") || '{}')[index];
+          const depositedAmount = +currentValue.amount + 10;
           return {
             ...walletCrypto,
-            amount: "10",
-            valueInDollars: "10.10",
+            amount: `${depositedAmount}`,
+            valueInDollars: `${depositedAmount + depositedAmount*0.1}`,
           };
         }
         return walletCrypto;
       });
-      console.log(updatedWalletBalance)
       setWalletBalance([...updatedWalletBalance]);
     }, 2000);
   };

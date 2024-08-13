@@ -1,14 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { WalletItemType } from "./WalletBalance";
 import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
 import WalletIcon from "/public/wallet-icon.svg";
 import Link from "next/link";
 import WalletItem from "./walletItem";
+import { getMaxValueCrypto } from "@/utils/getMaxValueCrypto";
+
+interface MobileWalletPropType{
+  data: WalletItemType[]
+}
 
 // wallet component for mobile
-export const MobileWallet = ({ data }: WalletItemType) => {
+export const MobileWallet = ({ data }: MobileWalletPropType) => {
   const [showWallets, setShowWallets] = useState(false);
+
+  const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]);
 
   const {
     userDetail: { email },
@@ -54,10 +61,10 @@ export const MobileWallet = ({ data }: WalletItemType) => {
                   WALLET
                 </span>
                 <span className="flex gap-[9px] items-center">
-                  {data[0].icon}
-                  <span>{data[0].amount}BTC</span>
+                  {maxValueCrypto.icon}
+                  <span>{maxValueCrypto.amount}{maxValueCrypto.symbol}</span>
                   <span className="text-[#5F5A72]">
-                    ${data[0].valueInDollars}
+                    ${maxValueCrypto.valueInDollars}
                   </span>
                 </span>
               </div>
@@ -68,7 +75,7 @@ export const MobileWallet = ({ data }: WalletItemType) => {
                 WITHDRAW
               </Link>
               <ul className="h-[calc(100%-120px)] mt-6 pt-6 flex flex-col gap-6 border-t-2 border-[#5F5A72] overflow-auto">
-                {data.slice(1).map((crypto, index) =>  (
+                {data.map((crypto, index) =>  (
                     <li
                       key={crypto.name}
                       className="flex gap-[9px] items-center"
@@ -84,9 +91,5 @@ export const MobileWallet = ({ data }: WalletItemType) => {
     </div>
   );
 };
-{/* <span>{crypto.icon}</span>
-                      <span>{crypto.amount}</span>
-                      <span className="text-[#5F5A72]">
-                        ${crypto.valueInDollars}
-                      </span> */}
+
 export default MobileWallet;

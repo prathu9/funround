@@ -1,25 +1,31 @@
 "use client";
 import Spinner from "@/components/layout/Spinner";
 import { BalanceContext } from "@/context/balance-context";
+import { RouterContext } from "@/context/router-context";
 import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 const Page = () => {
+    const router = useRouter();
     const {isBalanceAvailable} = useContext(BalanceContext); // get wallet balance 
     const {userDetail: {isLoggedIn}} = useContext(UserContext); // get user login status
-    const router = useRouter();
+    const {setParentRoute} = useContext(RouterContext); 
+
+    useEffect(() => {
+      setParentRoute("/play-live"); // setting parent route to current route
+    },[])
 
     useEffect(() => {
         console.log(isLoggedIn)
         // if not logged in take to sign up page
         if(!isLoggedIn){
-            router.push("/signup");
+            router.replace("/signup");
         }
         // if wallet balance is zero take to top up page
         else if(!isBalanceAvailable){
-            router.push("/wallet-setup/top-up");
+            router.replace("/wallet-setup/top-up");
         }
     },[isBalanceAvailable, router, isLoggedIn])
 

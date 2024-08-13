@@ -12,6 +12,10 @@ import InputDateWrapper from "../form-elements/InputDateWrapper";
 import CountrySelector from "../form-elements/CountrySelector";
 import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
+import EmailIcon from "/public/email-icon.svg";
+import UserIcon from "/public/email-icon.svg";
+
+
 
 // set up wallet form input type
 interface WalletSetUpInput {
@@ -63,7 +67,7 @@ const WalletSetUp = () => {
     return (
       // container for confirm identity
       <div
-        className={`w-full max-w-[696px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:border sm:border-white ${archivo.className}`}
+        className="w-full max-w-[696px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:border sm:border-white"
       >
         {/* title */}
         <h1 className="mb-8 text-[28px] leading-[30.87px] text-center font-black sm:mb-[69.5px] sm:text-5xl">
@@ -81,7 +85,7 @@ const WalletSetUp = () => {
       {/* Container for Wallet setup email confirmation */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className={`w-full max-w-[696px] px-6 py-[47px] absolute top-0 left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0 ${archivo.className}`}
+        className="w-full max-w-[696px] px-6 py-[47px] absolute top-0 left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[4vw] sm:translate-y-0"
       >
         {/* Title of form */}
         <h1 className="mb-6 text-5xl text-center font-black">WALLET SET UP</h1>
@@ -96,7 +100,7 @@ const WalletSetUp = () => {
           <div className="mb-6 basis-full lg:basis-[48%]">
             {/* input wrapper for firstname */}
             <InputWrapper
-              leftIcon="/email-icon.svg"
+              leftIcon={<EmailIcon/>}
               type="text"
               placeholder="First name"
               label="First name"
@@ -112,7 +116,7 @@ const WalletSetUp = () => {
           <div className="mb-6 basis-full lg:basis-[48%]">
             {/* input wrapper for lastname */}
             <InputWrapper
-              leftIcon="/user-icon.svg"
+              leftIcon={<UserIcon/>}
               type="text"
               placeholder="Last name"
               label="Last name"

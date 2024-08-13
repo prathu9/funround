@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { archivo } from "@/fonts/fonts";
+import { useContext, useEffect, useState } from "react";
 
 import DepositCryptoForm from "./DepositForm";
 
@@ -9,27 +8,53 @@ import TabButton from "./TabButton";
 import BuyCryptoForm from "./CryptoForm";
 import AllSet from "../AllSet";
 import { useSearchParams } from "next/navigation";
+import { WalletContext } from "@/context/wallet-context";
+import { useRouter } from "next/navigation";
 
 // Top up component
 const TopUp = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const selectedCrypto = searchParams.get("selectedcrypto");
+  const {walletDetail} = useContext(WalletContext);
 
   const [topUpOption, setTopUpOption] = useState<"buy"|"deposit">("deposit");
   const [showLoader, setShowLoader] = useState(false);
+  const [isDepositing, setIsDepositing] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
   const toggleTab = (option: "buy" | "deposit") => {
     setTopUpOption(option);
   }
 
+  useEffect(() => {
+    if(walletDetail && walletDetail.email){
+      setShowLoader(false);
+    }
+    else{
+      setShowLoader(true);
+      router.push("/wallet-setup");
+    }
+  },[walletDetail])
+
+  if(showLoader){
+    return(
+       // container for showing loading spinner 
+       <div
+       className="w-full max-w-[696px] h-[450px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:border sm:border-white ${archivo.className"
+     >
+       {/* Loader */}
+       <Spinner />
+     </div>
+    )
+  }
   if(isDone){
     return(
         <AllSet/>
     ) 
   }
 
-  if (showLoader) {
+  if (isDepositing) {
     return (
       // container for confirm identity
       <div
@@ -72,7 +97,7 @@ const TopUp = () => {
       <div>
         {
           topUpOption === "deposit"?
-          <DepositCryptoForm defaultCryptoOption={selectedCrypto} setShowLoader={setShowLoader} setIsDone={setIsDone}/>:
+          <DepositCryptoForm defaultCryptoOption={selectedCrypto} setIsDepositing={setIsDepositing} setIsDone={setIsDone}/>:
           topUpOption === "buy"?
           <BuyCryptoForm/>:null
         }

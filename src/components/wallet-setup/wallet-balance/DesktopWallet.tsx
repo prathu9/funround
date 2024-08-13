@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { WalletItemType } from "./WalletBalance";
 import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
@@ -7,10 +7,17 @@ import { FaChevronDown } from "react-icons/fa";
 import { AnimatePresence } from "framer-motion"
 import AnimateHeight from "@/components/animate/AnimateHeight";
 import WalletItem from "./walletItem";
+import { getMaxValueCrypto } from "@/utils/getMaxValueCrypto";
+
+interface DesktopWalletPropType{
+  data: WalletItemType[]
+}
 
 // wallet component for desktop
-export const DesktopWallet = ({ data }: WalletItemType) => {
+export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
     const [showDropDown, setShowDropDown] = useState(false); // state for drop down
+
+    const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]);
   
     const {
       userDetail: { email },
@@ -57,12 +64,12 @@ export const DesktopWallet = ({ data }: WalletItemType) => {
                   {/* container for displaying bitcoin balance */}
                   <span className="pl-[9px] flex gap-[9px] items-center">
                     {/* bitcoin icon */}
-                    {data[0].icon}
+                    {maxValueCrypto.icon}
                     {/* bitcoin balance amount */}
-                    <span>{data[0].amount}BTC</span>
+                    <span>{maxValueCrypto.amount}{maxValueCrypto.symbol}</span>
                     {/* bitcoin balance in dollars */}
                     <span className="text-[#5F5A72]">
-                      ${data[0].valueInDollars}
+                      ${maxValueCrypto.valueInDollars}
                     </span>
                   </span>
                 </span>
@@ -83,7 +90,7 @@ export const DesktopWallet = ({ data }: WalletItemType) => {
                   {/* drop down list */}
                   <ul className="mt-6 pt-6 flex flex-col gap-2 border-t-2 border-[#5F5A72]">
                     {/* rendering from second data item exclude bitcoin */}
-                    {data.slice(1).map((crypto, index) => (
+                    {data.map((crypto, index) => (
                       <li
                         key={crypto.name}
                       >

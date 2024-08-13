@@ -40,9 +40,10 @@ const Terms = ({setShowTerms}:TermProps) => {
   }, [termsContainerRef]);
 
   const handleBtnClick = () => {
-    const userData = localStorage.getItem("user-detail")
-    if(userData){
-      const userDataParsed = JSON.parse(userData);
+    const userData = JSON.parse(localStorage.getItem("user-detail") || '{}');
+    
+    if(userData && Object.keys(userData).length > 0){
+      const userDataParsed = userData;
       localStorage.setItem("user-detail", JSON.stringify({...userDataParsed, termsOfUse: true}));
       router.push("/");
     }
