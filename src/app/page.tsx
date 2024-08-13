@@ -24,7 +24,7 @@ export default function Home() {
       {/* container for title and buttons */}
       <div className="basis-full text-center lg:basis-[37.86%] lg:text-left">
         {/* subtitle */}
-        <h3 className="mb-4 text-[#B4A1FF] text-sm leading-[1.36vw] font-bold md:text-[1.25vw] md:text-sm">
+        <h3 className="mb-4 text-[#B4A1FF] text-sm font-bold md:text-[1.25vw] md:text-sm">
           WELCOME TO FUNROUND BETA
         </h3>
         {/* title */}
