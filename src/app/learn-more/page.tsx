@@ -1,3 +1,4 @@
+"use client";
 import { RouterContext } from "@/context/router-context";
 import Image from "next/image";
 import { useContext, useEffect } from "react";
