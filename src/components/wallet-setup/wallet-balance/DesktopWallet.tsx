@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import { WalletItemType } from "./WalletBalance";
 import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion"
 import AnimateHeight from "@/components/animate/AnimateHeight";
 import WalletItem from "./walletItem";
 import { getMaxValueCrypto } from "@/utils/getMaxValueCrypto";
+import useClickOutside from "@/hooks/useClickOutside";
 
 interface DesktopWalletPropType{
   data: WalletItemType[]
@@ -16,6 +17,11 @@ interface DesktopWalletPropType{
 // wallet component for desktop
 export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
     const [showDropDown, setShowDropDown] = useState(false); // state for drop down
+    const dropdownref = useRef(null);
+
+    useClickOutside(dropdownref, () => {
+      setShowDropDown(false);
+    })
 
     const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]);
   
@@ -49,7 +55,7 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
               </span>
             </Link>
           ) : (
-            <div className="flex flex-col w-full">
+            <div ref={dropdownref} className="flex flex-col w-full">
               {/* button to trigger dropdown */}
               <button
                 onClick={toggleDropDown}
