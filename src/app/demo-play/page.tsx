@@ -5,7 +5,7 @@ import { RouterContext } from "@/context/router-context";
 import Image from "next/image";
 import { useContext, useEffect } from "react";
 
-const page = () => {
+const Page = () => {
   const {setParentRoute} = useContext(RouterContext);
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
