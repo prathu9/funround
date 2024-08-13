@@ -1,12 +1,12 @@
-import BitcoinIcon from "/public/crypto-brand/bitcoin-icon.svg";
-import TetherIcon from "/public/crypto-brand/tether-icon.svg";
-import EtheriumIcon from "/public/crypto-brand/etherium-icon.svg";
-import SolanaIcon from "/public/crypto-brand/solana-icon.svg";
-import PepeIcon from "/public/crypto-brand/pepe-icon.svg";
-import DogeIcon from "/public/crypto-brand/dogecoin-icon.svg";
-import ShibaInuIcon from "/public/crypto-brand/shiba-inu-icon.svg";
-import BNBIcon from "/public/crypto-brand/bnb-icon.svg";
-import XRPIcon from "/public/crypto-brand/xrp-icon.svg";
+import BitcoinIcon from "@/crypto-icon/BitcoinIcon";
+import BNBIcon from "@/crypto-icon/BNBIcon";
+import DogeIcon from "@/crypto-icon/DogeIcon";
+import EtheriumIcon from "@/crypto-icon/EtheriumIcon";
+import PepeIcon from "@/crypto-icon/PepeIcon";
+import ShibaInuIcon from "@/crypto-icon/ShibaInuIcon";
+import SolanaIcon from "@/crypto-icon/SolanaIcon";
+import TetherIcon from "@/crypto-icon/TetherIcon";
+import XRPIcon from "@/crypto-icon/XRPIcon";
 
 const CryptoOptions = [
     { 

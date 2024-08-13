@@ -81,7 +81,7 @@ const SignUp = () => {
         className="w-full h-full max-w-[696px] py-[47px] absolute top-[1.2vw] left-1/2 -translate-x-1/2 scale-90 rounded-2xl bg-black sm:h-fit sm:px-12 sm:border sm:border-white"
       >
         {/* container for sign up form title */}
-        <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl ${archivo.className}">
+        <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
           CREATE ACCOUNT
         </h1>
         {/* container for email and username */}
@@ -164,9 +164,9 @@ const SignUp = () => {
         <p className="py-6 text-lg text-[#8996A9]">
           By creating an account, you agree to the{" "}
           {/* button to access terms and condition */}
-          <button onClick={handleShowTerms} className="text-white">
+          <Link href="/terms-of-use" className="text-white">
             Terms of Use.
-          </button>
+          </Link>
         </p>
         {/* button for signing up */}
         <GradientButton

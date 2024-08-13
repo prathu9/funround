@@ -57,13 +57,17 @@ const Terms = ({setShowTerms}:TermProps) => {
       }
     }
     else{
+      setUserDetail({
+        ...userDetail,
+        termsOfUse: true
+      });
       router.back();
     }
   }
 
   return (
     <div
-      className="w-full max-w-[696px] px-3 py-[47px] absolute top-[6vw] left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
+      className="w-full max-w-[696px] px-3 py-[47px] absolute top-[1.2vw] left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
     >
       <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
         TERMS <br /> & CONDITIONS
