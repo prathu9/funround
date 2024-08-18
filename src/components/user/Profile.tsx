@@ -44,8 +44,12 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.setItem("user-detail", JSON.stringify({}));
     setUserDetail({
-      ...userDetail,
-      isLoggedIn: false
+      username: "",
+      email: "",
+      password: "",
+      birthDate: null,
+      termsOfUse: false,
+      isLoggedIn: false,
     });
     router.push("/");
   }
