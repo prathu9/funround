@@ -9,7 +9,7 @@ interface TermProps {
   setShowTerms?: Dispatch<SetStateAction<boolean>>
 }
 
-const Terms = ({setShowTerms}:TermProps) => {
+const TermsOfUseWithAcceptance = ({setShowTerms}:TermProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const termsContainerRef = useRef<HTMLDivElement>(null);
@@ -533,4 +533,4 @@ const Terms = ({setShowTerms}:TermProps) => {
   );
 };
 
-export default Terms;
+export default TermsOfUseWithAcceptance;

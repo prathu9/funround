@@ -27,7 +27,7 @@ const Footer = () => {
                         </Link>
                     </li>
                     <li className="flex gap-8 text-xs sm:text-base">
-                        <Link href="/">
+                        <Link href="/terms-of-use">
                             Terms of use
                         </Link>
                     </li>

@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "@/context/user-context";
 import InputDateWrapper from "../form-elements/InputDateWrapper";
 import CalendarIcon from "/public/calendar-icon.svg";
-import Terms from "./terms";
+import TermsOfUseWithAcceptance from "./TermsOfUseWithAcceptance";
 import EmailIcon from "/public/email-icon.svg";
 import UserIcon from "/public/user-icon.svg";
 
@@ -84,7 +84,7 @@ const SignUp = () => {
 
   // render terms and condition
   if (showTerms) {
-    return <Terms setShowTerms={setShowTerms} />;
+    return <TermsOfUseWithAcceptance setShowTerms={setShowTerms} />;
   }
 
   return (
@@ -184,9 +184,9 @@ const SignUp = () => {
         <p className="py-6 text-lg text-[#8996A9]">
           By creating an account, you agree to the{" "}
           {/* button to access terms and condition */}
-          <Link href="/terms-of-use" className="text-white">
+          <span onClick={handleShowTerms} className="text-white cursor-pointer">
             Terms of Use.
-          </Link>
+          </span>
         </p>
         {/* button for signing up */}
         <GradientButton

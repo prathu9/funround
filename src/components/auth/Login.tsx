@@ -76,7 +76,7 @@ const Login = () => {
         {/* Agreement text */}
         <p className="py-6 text-lg text-[#8996A9]">
           By creating an account, you agree to the{" "}
-          <span className="text-white">Terms of Use.</span>
+          <Link href="/terms-of-use" className="text-white">Terms of Use.</Link>
         </p>
         {/* button fro login */}
         <GradientButton
