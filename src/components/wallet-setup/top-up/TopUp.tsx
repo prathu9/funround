@@ -28,11 +28,13 @@ const TopUp = () => {
   }
 
   useEffect(() => {
+
     if(walletDetail && walletDetail.email){
       setShowLoader(false);
     }
     else{
       setShowLoader(true);
+      console.log(walletDetail, walletDetail.email)
       router.push("/wallet-setup");
     }
   },[router, walletDetail])
@@ -77,7 +79,7 @@ const TopUp = () => {
 
   return (
     <div
-      className="w-full max-w-[696px] px-6 py-[47px] absolute top-0 left-1/2 -translate-x-1/2  rounded-2xl bg-black sm:px-12 sm:border sm:border-white 2xl:top-1/2 2xl:-translate-y-1/2"
+      className="w-full max-w-[696px] px-6 py-[47px] absolute top-[2vw] left-1/2 -translate-x-1/2  rounded-2xl bg-black sm:px-12 sm:border sm:border-white 2xl:top-1/2 2xl:-translate-y-1/2"
     >
       {/* Title */}
       <h1 className="mb-6 text-5xl text-center font-black">LET'S TOP-UP</h1>

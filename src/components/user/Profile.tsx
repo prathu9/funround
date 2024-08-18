@@ -12,6 +12,9 @@ import UserIcon from "/public/user-icon.svg";
 import EmailIcon from "/public/email-icon.svg";
 import Spinner from "../layout/Spinner";
 import { inter } from "@/fonts/fonts";
+import { WalletContext } from "@/context/wallet-context";
+import { BalanceContext } from "@/context/balance-context";
+import walletBalanceData from "@/data/walletBalanceData";
 
 interface ProfileInput {
   email: string;
@@ -26,6 +29,11 @@ const Profile = () => {
     userDetail,
     setUserDetail
   } = useContext(UserContext);
+  const {
+    setWalletDetail
+  } = useContext(WalletContext);
+
+  const {setWalletBalance} = useContext(BalanceContext);
 
   useEffect(() => {
     if(userDetail && userDetail.isLoggedIn){
@@ -43,6 +51,16 @@ const Profile = () => {
 
   const handleLogout = () => {
     localStorage.setItem("user-detail", JSON.stringify({}));
+    localStorage.setItem("wallet-detail", JSON.stringify({}));
+
+    setWalletBalance(walletBalanceData);
+
+    setWalletDetail({
+      email: "",
+      firstname: "",
+      lastname: ""
+    })
+
     setUserDetail({
       username: "",
       email: "",

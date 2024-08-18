@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import InputWrapper from "../form-elements/InputWrapper";
 import GradientButton from "../form-elements/GradientButton";
 import EmailIcon from "/public/email-icon.svg";
+import { useContext } from "react";
+import { RouterContext } from "@/context/router-context";
+import Link from "next/link";
 
 interface SetUpEmailConfirmationInput {
   password: string;
@@ -12,15 +15,12 @@ interface SetUpEmailConfirmationInput {
 const SetUpEmailConfirmation = () => {
   const methods = useForm<SetUpEmailConfirmationInput>();
   const router = useRouter();
+  const {parentRoute} = useContext(RouterContext);
 
   const onSubmit = (data: SetUpEmailConfirmationInput) => {
     console.log(data);
     router.push("/wallet-setup/confirm");
   };
-
-  const GoBack = () => {
-    router.back();
-  }
 
   return (
     // context provider for input wrapper
@@ -54,9 +54,9 @@ const SetUpEmailConfirmation = () => {
           Confirm email
         </GradientButton>
         {/* Back button */}
-        <button onClick={GoBack} className="block w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
+        <Link href={parentRoute} className="block w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
           Back
-        </button>
+        </Link>
       </form>
     </FormProvider>
   );

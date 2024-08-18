@@ -14,6 +14,7 @@ import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
 import EmailIcon from "/public/email-icon.svg";
 import UserIcon from "/public/user-icon.svg";
+import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
 
 
 
@@ -31,6 +32,21 @@ interface WalletSetUpInput {
   documentFrontSide: File;
   documentBackSide: File;
 }
+
+const DocumentType = [
+  {
+    id: "driver-license",
+    value: "Drivers License"
+  },
+  {
+    id: "passport",
+    value: "Passport"
+  },
+  {
+    id: "international-id",
+    value: "International ID"
+  }
+]
 
 // wallet setup form component
 const WalletSetUp = () => {
@@ -192,12 +208,14 @@ const WalletSetUp = () => {
           {/* container for document type */}
           <div className="mb-6 basis-full lg:basis-[48%]">
             {/* selector for document type */}
-            <InputWrapper
-              type="text"
-              placeholder="Drivers license"
-              label="Choose document type"
-              name="driver-license"
-            />
+            <h4 className="mb-2 text-xs font-medium text-[#808191]">Choose document type</h4>
+              <CustomSelect defaultValue="Drivers License" name="document-type">
+          {DocumentType.map((document) => (
+            <CustomOption id={document.id} value={document.value} key={document.id}>
+              <div className="pl-4 py-4 w-full text-left text-sm overflow-hidden text-ellipsis">{document.value}</div>
+            </CustomOption>
+          ))}
+        </CustomSelect>
           </div>
         </div>
         {/* container for front and back side of document upload */}

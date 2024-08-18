@@ -21,7 +21,7 @@ const Page = () => {
   }, []);
 
   useEffect(() => {
-    console.log(isLoggedIn);
+    console.log(isLoggedIn, isBalanceAvailable);
     // if not logged in take to sign up page
     if (!isLoggedIn) {
       router.replace("/signup");
