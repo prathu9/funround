@@ -18,21 +18,36 @@ import UserIcon from "/public/user-icon.svg";
 interface SignUpInput {
   email: string;
   username: string;
-  birthDate: string;
+  birthDate: Date | null;
   password: string;
   confirmPassword: string;
 }
 
 //  signup component
 const SignUp = () => {
-  const methods = useForm<SignUpInput>(); // useform with signup input
+  const { userDetail, setUserDetail } = useContext(UserContext); // getting user detail from user context
+  const methods = useForm<SignUpInput>({
+    defaultValues: {
+      email: userDetail.email,
+      username: userDetail.username,
+      birthDate: userDetail.birthDate,
+      password: userDetail.password,
+      confirmPassword: userDetail.password
+    }
+  }); // useform with signup input
   const {
     formState: { errors },
     watch,
   } = methods;
   const router = useRouter();
-  const { userDetail, setUserDetail } = useContext(UserContext); // getting user detail from user context
   const [showTerms, setShowTerms] = useState(false); // state to show terms of condition
+
+  const handleInputChange = (name: string, value: string | Date | null) => {
+    setUserDetail({
+      ...userDetail,
+      [name]: value
+    });
+  }
 
   // function to run after sign up form submission
   const onSubmit = (data: SignUpInput) => {
@@ -99,6 +114,7 @@ const SignUp = () => {
               registerOptions={{
                 required: "Please enter email",
                 validate: validateEmail,
+                onChange: (e) => handleInputChange(e.target.name, e.target.value)
               }}
             />
           </div>
@@ -114,6 +130,7 @@ const SignUp = () => {
               errorMessage={errors.username?.message}
               registerOptions={{
                 required: "Please enter username",
+                onChange: (e) => handleInputChange(e.target.name, e.target.value)
               }}
             />
           </div>
@@ -129,6 +146,7 @@ const SignUp = () => {
             name="birthDate"
             errorMessage={errors.birthDate?.message}
             validateDate={validateDate}
+            handleChange={handleInputChange}
           />
         </div>
         {/* container for password input wrapper */}
@@ -142,6 +160,7 @@ const SignUp = () => {
             registerOptions={{
               required: "Please enter password",
               validate: validatePassword,
+              onChange: (e) => handleInputChange(e.target.name, e.target.value)
             }}
           />
         </div>
@@ -157,6 +176,7 @@ const SignUp = () => {
               required: "Please enter password",
               validate: (value) =>
                 validateConfirmPassword(value, watch("password")), //watch used to check password matching in real time
+              onChange: (e) => handleInputChange(e.target.name, e.target.value)
             }}
           />
         </div>

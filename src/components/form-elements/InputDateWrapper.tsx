@@ -23,6 +23,7 @@ type InputDateWrapperProps = {
     | Validate<any, FieldValues>
     | Record<string, Validate<any, FieldValues>>
     | undefined;
+  handleChange?: (name: string, value: string | Date | null) => void
 };
 
 // InputDateWrapper component for date input
@@ -34,9 +35,10 @@ const InputDateWrapper = ({
   placeholder,
   errorMessage,
   validateDate,
+  handleChange
 }: InputDateWrapperProps) => {
   const { control } = useFormContext();
-  console.log(errorMessage);
+
   return (
     // container for input date wrapper
     <div className="flex flex-col gap-1">
@@ -63,7 +65,12 @@ const InputDateWrapper = ({
               selected={value}
               dateFormat="dd/MM/yyyy"
               placeholderText={placeholder}
-              onChange={onChange}
+              onChange={(date) => {
+                onChange(date);
+                if(handleChange){
+                  handleChange(name, date);
+                }
+              }}
               renderCustomHeader={CustomHeader}
               className={`flex w-full p-4 pl-[50px] text-sm placeholder-white bg-[#35353E] rounded-lg ${
                 errorMessage && "border border-[#F24D4D]"

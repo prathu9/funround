@@ -19,6 +19,7 @@ export const UserContext = createContext<UserContextType>({
     username: "",
     email: "",
     password: "",
+    birthDate: null,
     termsOfUse: false,
     isLoggedIn: false,
   },
@@ -35,6 +36,7 @@ interface UserDetailType {
   username: string;
   email: string;
   password: string;
+  birthDate: Date | null;
   termsOfUse: boolean;
   isLoggedIn: boolean;
 }
@@ -44,6 +46,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
   const [userDetail, setUserDetail] = useState<UserDetailType>({
     username: "",
     email: "",
+    birthDate: null,
     password: "",
     termsOfUse: false,
     isLoggedIn: false,

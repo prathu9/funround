@@ -11,6 +11,7 @@ import { UserContext } from "@/context/user-context";
 import UserIcon from "/public/user-icon.svg";
 import EmailIcon from "/public/email-icon.svg";
 import Spinner from "../layout/Spinner";
+import { inter } from "@/fonts/fonts";
 
 interface ProfileInput {
   email: string;
@@ -38,7 +39,6 @@ const Profile = () => {
 
   const onSubmit = (data: ProfileInput) => {
     console.log(data);
-    router.push("/login/confirm");
   };
 
   const handleLogout = () => {
@@ -83,12 +83,12 @@ const Profile = () => {
           />
         </div>
         <div className="mb-6">
-          <InputWrapper
-            type="text"
-            placeholder="54% (23/40 games)"
-            label="Winning Rate"
-            name="winning-rate"
-          />
+          <div className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}>
+            
+          </div>
+          <div className="min-w-full min-h-[53.93x] w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg outline-none sm:min-h-[51.96px]">
+            54% (23/40 games)
+          </div>
         </div>
         <div className="mb-6">
           <InputWrapper
