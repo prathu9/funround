@@ -15,6 +15,7 @@ import { inter } from "@/fonts/fonts";
 import { WalletContext } from "@/context/wallet-context";
 import { BalanceContext } from "@/context/balance-context";
 import walletBalanceData from "@/data/walletBalanceData";
+import { RouterContext } from "@/context/router-context";
 
 interface ProfileInput {
   email: string;
@@ -32,6 +33,7 @@ const Profile = () => {
   const {
     setWalletDetail
   } = useContext(WalletContext);
+  const {parentRoute} = useContext(RouterContext);
 
   const {setWalletBalance} = useContext(BalanceContext);
 
@@ -69,7 +71,7 @@ const Profile = () => {
       termsOfUse: false,
       isLoggedIn: false,
     });
-    router.push("/");
+    router.push(parentRoute);
   }
 
   if(showLoader){
