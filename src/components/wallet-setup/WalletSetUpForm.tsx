@@ -13,7 +13,7 @@ import CountrySelector from "../form-elements/CountrySelector";
 import { UserContext } from "@/context/user-context";
 import { WalletContext } from "@/context/wallet-context";
 import EmailIcon from "/public/email-icon.svg";
-import UserIcon from "/public/email-icon.svg";
+import UserIcon from "/public/user-icon.svg";
 
 
 

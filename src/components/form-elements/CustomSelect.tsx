@@ -64,7 +64,7 @@ export const CustomSelect = ({
         <button
           ref={triggerButtonRef}
           type="button"
-          className="pr-4 w-full flex justify-between items-center rounded-lg overflow-hidden bg-[#35353E]"
+          className={`pr-4 w-full flex justify-between items-center overflow-hidden bg-[#35353E] ${isOpen? "rounded-t-lg":"rounded-lg"}`}
           onClick={toggleOpen}
         >
           {selectedLabel ? (

@@ -26,25 +26,26 @@ const DepositCryptoForm = ({
   const { walletBalance, setWalletBalance } = useContext(BalanceContext);
   const methods = useForm<DepositCryptoInput>({
     defaultValues: {
-      postalCode: defaultCryptoOption || CryptoOptions[0].name
-    }
+      postalCode: defaultCryptoOption || CryptoOptions[0].name,
+    },
   });
- 
 
   const onSubmit = (data: DepositCryptoInput) => {
     console.log(data);
-     setIsDepositing(true);
+    setIsDepositing(true);
     setTimeout(() => {
       setIsDone(true);
-       setIsDepositing(false);
+      setIsDepositing(false);
       const updatedWalletBalance = walletBalance.map((walletCrypto, index) => {
         if (walletCrypto.name === data.postalCode) {
-          const currentValue = JSON.parse(localStorage.getItem("wallet-balance") || '{}')[index];
+          const currentValue = JSON.parse(
+            localStorage.getItem("wallet-balance") || "{}"
+          )[index];
           const depositedAmount = +currentValue.amount + 10;
           return {
             ...walletCrypto,
             amount: `${depositedAmount}`,
-            valueInDollars: `${depositedAmount + depositedAmount*0.1}`,
+            valueInDollars: `${depositedAmount + depositedAmount * 0.1}`,
           };
         }
         return walletCrypto;
@@ -61,7 +62,7 @@ const DepositCryptoForm = ({
         <div className="py-6">
           <div>
             <h4 className="mb-2 text-xs font-medium text-[#808191]">
-              Postal code
+              Choose Currency
             </h4>
             <CustomSelect
               defaultValue={defaultCryptoOption || CryptoOptions[0].name}

@@ -28,7 +28,7 @@ const BuyCryptoForm = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="py-6">
           <div className="mb-6">
-            <h4 className="mb-2 text-xs font-medium text-[#808191]">Postal code</h4>
+            <h4 className="mb-2 text-xs font-medium text-[#808191]">Choose Currency</h4>
             <CustomSelect defaultValue="USDT" name="postalCode">
               {CryptoOptions.map((crypto) => (
                 <CustomOption value={crypto.symbol} key={crypto.symbol}>
