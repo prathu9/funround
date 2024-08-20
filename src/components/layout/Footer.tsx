@@ -16,24 +16,24 @@ const Footer = () => {
             <div className={`flex flex-wrap gap-2 justify-end text-lg tracking-[0.04em] md:flex-nowrap md:gap-12 ${archivo.className}`}>
                 {/* Container for footer nav */}
                 <ul className="flex gap-[10px] lg:gap-8">
-                    <li className="hidden gap-8 lg:flex">
+                    <li className="hidden gap-8 lg:flex text-xs sm:text-lg">
                         <Link href="/learn-more">
                             About FunRound
                         </Link>
                     </li>
-                    <li className="flex gap-8 text-xs sm:text-base">
+                    <li className="flex gap-8 text-xs sm:text-lg">
                         <Link href="/">
                             Privacy policy
                         </Link>
                     </li>
-                    <li className="flex gap-8 text-xs sm:text-base">
+                    <li className="flex gap-8 text-xs sm:text-lg">
                         <Link href="/terms-of-use">
                             Terms of use
                         </Link>
                     </li>
                 </ul>
                 {/* Container for footer copyright text */}
-                <div className="text-[#545867] text-xs sm:text-base">
+                <div className="text-[#545867] text-xs sm:text-lg">
                     FunRound ©2024 All rights reserved
                 </div>
             </div>
