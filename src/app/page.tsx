@@ -19,7 +19,7 @@ export default function Home() {
   return (
     // container for home pages
     <main
-      className="px-8 pt-8 pb-[120px] flex flex-wrap justify-between items-center gap-y-8 md:py-12 md:px-[40px] xl:px-[120px] lg:flex-nowrap"
+      className="px-6 pt-8 pb-[120px] flex flex-wrap justify-between items-center gap-y-8 md:py-12 md:px-[40px] xl:px-[120px] lg:flex-nowrap"
     >
       {/* container for title and buttons */}
       <div className="basis-full text-center lg:basis-[37.86%] lg:text-left">
@@ -64,28 +64,22 @@ export default function Home() {
       {/* Container for cover image and text */}
       <div className="basis-full md:basis-[46.73%]">
         {/* container for cover image */}
-        <div className="relative w-full aspect-[1.4]">
+        <div className="relative w-full aspect-[1] border-[6px] border-[#FFCF03] rounded-3xl overflow-hidden sm:aspect-[1.4]">
           {/* cover image */}
-          <Image src="/cover-img.png" fill alt="cover" />
+          <Image src="/cover-img.png" className="object-cover object-[50%_-50%] -z-10" fill alt="cover" />
           {/* container of image caption */}
           <div
-            className={`absolute top-[46.42%] left-[8.2%] flex flex-col justify-start ${inter.className}`}
+            className={`w-full absolute bottom-[10px] left-0 flex flex-col justify-center items-center lg:bottom-[40px] ${inter.className}`}
           >
-            {/* Beta badge */}
-            <div className="pt-[6px] px-2 py-1 w-[49px] flex justify-center items-center font-medium text-[13px] leading-[18px] rounded-lg bg-[#FF754C]">
-              BETA
-            </div>
             {/* container for caption text */}
             <div
-              className={`${poppins.className} my-[5px] w-[80%] text-[20px] leading-[30px] sm:w-[57%] sm:text-[1.6vw] sm:leading-[2.6vw]`}
+              className={`${poppins.className} w-[80%] mb-3 sm:mb-5`}
             >
-              {/* caption title */}
-              <h2 className="font-black">Crypto roads</h2>
               {/* caption description */}
-              <p>Go fast, go long, you only have 60 seconds!</p>
+              <p className="text-xs text-center sm:text-lg">Go fast, go long, you only have 60 seconds!</p>
             </div>
             {/* caption button */}
-            <Link href="/demo-play" className="max-w-[137px] px-8 py-4 bg-[#6C5DD3] whitespace-nowrap rounded-2xl">
+            <Link href="/demo-play" className="max-w-[137px] px-8 py-4 text-sm bg-[#6C5DD3] whitespace-nowrap rounded-2xl ">
               Play Demo
             </Link>
           </div>

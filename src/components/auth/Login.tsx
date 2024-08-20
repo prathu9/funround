@@ -37,7 +37,7 @@ const Login = () => {
       {/* Container for signup form */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[6vw] sm:translate-y-0"
+        className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white sm:top-[4vw] sm:translate-y-0 2xl:top-1/2 2xl:-translate-y-1/2"
       >
         {/* container for form heading */}
         <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">

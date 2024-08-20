@@ -30,22 +30,27 @@ interface OTPFieldPropsType {
 }
 
 const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
-  const [type, setType] = useState<"password" | "text">("password");
+  // const [type, setType] = useState<"password" | "text">("password");
   const { register, setFocus, setValue } = useFormContext<OTPFieldInput>();
   const otpContainerRef = useRef(null);
   const errorMessage =
     errorMessages &&
     (errorMessages[Object.keys(errorMessages as {})[0]]?.message as string);
 
-  const toggleType = () => {
-    setType(type === "password" ? "text" : "password");
-  };
+  // const toggleType = () => {
+  //   setType(type === "password" ? "text" : "password");
+  // };
 
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const value = event.target.value;
+
+    if(isNaN(+value)){
+      setValue(digitNames[index], "");
+      return;
+    }
 
     const lastDigit = value.slice(-1);
     setValue(digitNames[index], lastDigit);
@@ -93,9 +98,10 @@ const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
           {digitNames.map((digit, index) => (
             <input
               key={digit}
-              type={type}
+              type="text"
               className="inline-block w-3 bg-transparent border-b-2 border-white outline-none text-center"
               onKeyDown={(e) => handleKeyDown(e, index)}
+              maxLength={1}
               {...register(digit, {
                 required: "Please enter 4 digits",
                 maxLength: 1,
@@ -104,13 +110,13 @@ const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
             />
           ))}
         </div>
-        <button
+        {/* <button
           type="button"
           onClick={toggleType}
           className="w-6 h-6 cursor-pointer"
         >
           {type === "password" ? <EyeOffIcon /> : <FaRegEye size={24} />}
-        </button>
+        </button> */}
       </div>
     </>
   );
