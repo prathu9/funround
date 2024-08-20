@@ -12,6 +12,7 @@ type InputWrapperPropsType = {
   rightIcon?: string | ReactElement;
   errorMessage?: string;
   registerOptions?: RegisterOptions;
+  defaultValue?: string|number;
 };
 
 const InputWrapper = ({
@@ -23,6 +24,7 @@ const InputWrapper = ({
   leftIcon,
   rightIcon,
   errorMessage,
+  defaultValue
 }: InputWrapperPropsType) => {
   const { register } = useFormContext();
 
@@ -54,6 +56,7 @@ const InputWrapper = ({
         <input
           type={type}
           placeholder={placeholder}
+          defaultValue={defaultValue}
           {...register(name, registerOptions)}
           className={`min-w-full min-h-[53.93x] w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg outline-none sm:min-h-[51.96px] ${
             errorMessage && "border border-[#F24D4D]"

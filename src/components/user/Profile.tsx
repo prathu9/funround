@@ -19,36 +19,39 @@ import { RouterContext } from "@/context/router-context";
 
 interface ProfileInput {
   email: string;
-  password: string;
+  username: string;
 }
 
 const Profile = () => {
   const methods = useForm<ProfileInput>();
+  const {
+    formState: { errors },
+  } = methods;
   const [showLoader, setShowLoader] = useState(true);
   const router = useRouter();
-  const {
-    userDetail,
-    setUserDetail
-  } = useContext(UserContext);
-  const {
-    setWalletDetail
-  } = useContext(WalletContext);
-  const {parentRoute} = useContext(RouterContext);
+  const { userDetail, setUserDetail } = useContext(UserContext);
+  const { setWalletDetail } = useContext(WalletContext);
+  const { parentRoute } = useContext(RouterContext);
 
-  const {setWalletBalance} = useContext(BalanceContext);
+  const { setWalletBalance } = useContext(BalanceContext);
 
   useEffect(() => {
-    if(userDetail && userDetail.isLoggedIn){
+    if (userDetail && userDetail.isLoggedIn) {
       setShowLoader(false);
-    }
-    else{
+    } else {
       setShowLoader(true);
       router.push("/");
     }
-  },[router, userDetail])
+  }, [router, userDetail]);
 
   const onSubmit = (data: ProfileInput) => {
     console.log(data);
+    setUserDetail({
+      ...userDetail,
+      email: data.email,
+      username: data.username
+    });
+    router.push(parentRoute);
   };
 
   const handleLogout = () => {
@@ -60,8 +63,8 @@ const Profile = () => {
     setWalletDetail({
       email: "",
       firstname: "",
-      lastname: ""
-    })
+      lastname: "",
+    });
 
     setUserDetail({
       username: "",
@@ -72,18 +75,16 @@ const Profile = () => {
       isLoggedIn: false,
     });
     router.push(parentRoute);
-  }
+  };
 
-  if(showLoader){
-    return(
-       // container for showing loading spinner 
-       <div
-       className="w-full max-w-[696px] h-[450px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:border sm:border-white ${archivo.className"
-     >
-       {/* Loader */}
-       <Spinner />
-     </div>
-    )
+  if (showLoader) {
+    return (
+      // container for showing loading spinner
+      <div className="w-full max-w-[696px] h-[450px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:border sm:border-white ${archivo.className">
+        {/* Loader */}
+        <Spinner />
+      </div>
+    );
   }
 
   return (
@@ -99,28 +100,39 @@ const Profile = () => {
         </h1>
         <div className="mb-6">
           <InputWrapper
-            leftIcon={<EmailIcon/>}
+            leftIcon={<EmailIcon />}
             type="email"
-            placeholder={userDetail.email}
+            placeholder=""
+            defaultValue={userDetail.email}
             label="Email"
             name="email"
+            errorMessage={errors.email?.message}
+            registerOptions={{
+              required: "Please enter email",
+              validate: validateEmail,
+            }}
           />
         </div>
         <div className="mb-6">
-          <div className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}>
-            
-          </div>
+          <div
+            className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}
+          ></div>
           <div className="min-w-full min-h-[53.93x] w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg outline-none sm:min-h-[51.96px]">
             54% (23/40 games)
           </div>
         </div>
         <div className="mb-6">
           <InputWrapper
-            leftIcon={<UserIcon/>}
+            leftIcon={<UserIcon />}
             type="text"
-            placeholder={userDetail.username}
+            placeholder=""
+            defaultValue={userDetail.username}
             label="Username"
             name="username"
+            errorMessage={errors.username?.message}
+            registerOptions={{
+              required: "Please enter username",
+            }}
           />
         </div>
         <div className="mt-12 flex flex-wrap gap-8 sm:flex-nowrap">
@@ -130,16 +142,35 @@ const Profile = () => {
           >
             Save
           </GradientButton>
-          <Link href="/" className="basis-full py-4 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%] sm:basis-[48%]">Cancel</Link>
+          <Link
+            href="/"
+            className="basis-full py-4 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%] sm:basis-[48%]"
+          >
+            Cancel
+          </Link>
         </div>
         <div className="mt-8">
-          <button onClick={handleLogout} type="button" className="w-full p-4 font-semibold bg-[#F24D4D] hover:bg-[#F24D4D]/[80%] rounded-2xl">
+          <button
+            onClick={handleLogout}
+            type="button"
+            className="w-full p-4 font-semibold bg-[#F24D4D] hover:bg-[#F24D4D]/[80%] rounded-2xl"
+          >
             LOGOUT
           </button>
         </div>
       </form>
     </FormProvider>
   );
+};
+
+// validate function for email
+const validateEmail = (value: string) => {
+  const emailRegex = /[^@\s]+@[^@\s]+/; // regex pattern for email
+
+  // checking if value provided matches with regex pattern
+  if (!emailRegex.test(value)) {
+    return "Invalid email format";
+  }
 };
 
 export default Profile;
