@@ -7,6 +7,7 @@ import EmailIcon from "/public/email-icon.svg";
 import { useContext } from "react";
 import { RouterContext } from "@/context/router-context";
 import Link from "next/link";
+import { UserContext } from "@/context/user-context";
 
 interface SetUpEmailConfirmationInput {
   password: string;
@@ -16,6 +17,7 @@ const SetUpEmailConfirmation = () => {
   const methods = useForm<SetUpEmailConfirmationInput>();
   const router = useRouter();
   const {parentRoute} = useContext(RouterContext);
+  const {userDetail} = useContext(UserContext);
 
   const onSubmit = (data: SetUpEmailConfirmationInput) => {
     console.log(data);
@@ -41,7 +43,8 @@ const SetUpEmailConfirmation = () => {
           <InputWrapper
             leftIcon={<EmailIcon/>}
             type="email"
-            placeholder="johnplayer@gmail.com"
+            placeholder=""
+            defaultValue={userDetail.email}
             label="Your email address"
             name="email"
           />

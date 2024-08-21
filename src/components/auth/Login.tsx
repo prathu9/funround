@@ -8,6 +8,8 @@ import GradientButton from "../form-elements/GradientButton";
 import InputWrapper from "../form-elements/InputWrapper";
 import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
 import EmailIcon from "/public/email-icon.svg";
+import { useContext } from "react";
+import { UserContext } from "@/context/user-context";
 
 // type for login form
 interface LoginInput {
@@ -20,14 +22,24 @@ const Login = () => {
   const methods = useForm<LoginInput>(); // useform with type of login input
   const {formState: {errors}} = methods;
   const router = useRouter(); // nextjs router 
+  const {userDetail, setUserDetail} = useContext(UserContext);
 
   // function runs on form submission
   const onSubmit = (data: LoginInput) => {
     console.log("login",data);
-    localStorage.setItem("userDetail", JSON.stringify({
+    localStorage.setItem("user-detail", JSON.stringify({
       ...data,
-      otp: "12345"
+      isLoggedIn: true,
+      termsOfUse: true,
     }));
+
+    setUserDetail({
+      ...userDetail,
+      email: data.email,
+      isLoggedIn: true,
+      termsOfUse: true,
+    })
+
     router.push("/login/confirm");
   };
 
