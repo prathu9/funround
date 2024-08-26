@@ -5,7 +5,7 @@ import { FormProvider, useForm, UseFormReturn } from "react-hook-form";
 import GradientButton from "../form-elements/GradientButton";
 import { useRouter } from "next/navigation";
 import InputFileWrapper from "../form-elements/InputFileWrapper";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Spinner from "../layout/Spinner";
 import CalendarIcon from "/public/calendar-icon.svg";
 import InputDateWrapper from "../form-elements/InputDateWrapper";
@@ -23,7 +23,7 @@ interface WalletSetUpInput {
   firstname: string;
   lastname: string;
   password: string;
-  birthDate: string;
+  birthDate: Date | null;
   country: string;
   postalCode: string;
   residentialAddress: string;
@@ -50,14 +50,19 @@ const DocumentType = [
 
 // wallet setup form component
 const WalletSetUp = () => {
-  const methods = useForm<WalletSetUpInput>(); // react hook useForm with wallet setup type
+  const {userDetail} = useContext(UserContext);
+  const methods = useForm<WalletSetUpInput>({
+    defaultValues: {
+      birthDate: userDetail.birthDate
+    }
+  }); // react hook useForm with wallet setup type
   const {
     formState: { errors },
   } = methods;
   const [showLoader, setShowLoader] = useState(false);
   const router = useRouter();
-  const {userDetail} = useContext(UserContext);
   const {setWalletDetail} = useContext(WalletContext);
+
 
   const onSubmit = (data: WalletSetUpInput) => {
     console.log("wallet setup", data);
