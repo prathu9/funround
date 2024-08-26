@@ -116,6 +116,7 @@ const Login = () => {
   );
 };
 
+// validate function for email fields
 const validateEmail = (value: string) => {
   const emailRegex = /[^@\s]+@[^@\s]+/;
 
@@ -124,6 +125,7 @@ const validateEmail = (value: string) => {
   }
 }
 
+// validate function for password fieldss
 const validatePassword = (value: string) => {
   if(value.length < 8){
     return "Must be at least 8 characters";

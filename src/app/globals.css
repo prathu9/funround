@@ -21,6 +21,7 @@ body {
 
 input{
   -webkit-appearance: none;
+  border-radius: 0;
 }
 
 input:-webkit-autofill,
