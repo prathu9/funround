@@ -1,14 +1,9 @@
-import Image from "next/image";
 import {
   ChangeEvent,
   KeyboardEvent,
   MouseEvent,
-  useEffect,
   useRef,
-  useState,
 } from "react";
-import { FaRegEye } from "react-icons/fa";
-import EyeOffIcon from "/public/eye-off-icon.svg";
 import { FieldErrors, useFormContext } from "react-hook-form";
 
 // otp field input type
@@ -34,16 +29,11 @@ interface OTPFieldPropsType {
 
 // otp field component
 const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
-  // const [type, setType] = useState<"password" | "text">("password");
   const { register, setFocus, setValue } = useFormContext<OTPFieldInput>(); // use form context from react hook form
   const otpContainerRef = useRef(null); // otp container element ref
   const errorMessage =
     errorMessages &&
     (errorMessages[Object.keys(errorMessages as {})[0]]?.message as string); // error message for first digit but keeps track of error in all fields since error is set manually using setError
-
-  // const toggleType = () => {
-  //   setType(type === "password" ? "text" : "password");
-  // };
 
   // function call after input change
   const handleInputChange = (
@@ -125,13 +115,6 @@ const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
             />
           ))}
         </div>
-        {/* <button
-          type="button"
-          onClick={toggleType}
-          className="w-6 h-6 cursor-pointer"
-        >
-          {type === "password" ? <EyeOffIcon /> : <FaRegEye size={24} />}
-        </button> */}
       </div>
     </>
   );
