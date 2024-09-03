@@ -17,24 +17,27 @@ import { BalanceContext } from "@/context/balance-context";
 import walletBalanceData from "@/data/walletBalanceData";
 import { RouterContext } from "@/context/router-context";
 
+// type for profile form
 interface ProfileInput {
   email: string;
   username: string;
 }
 
+// profile form component
 const Profile = () => {
-  const methods = useForm<ProfileInput>();
+  const methods = useForm<ProfileInput>(); // useform with type of profile input
   const {
     formState: { errors },
   } = methods;
-  const [showLoader, setShowLoader] = useState(true);
-  const router = useRouter();
-  const { userDetail, setUserDetail } = useContext(UserContext);
-  const { setWalletDetail } = useContext(WalletContext);
-  const { parentRoute } = useContext(RouterContext);
+  const [showLoader, setShowLoader] = useState(true); // loader state
+  const router = useRouter(); // router hook from nextjs
+  const { userDetail, setUserDetail } = useContext(UserContext); // user context to get user detail 
+  const { setWalletDetail } = useContext(WalletContext); // wallet context to set wallet detail
+  const { parentRoute } = useContext(RouterContext); // router context to get parent route
 
-  const { setWalletBalance } = useContext(BalanceContext);
+  const { setWalletBalance } = useContext(BalanceContext); // balance context to set wallet balance
 
+  // check if user is logged in, if logged in hide loader and show profile form
   useEffect(() => {
     if (userDetail && userDetail.isLoggedIn) {
       setShowLoader(false);
@@ -44,6 +47,7 @@ const Profile = () => {
     }
   }, [router, userDetail]);
 
+  // handle profile form submission
   const onSubmit = (data: ProfileInput) => {
     console.log(data);
     setUserDetail({
@@ -54,6 +58,7 @@ const Profile = () => {
     router.push(parentRoute);
   };
 
+  // handle logout button
   const handleLogout = () => {
     localStorage.setItem("user-detail", JSON.stringify({}));
     localStorage.setItem("wallet-detail", JSON.stringify({}));
@@ -77,6 +82,7 @@ const Profile = () => {
     router.push(parentRoute);
   };
 
+  // check loader state and display loader
   if (showLoader) {
     return (
       // container for showing loading spinner
@@ -90,15 +96,18 @@ const Profile = () => {
   return (
     // context provider for input wrapper
     <FormProvider {...methods}>
-      {/* Container for signup form */}
+      {/* Container for profile form */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
         className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
       >
+        {/* title for profile form */}
         <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
           PROFILE
         </h1>
+        {/* container for email input wrapper */}
         <div className="mb-6">
+          {/* input wrapper for email */}
           <InputWrapper
             leftIcon={<EmailIcon />}
             type="email"
@@ -113,15 +122,22 @@ const Profile = () => {
             }}
           />
         </div>
+        {/* container to display winning rate */}
         <div className="mb-6">
+          {/* winning rate label */}
           <div
             className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}
-          ></div>
+          >
+            Winning Rate
+          </div>
+          {/* winning rate */}
           <div className="min-w-full min-h-[53.93x] w-full p-4 text-sm placeholder-white bg-[#35353E] rounded-lg outline-none sm:min-h-[51.96px]">
             54% (23/40 games)
           </div>
         </div>
+        {/* container for username input wrapper */}
         <div className="mb-6">
+          {/* input wrapper for username */}
           <InputWrapper
             leftIcon={<UserIcon />}
             type="text"
@@ -135,13 +151,16 @@ const Profile = () => {
             }}
           />
         </div>
+        {/* container for save and cancel button */}
         <div className="mt-12 flex flex-wrap gap-8 sm:flex-nowrap">
+          {/* save button */}
           <GradientButton
             type="submit"
             className="basis-full py-4 text-lg text-center rounded-2xl sm:basis-[48%]"
           >
             Save
           </GradientButton>
+          {/* cancel button */}
           <Link
             href="/"
             className="basis-full py-4 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%] sm:basis-[48%]"
@@ -149,7 +168,9 @@ const Profile = () => {
             Cancel
           </Link>
         </div>
+        {/* container for logout button */}
         <div className="mt-8">
+          {/* logout button */}
           <button
             onClick={handleLogout}
             type="button"
