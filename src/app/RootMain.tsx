@@ -6,14 +6,22 @@ import RouterProvider from "@/context/router-context";
 import UserProvider from "@/context/user-context";
 import WalletProvider from "@/context/wallet-context";
 
+// separate root component to use context provider
 const RootMain = ({ children }: { children: React.ReactNode }) => {
   return (
+    // user detail provider with login state
     <UserProvider>
+      {/* wallet detail provider */}
       <WalletProvider>
+        {/* wallet balance provider */}
         <BalanceProvider>
+          {/* router detail provider */}
           <RouterProvider>
+            {/* header component of page */}
             <Header />
+            {/* page content */}
             <div className="min-h-[calc(100vh_-_180px)]">{children}</div>
+            {/* footer component of page */}
             <Footer />
           </RouterProvider>
         </BalanceProvider>

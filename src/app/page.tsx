@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
 export default function Home() {
-  const {setParentRoute} = useContext(RouterContext); 
+  const {setParentRoute} = useContext(RouterContext); // setParentRoute from router context to update parent route
 
   useEffect(() => {
     setParentRoute("/"); // setting parent route to current route
-  },[])
+  },[setParentRoute])
 
 
   return (
