@@ -2,6 +2,7 @@ import { archivo } from "@/fonts/fonts";
 import Image from "next/image";
 import Link from "next/link";
 
+// footer component
 const Footer = () => {
     return(
         // Footer container

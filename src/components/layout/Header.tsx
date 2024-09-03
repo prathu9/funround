@@ -10,6 +10,7 @@ import WalletBalance from "../wallet-setup/wallet-balance/WalletBalance";
 import { WalletContext } from "@/context/wallet-context";
 import walletBalanceData from "@/data/walletBalanceData";
 
+// header component
 const Header = () => {
   const {
     userDetail: { isLoggedIn },
@@ -19,7 +20,9 @@ const Header = () => {
 
   return (
     <>
+      {/* header for desktop screen */}
       <DesktopHeader isLoggedIn={isLoggedIn} />
+      {/* header for mobile screen */}
       <MobileHeader isLoggedIn={isLoggedIn} />
     </>
   );
@@ -51,7 +54,9 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
       </div>
       {isLoggedIn ? (
         <>
+          {/* wallet balance component */}
           <WalletBalance/>
+          {/* profile image with link */}
           <Link href="/profile" className="w-12 h-12">
             <Image src="/avatar.svg" width="100" height="100" alt="avatar" />
           </Link>
@@ -87,8 +92,11 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   );
 };
 
+// header for mobile screen
 const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false); // state to toggle mobile nav
+  
+  // hide overflow when mobile menu open
   useEffect(() => {
     if (showMobileMenu) {
       document.body.style.overflowY = "hidden";
@@ -97,6 +105,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     }
   }, [showMobileMenu]);
 
+  // toggle mobile menu
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
