@@ -42,6 +42,7 @@ const SignUp = () => {
   const router = useRouter();
   const [showTerms, setShowTerms] = useState(false); // state to show terms of condition
 
+  // function to set user detail in context while input change
   const handleInputChange = (name: string, value: string | Date | null) => {
     setUserDetail({
       ...userDetail,

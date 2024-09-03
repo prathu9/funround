@@ -87,6 +87,7 @@ const InputDateWrapper = ({
   );
 };
 
+// custom header for calendar
 const CustomHeader = ({
   date,
   changeYear,
@@ -96,11 +97,11 @@ const CustomHeader = ({
   prevMonthButtonDisabled,
   nextMonthButtonDisabled,
 }: ReactDatePickerCustomHeaderProps) => {
-  const currentYear = getYear(new Date());
+  const currentYear = getYear(new Date()); // getting current year
   const years = Array.from(
     { length: currentYear - 1900 + 1 },
     (_, index) => 1900 + index
-  );
+  ); // getting years to display in header
   const months = [
     "January",
     "February",
@@ -114,13 +115,16 @@ const CustomHeader = ({
     "October",
     "November",
     "December",
-  ];
+  ]; // months to display in header
 
   return (
+    // container for custom header
     <div className="mx-2 my-3 flex justify-between">
+      {/* button with left arrow */}
       <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
         <FaChevronLeft />
       </button>
+      {/* select for year */}
       <select
         className="p-1 cursor-pointer"
         value={getYear(date)}
@@ -132,6 +136,7 @@ const CustomHeader = ({
           </option>
         ))}
       </select>
+      {/* select for month */}
       <select
         className="p-1 cursor-pointer"
         value={months[getMonth(date)]}
@@ -143,6 +148,7 @@ const CustomHeader = ({
           </option>
         ))}
       </select>
+      {/* button with right arrow */}
       <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
         <FaChevronRight />
       </button>

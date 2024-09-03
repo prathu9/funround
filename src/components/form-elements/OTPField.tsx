@@ -11,6 +11,7 @@ import { FaRegEye } from "react-icons/fa";
 import EyeOffIcon from "/public/eye-off-icon.svg";
 import { FieldErrors, useFormContext } from "react-hook-form";
 
+// otp field input type
 interface OTPFieldInput {
   firstDigit: string;
   secondDigit: string;
@@ -18,6 +19,7 @@ interface OTPFieldInput {
   fourthDigit: string;
 }
 
+// digit names array
 const digitNames: (keyof OTPFieldInput)[] = [
   "firstDigit",
   "secondDigit",
@@ -25,41 +27,48 @@ const digitNames: (keyof OTPFieldInput)[] = [
   "fourthDigit",
 ];
 
+// otp field props type
 interface OTPFieldPropsType {
   errorMessages?: FieldErrors;
 }
 
+// otp field component
 const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
   // const [type, setType] = useState<"password" | "text">("password");
-  const { register, setFocus, setValue } = useFormContext<OTPFieldInput>();
-  const otpContainerRef = useRef(null);
+  const { register, setFocus, setValue } = useFormContext<OTPFieldInput>(); // use form context from react hook form
+  const otpContainerRef = useRef(null); // otp container element ref
   const errorMessage =
     errorMessages &&
-    (errorMessages[Object.keys(errorMessages as {})[0]]?.message as string);
+    (errorMessages[Object.keys(errorMessages as {})[0]]?.message as string); // error message for first digit but keeps track of error in all fields since error is set manually using setError
 
   // const toggleType = () => {
   //   setType(type === "password" ? "text" : "password");
   // };
 
+  // function call after input change
   const handleInputChange = (
     event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const value = event.target.value;
 
+    // check if entered value is number if not then keep field empty
     if(isNaN(+value)){
       setValue(digitNames[index], "");
       return;
     }
 
+    // If input is already present then replace it with latest value
     const lastDigit = value.slice(-1);
     setValue(digitNames[index], lastDigit);
 
+    // focus to other field
     if (value && index < digitNames.length - 1) {
       setFocus(digitNames[index + 1]);
     }
   };
 
+  // function call on keypress
   const handleKeyDown = (
     event: KeyboardEvent<HTMLInputElement>,
     index: number
@@ -67,11 +76,13 @@ const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
     const key = event.key;
     const value = event.currentTarget?.value;
 
+    // check backspace key and delete value if present
     if (key === "Backspace" && !value && index > 0) {
       setFocus(digitNames[index - 1]);
     }
   };
 
+  // focus on first field when container is clicked
   const handleParentClick = (event: MouseEvent) => {
     const target = event.target;
     if (otpContainerRef.current && otpContainerRef.current === target) {
@@ -81,6 +92,7 @@ const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
 
   return (
     <>
+    {/* container for otp field label */}
       <h5 className="mb-2 flex justify-between text-xs font-medium text-[#808191]">
         {/* input label */}
         <label>4 digitas code</label>
@@ -89,12 +101,15 @@ const OTPField = ({ errorMessages }: OTPFieldPropsType) => {
           <span className="text-[#F24D4D]">{errorMessage}</span>
         )}
       </h5>
+      {/* container for otp field */}
       <div
         ref={otpContainerRef}
         onClick={handleParentClick}
         className="p-4 flex justify-between bg-[#35353E] rounded-lg"
       >
+        {/* container for otp field input */}
         <div className="flex gap-2">
+          {/* otp field input */}
           {digitNames.map((digit, index) => (
             <input
               key={digit}

@@ -5,6 +5,7 @@ import { RegisterOptions, useFormContext } from "react-hook-form";
 import { FaRegEye } from "react-icons/fa";
 import EyeOffIcon from "/public/eye-off-icon.svg";
 
+// passwod input wrapper props type
 type InputPasswordWrapperPropsType = {
   label: string;
   name: string;
@@ -13,6 +14,7 @@ type InputPasswordWrapperPropsType = {
   registerOptions?: RegisterOptions;
 };
 
+// password input wrapper
 const InputPasswordWrapper = ({
   label,
   name,
@@ -23,6 +25,7 @@ const InputPasswordWrapper = ({
   const [type, setType] = useState("password");
   const { register } = useFormContext();
 
+  // toggle password field type to display password in text
   const toggleType = () => {
     if (type === "password") {
       setType("text");

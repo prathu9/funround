@@ -5,33 +5,43 @@ import { useEffect, useRef, useState, useContext, SetStateAction, Dispatch } fro
 import { usePathname, useRouter } from "next/navigation";
 import { UserContext } from "@/context/user-context";
 
+//terms props
 interface TermProps {
   setShowTerms?: Dispatch<SetStateAction<boolean>>
 }
 
+// terms of use view component - with agree button
 const TermsOfUseWithAcceptance = ({setShowTerms}:TermProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const termsContainerRef = useRef<HTMLDivElement>(null);
-  const [disableBtn, setDisableBtn] = useState(true);
-  const {userDetail, setUserDetail} = useContext(UserContext);
+  const router = useRouter(); // router hook from nextjs
+  const pathname = usePathname(); // pathname hook from nextjs
+  const termsContainerRef = useRef<HTMLDivElement>(null); // ref for terms container
+  const [disableBtn, setDisableBtn] = useState(true); // button disable state
+  const {userDetail, setUserDetail} = useContext(UserContext); // user context
 
 
+  //  use effect for checking if terms scrolled to bottom and enable button to agree
   useEffect(() => {
     let termsContainer = termsContainerRef.current;
+
+    // function to run on terms scroll
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLDivElement;
+      // checking if terms is scrolled to bottom
       if (Math.ceil(target.scrollTop) + target.clientHeight >= target.scrollHeight) {
+        // enable button when scrolled to bottom
         setDisableBtn(false);
       } else {
+        // disable button when not at bottom of terms
         setDisableBtn(true);
       }
     };
 
+    // check terms container and attach scroll event
     if (termsContainer) {
       termsContainer.addEventListener("scroll", handleScroll);
     }
 
+    // remove scroll event when component unmount
     return () => {
       if (termsContainer) {
         termsContainer.removeEventListener("scroll", handleScroll);
@@ -66,12 +76,15 @@ const TermsOfUseWithAcceptance = ({setShowTerms}:TermProps) => {
   }
 
   return (
+    // container for terms
     <div
       className="w-full max-w-[696px] px-3 py-[47px] absolute top-[1.2vw] left-1/2 -translate-x-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
     >
+      {/* title for terms */}
       <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
         TERMS <br /> & CONDITIONS
       </h1>
+      {/* terms and condition */}
       <div className="p-4 h-[438px] bg-[#35353E] rounded-2xl">
         <div
           ref={termsContainerRef}
@@ -521,6 +534,7 @@ const TermsOfUseWithAcceptance = ({setShowTerms}:TermProps) => {
           </p>
         </div>
       </div>
+      {/* button to agree terms */}
       <GradientButton
         handleClick={handleBtnClick}
         className={`mt-12 w-full px-4 py-[26px] text-sm rounded-2xl whitespace-normal text-wrap sm:text-lg ${

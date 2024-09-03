@@ -118,8 +118,9 @@ const Login = () => {
 
 // validate function for email fields
 const validateEmail = (value: string) => {
-  const emailRegex = /[^@\s]+@[^@\s]+/;
+  const emailRegex = /[^@\s]+@[^@\s]+/; //regex pattern for email
 
+  // checking if email if valid
   if(!emailRegex.test(value)){
     return "Invalid email format";
   }
@@ -127,14 +128,17 @@ const validateEmail = (value: string) => {
 
 // validate function for password fieldss
 const validatePassword = (value: string) => {
+  // checking length of password greater than 8
   if(value.length < 8){
     return "Must be at least 8 characters";
   }
 
+  // checking if password has one uppercase
   if(!/[A-Z]/.test(value)){
     return "Must have one uppercase letter";
   }
 
+  // checking if password has one number
   if(!/\d/.test(value)){
     return "Must have one number";
   }

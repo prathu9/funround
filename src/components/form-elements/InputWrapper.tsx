@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ReactElement, ReactNode } from "react";
 import { RegisterOptions, useFormContext } from "react-hook-form";
 
+//  input wrapper props type
 type InputWrapperPropsType = {
   label: string;
   name: string;
@@ -15,6 +16,7 @@ type InputWrapperPropsType = {
   defaultValue?: string|number;
 };
 
+// input wrapper
 const InputWrapper = ({
   label,
   name,
@@ -36,18 +38,21 @@ const InputWrapper = ({
         className={`mb-2 flex justify-between text-xs font-medium text-[#808191] ${inter.className}`}
       >
         <span>{label}</span>
+        {/* display error message */}
         {errorMessage && <span className="text-[#F24D4D]">{errorMessage}</span>}
       </label>
       {/* container for input */}
       <div className="relative">
-        {/* container for icon */}
-        {/* checking if icon exists */}
+        {/* checking if left icon exists */}
         {leftIcon && (
+          //  container for left icon 
           <div className="absolute top-1/2 left-4 -translate-y-1/2 w-6 h-6 flex items-center justify-center">
             {leftIcon}
           </div>
         )}
+         {/* checking if right icon exists */}
         {rightIcon && (
+          // container for right icon
           <div className="absolute top-1/2 right-4 -translate-y-1/2 w-6 h-6 cursor-pointer flex items-center justify-center">
             {rightIcon}
           </div>

@@ -10,34 +10,40 @@ interface ChangePasswordInput {
   confirmPassword: string;
 }
 
+// change password form
 const ChangePassword = () => {
-  const methods = useForm<ChangePasswordInput>();
+  const methods = useForm<ChangePasswordInput>(); // useform with type of ChangePasswordInput input
   const {
     formState: { errors },
     watch,
-  } = methods;
-  const [isUpdated, setIsUpdated] = useState(false);
+  } = methods; // get erros and watch from useForm hook
+  
+  const [isUpdated, setIsUpdated] = useState(false); //state for checking if password update is successful
 
+  // run function on submit
   const onSubmit = (data: ChangePasswordInput) => {
     console.log(data);
     setIsUpdated(true);
   };
 
+  // check if password update to display success message
   if (isUpdated) {
     return <SuccessMessage />;
   }
 
   return (
-    // context provider for input wrapper
+    // form context provider for input wrapper
     <FormProvider {...methods}>
-      {/* Container for signup form */}
+      {/* Container for change password form */}
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
         className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white"
       >
+        {/* form title */}
         <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
           Choose new password
         </h1>
+        {/* input wrapper for password */}
         <div className="mb-6">
           <InputPasswordWrapper
             placeholder="Password"
@@ -50,6 +56,7 @@ const ChangePassword = () => {
             }}
           />
         </div>
+        {/* input wrapper for confirm password */}
         <div className="mb-6">
           <InputPasswordWrapper
             placeholder="Password"
@@ -63,6 +70,7 @@ const ChangePassword = () => {
             }}
           />
         </div>
+        {/* reset button to submit form */}
         <GradientButton className="w-full py-[26px] rounded-2xl">
           Reset Password
         </GradientButton>
@@ -71,12 +79,16 @@ const ChangePassword = () => {
   );
 };
 
+// success message component
 const SuccessMessage = () => {
   return (
+    // container for success message
     <div className="w-full max-w-[696px] px-6 py-[47px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:px-12 sm:border sm:border-white">
-      <h1 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
+      {/* success message */}
+      <h2 className="mb-12 text-[28px] leading-[30.97px] text-center font-black sm:text-5xl">
         PASSWORD HAS BEEN RESETTED
-      </h1>
+      </h2>
+      {/* link to login page */}
       <GradientButton
         as="link"
         link="/login"
