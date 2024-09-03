@@ -7,16 +7,12 @@ import { archivo } from "@/fonts/fonts";
 import { UserContext } from "@/context/user-context";
 import WalletBalance from "../wallet-setup/wallet-balance/WalletBalance";
 
-import { WalletContext } from "@/context/wallet-context";
-import walletBalanceData from "@/data/walletBalanceData";
 
 // header component
 const Header = () => {
   const {
     userDetail: { isLoggedIn },
   } = useContext(UserContext);
-
-  console.log("is logged in",isLoggedIn)
 
   return (
     <>
@@ -52,7 +48,9 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           BETA
         </div>
       </div>
+     
       {isLoggedIn ? (
+         // container for header right content when logged in
         <>
           {/* wallet balance component */}
           <WalletBalance/>
@@ -62,7 +60,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           </Link>
         </>
       ) : (
-        // container for header right content logged in
+        // container for header right content when logged out
         <div className="hidden items-center gap-8 text-sm sm:flex">
           {/* header right text */}
           <div className="font-semibold">We Are FunRound</div>
@@ -110,10 +108,13 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     setShowMobileMenu(!showMobileMenu);
   };
 
+  // hide mobile menu
   const hideMenu = () => {
     setShowMobileMenu(false);
   };
+
   return (
+    // container for mobile header
     <div className="px-8 py-4 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
       {isLoggedIn ? (
         // Header Mobile view when logged in
@@ -124,7 +125,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           </Link>
         </>
       ) : (
-        // Header Mobile view when logged in
+        // Header Mobile view when logged out
         <>
           {/* hamburger menu button container */}
           <div
@@ -139,12 +140,16 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               showMobileMenu ? "-translate-x-0" : "-translate-x-full"
             }  sm:hidden ${archivo.className}`}
           >
+            {/* container for login link */}
             <li>
+              {/* login link */}
               <Link href="/login" onClick={hideMenu}>
                 Login
               </Link>
             </li>
+            {/* container for register link */}
             <li>
+              {/* register link */}
               <Link href="/signup" onClick={hideMenu}>
                 Register
               </Link>
