@@ -7,37 +7,44 @@ import { CustomOption, CustomSelect } from "../../form-elements/CustomSelect";
 import Link from "next/link";
 import { BalanceContext } from "@/context/balance-context";
 import CryptoOptions from "@/data/cryptoOptions";
+import { RouterContext } from "@/context/router-context";
 
+// deposit for input type
 interface DepositCryptoInput {
-  postalCode: string;
+  currency: string;
 }
 
+// deposit form props
 type DepositCryptoFormProps = {
   defaultCryptoOption?: string | null;
   setIsDepositing: Dispatch<SetStateAction<boolean>>;
   setIsDone: Dispatch<SetStateAction<boolean>>;
 };
 
+// deposit form
 const DepositCryptoForm = ({
   defaultCryptoOption,
   setIsDepositing,
   setIsDone,
 }: DepositCryptoFormProps) => {
-  const { walletBalance, setWalletBalance } = useContext(BalanceContext);
+  const { walletBalance, setWalletBalance } = useContext(BalanceContext); // get wallet balance from balance context
+  const {parentRoute} = useContext(RouterContext); // get current parent route
   const methods = useForm<DepositCryptoInput>({
     defaultValues: {
-      postalCode: defaultCryptoOption || CryptoOptions[0].name,
+      currency: defaultCryptoOption || CryptoOptions[0].name,
     },
-  });
+  }); // set default value for currency field
 
+  // handle submission on deposit
   const onSubmit = (data: DepositCryptoInput) => {
     console.log(data);
     setIsDepositing(true);
+    // This is for demo purpose to show loading state while deposit is done
     setTimeout(() => {
       setIsDone(true);
       setIsDepositing(false);
       const updatedWalletBalance = walletBalance.map((walletCrypto, index) => {
-        if (walletCrypto.name === data.postalCode) {
+        if (walletCrypto.name === data.currency) {
           const currentValue = JSON.parse(
             localStorage.getItem("wallet-balance") || "{}"
           )[index];
@@ -57,16 +64,20 @@ const DepositCryptoForm = ({
   return (
     // context provider for input wrapper
     <FormProvider {...methods}>
-      {/* Container for depositing crypto */}
+      {/* Container for depositing crypto form */}
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        {/* container for deposit crypto fields */}
         <div className="py-6">
+          {/* container for  deposit crypto currency selector*/}
           <div>
+            {/* label for currency selector */}
             <h4 className="mb-2 text-xs font-medium text-[#808191]">
               Choose Currency
             </h4>
+            {/* selector for crypto currency */}
             <CustomSelect
               defaultValue={defaultCryptoOption || CryptoOptions[0].name}
-              name="postalCode"
+              name="currency"
             >
               {CryptoOptions.map((crypto) => (
                 <CustomOption value={crypto.name} key={crypto.symbol}>
@@ -81,10 +92,14 @@ const DepositCryptoForm = ({
               ))}
             </CustomSelect>
           </div>
+          {/* container for barcode data */}
           <div className="py-[19px] h-[223px] flex gap-6 justify-center items-center text-[12.8px] leading-[13.93px]">
+            {/* container for barcode image */}
             <div className="relative basis-[48%] aspect-[0.96] sm:basis-[29.8%]">
+              {/* barcode image */}
               <Image src="/barcode.jpg" fill alt="barcode" />
             </div>
+            {/* information regarding barcode deposit */}
             <div className="basis-[34%]">
               <p className="mb-3">
                 Send only USDT to this address. Ensure the network is{" "}
@@ -102,6 +117,7 @@ const DepositCryptoForm = ({
               </div>
             </div>
           </div>
+          {/* container for code to copy */}
           <div className="px-6 py-4 flex justify-between bg-[#35353E] rounded-lg">
             <span className="basis-[60%] text-[11px] leading-[16px] overflow-hidden text-ellipsis">
               0xec7842178520bb71f30523bcce4c10adc7e1cec4
@@ -119,6 +135,7 @@ const DepositCryptoForm = ({
             </span>
           </div>
         </div>
+        {/* container for done and later button */}
         <div className="flex gap-3 flex-wrap sm:flex-nowrap">
           {/* Done button */}
           <GradientButton
@@ -127,8 +144,9 @@ const DepositCryptoForm = ({
           >
             Done
           </GradientButton>
+          {/* later button - close modal */}
           <Link
-            href="/"
+            href={parentRoute}
             className="w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]"
           >
             Later

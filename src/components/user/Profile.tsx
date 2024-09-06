@@ -82,6 +82,11 @@ const Profile = () => {
     router.push(parentRoute);
   };
 
+  // handle cancel button to close profile modal
+  const handleCancel = () => {
+    router.push(parentRoute);
+  }
+
   // check loader state and display loader
   if (showLoader) {
     return (
@@ -161,12 +166,12 @@ const Profile = () => {
             Save
           </GradientButton>
           {/* cancel button */}
-          <Link
-            href="/"
+          <button
+            onClick={handleCancel}
             className="basis-full py-4 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%] sm:basis-[48%]"
           >
             Cancel
-          </Link>
+          </button>
         </div>
         {/* container for logout button */}
         <div className="mt-8">

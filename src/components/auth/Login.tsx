@@ -24,7 +24,7 @@ const Login = () => {
   const router = useRouter(); // nextjs router 
   const {userDetail, setUserDetail} = useContext(UserContext);
 
-  // function runs on form submission
+  // handle login form submission
   const onSubmit = (data: LoginInput) => {
     console.log("login",data);
     localStorage.setItem("user-detail", JSON.stringify({

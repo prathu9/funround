@@ -117,7 +117,7 @@ const WalletSetUp = () => {
         </div>
         {/* Container for firstname and lastname */}
         <div className="flex gap-x-6 flex-wrap lg:flex-nowrap">
-          {/* container for email */}
+          {/* container for firstname input wrapper */}
           <div className="mb-6 basis-full lg:basis-[48%]">
             {/* input wrapper for firstname */}
             <InputWrapper
@@ -152,6 +152,7 @@ const WalletSetUp = () => {
         </div>
         {/* container for birthdate */}
         <div className="mb-6">
+          {/* date input wrapper for birthdate */}
           <InputDateWrapper
             id="birthdate"
             leftIcon={<CalendarIcon />}
@@ -256,6 +257,7 @@ const WalletSetUp = () => {
   );
 };
 
+// name validation function
 const validateName = (value: string) => {
   const nameRegex = /^[a-z ,.'-]+$/i;
 
@@ -264,17 +266,23 @@ const validateName = (value: string) => {
   }
 };
 
+// date validation function
 const validateDate = (value: Date) => {
-  const today = new Date();
-  const age = today.getFullYear() - value.getFullYear();
-  const monthDifference = today.getMonth() - value.getMonth();
+  const today = new Date(); // current date
+  const birthDate = new Date(value); // birth date
 
+  const age = today.getFullYear() - birthDate.getFullYear(); // calculate age
+  const monthDifference = today.getMonth() - birthDate.getMonth(); // calculate month difference
+
+   // Check if the birthday hasn't occurred yet this year
   if (
     monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < value.getDate())
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
   ) {
+     // If the birthday hasn't occurred this year, reduce the age by 1 and check if it's at least 18
     return age - 1 >= 18 ? true : "Players must be over 18";
   }
+   // If the birthday has occurred this year, check if the calculated age is at least 18
   return age >= 18 ? true : "Players must be over 18";
 };
 

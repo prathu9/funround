@@ -23,12 +23,12 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
       setShowDropDown(false);
     })
 
-    const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]);
+    const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]); // get crypto with max value
   
     const {
       userDetail: { email },
-    } = useContext(UserContext);
-    const { walletDetail } = useContext(WalletContext);
+    } = useContext(UserContext); //get email from user context
+    const { walletDetail } = useContext(WalletContext); // get wallet detail from wallet context
 
   
     // function to toggle drop down
@@ -82,9 +82,10 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
                 {/* drop down icon */}
                 <FaChevronDown />
               </button>
+              {/* AnimatePresence for animating component during unmount */}
               <AnimatePresence>
               {showDropDown && (
-                // container for dropdown
+                // container for dropdown with animate height component for height animation
                 <AnimateHeight className="w-full -mt-[10px] px-[18px] py-[15px] bg-[#2C2E37] z-10 rounded-b-2xl">
                   {/* link to withdraw form page */}
                   <Link
@@ -100,6 +101,8 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
                       <li
                         key={crypto.name}
                       >
+                        
+                      {/* wallet item with crypto name, balance and option for deposit */}
                         <WalletItem index={index} cryptoData={crypto}/>
                       </li>
                     ))}

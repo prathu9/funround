@@ -9,16 +9,19 @@ import { RouterContext } from "@/context/router-context";
 import Link from "next/link";
 import { UserContext } from "@/context/user-context";
 
+// set up email confirmation form input type
 interface SetUpEmailConfirmationInput {
   password: string;
 }
 
+// set up email confirmation message
 const SetUpEmailConfirmation = () => {
-  const methods = useForm<SetUpEmailConfirmationInput>();
-  const router = useRouter();
-  const {parentRoute} = useContext(RouterContext);
-  const {userDetail} = useContext(UserContext);
+  const methods = useForm<SetUpEmailConfirmationInput>();  // useform with type of set up email confirmation input
+  const router = useRouter(); // router hook from nextjs 
+  const {parentRoute} = useContext(RouterContext); // get parentRoute from router context
+  const {userDetail} = useContext(UserContext); // get user detail from user context
 
+  // handle set up email confirmation form submission
   const onSubmit = (data: SetUpEmailConfirmationInput) => {
     console.log(data);
     router.push("/wallet-setup/confirm");
@@ -38,8 +41,9 @@ const SetUpEmailConfirmation = () => {
         <p className="mb-12 text-center text-[15px] leading-[16.32px] sm:text-2xl">
           Set up your wallet in three steps so you can compete against other players over crypto.
         </p>
-        {/* Container for email */}
+        {/* Container for email input wrapper */}
         <div className="mb-16 sm:mb-6">
+          {/* input wrapper for email */}
           <InputWrapper
             leftIcon={<EmailIcon/>}
             type="email"
