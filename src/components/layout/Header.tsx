@@ -160,7 +160,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
             BETA
           </div>
           {/* logo container */}
-          <div className="w-[72px] h-[29px]">
+          <Link href="/" className="w-[72px] h-[29px]">
             {/* logo */}
             <Image
               src="/logo.svg"
@@ -170,7 +170,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
               alt="logo"
               priority
             />
-          </div>
+          </Link>
         </>
       )}
     </div>
