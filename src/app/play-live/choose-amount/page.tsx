@@ -128,7 +128,7 @@ const BetAmountOptions = () => {
         </div>
       </div>
       <GradientButton type="submit"
-          className="w-full py-6 text-lg text-center rounded-2xl">
+          className="w-full mb-10 py-6 text-lg text-center rounded-2xl">
         Play over 1 USDT
       </GradientButton>
     </form>
