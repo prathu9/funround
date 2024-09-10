@@ -52,12 +52,12 @@ console.log(highlightIndex)
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* container for radio input */}
       <div className="my-[71px] p-3 relative flex gap-[12px] flex-col rounded-[40px] bg-gradient-to-r from-[#FA8305] to-[#FB9E3C] md:flex-row">
-        <div className={`w-[90vw] max-w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] md:w-[159px] md:h-[42px] hidden md:block transition-all duration-300`}
+        <div className={`w-[90vw] max-w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] border-4 border-[#FFC385] md:w-[159px] md:h-[42px] hidden md:block transition-all duration-300`}
         style={{
           transform: `translateX(calc(${highlightIndex*100}% + ${highlightIndex*12}px)) translateY(0%)`
         }}
         />
-         <div className={`w-[90vw] max-w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] md:w-[159px] md:h-[42px] block md:hidden transition-all duration-300`}
+         <div className={`w-[90vw] max-w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] border-4 border-[#FFC385] md:w-[159px] md:h-[42px] block md:hidden transition-all duration-300`}
         style={{
           transform: `translateX(0%) translateY(calc(${highlightIndex*100}% + ${highlightIndex*12}px))`
         }}
