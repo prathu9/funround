@@ -19,7 +19,7 @@ export default function Home() {
   return (
     // container for home pages
     <main
-      className="px-6 pt-8 pb-[120px] flex flex-wrap justify-center items-center gap-y-8 md:py-12 md:px-[40px] xl:px-[120px] lg:flex-nowrap lg:justify-between"
+      className="min-h-[calc(100vh_-_216px)] px-6 pt-8 pb-[120px] flex flex-wrap justify-center items-center gap-y-8 md:py-12 md:px-[40px] xl:px-[120px] lg:flex-nowrap lg:justify-between"
     >
       {/* container for title and buttons */}
       <div className="basis-full text-center lg:basis-[37.86%] lg:text-left">
