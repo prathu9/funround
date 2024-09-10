@@ -47,7 +47,7 @@ const BetAmountOptions = () => {
   const handleChange = (index: number) => {
     setHighlightIndex(index)
   }
-console.log(highlightIndex)
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* container for radio input */}
