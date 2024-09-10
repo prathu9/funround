@@ -39,13 +39,15 @@ const ChooseAmountPage = () => {
 const BetAmountOptions = () => {
   const { register, handleSubmit } = useFormContext<BetAmountInput>();
   const [highlightIndex, setHighlightIndex] = useState(0);
+  const [selectedValue, setSelectedValue] = useState(1);
 
   const onSubmit = (data: BetAmountInput) => {
-    console.log(data)
+    console.log(data);
   }
 
-  const handleChange = (index: number) => {
-    setHighlightIndex(index)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    setHighlightIndex(index);
+    setSelectedValue(+event.target.value);
   }
 
   return (
@@ -69,7 +71,7 @@ const BetAmountOptions = () => {
             type="radio"
             value="1"
             className="hidden peer"
-            onChange={() => handleChange(0)}
+            onChange={(e) => handleChange(e, 0)}
           />
           <label
             htmlFor="1usdt"
@@ -85,7 +87,7 @@ const BetAmountOptions = () => {
             type="radio"
             value="2"
             className="hidden peer"
-            onChange={() => handleChange(1)}
+            onChange={(e) => handleChange(e,1)}
           />
           <label
             htmlFor="2usdt"
@@ -101,7 +103,7 @@ const BetAmountOptions = () => {
             type="radio"
             value="5"
             className="hidden peer"
-            onChange={() => handleChange(2)}
+            onChange={(e) => handleChange(e,2)}
           />
           <label
             htmlFor="5usdt"
@@ -117,7 +119,7 @@ const BetAmountOptions = () => {
             type="radio"
             value="10"
             className="hidden peer"
-            onChange={() => handleChange(3)}
+            onChange={(e) => handleChange(e,3)}
           />
           <label
             htmlFor="10usdt"
@@ -129,7 +131,7 @@ const BetAmountOptions = () => {
       </div>
       <GradientButton type="submit"
           className="w-full mb-10 py-6 text-lg text-center rounded-2xl">
-        Play over 1 USDT
+        Play over {selectedValue} USDT
       </GradientButton>
     </form>
   );
