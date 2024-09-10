@@ -20,13 +20,13 @@ const ChooseAmountPage = () => {
     <div
       className={`my-[40px] min-h-[calc(100vh_-_216px)] flex flex-col justify-center items-center lg:mt-[20px] ${archivo.className}`}
     >
-      <h1 className="mb-[23px] text-[70px] leading-[77.47px] font-black">
+      <h1 className="mb-[23px] text-[32px] leading-[35.39px] text-center font-black sm:text-[70px] sm:leading-[77.47px]">
         LET'S PLAY!
       </h1>
-      <h3 className="mb-[23px] font-normal text-[32px] leading-[35.59px]">
+      <h3 className="mb-[23px] font-normal text-[28px] leading-[30.97px] sm:text-[32px] sm:leading-[35.59px]">
         Choose amount to bet on
       </h3>
-      <p className="font-extrabold leading-[22.12px] text-[#5F5A72]">
+      <p className="font-extrabold text-[#5F5A72] text-center text-[20px] leading-[22.12px] ">
         *FOR YOUR CONVENIENCE, ALL BET'S ARE MADE WITH USDT.
       </p>
       <FormProvider {...methods}>
@@ -47,13 +47,22 @@ const BetAmountOptions = () => {
   const handleChange = (index: number) => {
     setHighlightIndex(index)
   }
-
+console.log(highlightIndex)
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* container for radio input */}
       <div className="my-[71px] p-3 relative flex gap-[12px] flex-col rounded-[40px] bg-gradient-to-r from-[#FA8305] to-[#FB9E3C] md:flex-row">
-        <div className={`w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] md:w-[159px] md:h-[42px] translate-x-[0%] translate-y-[calc(${highlightIndex*100}%_+_${highlightIndex*12}px)] md:translate-x-[calc(${highlightIndex*100}%_+_${highlightIndex*12}px)] md:translate-y-[0%] transition-all duration-300`}/>
-        <div className="w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
+        <div className={`w-[90vw] max-w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] md:w-[159px] md:h-[42px] hidden md:block transition-all duration-300`}
+        style={{
+          transform: `translateX(calc(${highlightIndex*100}% + ${highlightIndex*12}px)) translateY(0%)`
+        }}
+        />
+         <div className={`w-[90vw] max-w-[327px] h-[42px] absolute top-3 left-3 bg-[#000] rounded-[40px] md:w-[159px] md:h-[42px] block md:hidden transition-all duration-300`}
+        style={{
+          transform: `translateX(0%) translateY(calc(${highlightIndex*100}% + ${highlightIndex*12}px))`
+        }}
+        />
+        <div className="w-[90vw] max-w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
           <input
             id="1usdt"
             {...register("betAmount")}
@@ -69,7 +78,7 @@ const BetAmountOptions = () => {
             1 USDT
           </label>
         </div>
-        <div className="w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
+        <div className="w-[90vw] max-w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
           <input
             id="2usdt"
             {...register("betAmount")}
@@ -85,7 +94,7 @@ const BetAmountOptions = () => {
             2 USDT
           </label>
         </div>
-        <div className="w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
+        <div className="w-[90vw] max-w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
           <input
             id="5usdt"
             {...register("betAmount")}
@@ -101,7 +110,7 @@ const BetAmountOptions = () => {
             5 USDT
           </label>
         </div>
-        <div className="w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
+        <div className="w-[90vw] max-w-[327px] h-[42px] relative z-10 md:w-[159px] md:h-[42px]">
           <input
             id="10usdt"
             {...register("betAmount")}
