@@ -93,13 +93,13 @@ const Withdraw = () => {
           <CustomSelect defaultValue="ERC20" name="network">
             {networkData.map((network) => (
               <CustomOption value={network.name} key={network.name}>
-                <div className="py-4 pl-4">ERC20</div>
+                <div className="py-4 pl-4 text-left">ERC20</div>
               </CustomOption>
             ))}
           </CustomSelect>
         </div>
         {/* container for form buttons */}
-        <div className="mb-6 flex gap-3 flex-wrap sm:flex-nowrap">
+        <div className="mb-6 flex gap-3 flex-wrap justify-between sm:flex-nowrap">
           {/* button to generate address */}
           <GradientButton className="basis-full py-[26px] rounded-2xl sm:basis-[48%]">
             Generate Address

@@ -251,19 +251,23 @@ const validateConfirmPassword = (value: string, password: string | null) => {
   }
 };
 
-// validate function for date
+// date validation function
 const validateDate = (value: Date) => {
-  const today = new Date(); // current time
-  const age = today.getFullYear() - value.getFullYear(); //calculating age
-  const monthDifference = today.getMonth() - value.getMonth();
+  const today = new Date(); // current date
+  const birthDate = new Date(value); // birth date
 
-  // checking if user is older than 18
+  const age = today.getFullYear() - birthDate.getFullYear(); // calculate age
+  const monthDifference = today.getMonth() - birthDate.getMonth(); // calculate month difference
+
+   // Check if the birthday hasn't occurred yet this year
   if (
     monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < value.getDate())
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
   ) {
+     // If the birthday hasn't occurred this year, reduce the age by 1 and check if it's at least 18
     return age - 1 >= 18 ? true : "Players must be over 18";
   }
+   // If the birthday has occurred this year, check if the calculated age is at least 18
   return age >= 18 ? true : "Players must be over 18";
 };
 
