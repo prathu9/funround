@@ -23,6 +23,14 @@ const networkData = [
     name: "ERC20",
     value: "ERC20",
   },
+  {
+    name: "TRC-20",
+    value: "TRC-20"
+  },
+  {
+    name: "BEP-20",
+    value: "BEP-20"
+  }
 ];
 
 // Withdraw components to withdraw currency
@@ -93,7 +101,7 @@ const Withdraw = () => {
           <CustomSelect defaultValue="ERC20" name="network">
             {networkData.map((network) => (
               <CustomOption value={network.name} key={network.name}>
-                <div className="py-4 pl-4 text-left">ERC20</div>
+                <div className="py-4 pl-4 text-left">{network.name}</div>
               </CustomOption>
             ))}
           </CustomSelect>
