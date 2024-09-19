@@ -13,7 +13,7 @@ const Page = () => {
   const router = useRouter(); // router hook from nextjs
   const { isBalanceAvailable } = useContext(BalanceContext); // get wallet balance
   const {
-    userDetail: { isLoggedIn },
+    userDetail: { email, emailVerified },
   } = useContext(UserContext); // get user login status
   const { setParentRoute } = useContext(RouterContext); // setParentRoute from router context to update parent route
   useEffect(() => {
@@ -21,19 +21,19 @@ const Page = () => {
   }, [setParentRoute]);
 
   useEffect(() => {
-    console.log(isLoggedIn, isBalanceAvailable);
+    console.log(isBalanceAvailable);
     // if not logged in take to sign up page
-    if (!isLoggedIn) {
+    if (!email && !emailVerified) {
       router.replace("/signup");
     }
     // if wallet balance is zero take to top up page
     else if (!isBalanceAvailable) {
       router.replace("/wallet-setup/top-up");
     }
-  }, [isBalanceAvailable, router, isLoggedIn]);
+  }, [isBalanceAvailable, router, email, emailVerified]);
 
   // show loading page if balance is not available or user not logged in
-  if (!isBalanceAvailable || !isLoggedIn) {
+  if (!isBalanceAvailable || !email || !emailVerified) {
     return (
       // container to display message if not logged in or balance not available
       <div className="w-full min-h-[calc(100vh_-_180px)] flex justify-center items-center">
@@ -41,7 +41,7 @@ const Page = () => {
           <span>Please </span>
           <span>
             {/* display signup link if not logged in */}
-            {!isLoggedIn ? (
+            {!email && !emailVerified ? (
               <Link href="/signup" className="text-[#AB97FF] rounded-lg">Signup</Link>
             ) : 
             // display top up link if wallet not top up
