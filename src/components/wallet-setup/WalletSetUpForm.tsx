@@ -23,7 +23,7 @@ interface WalletSetUpInput {
   firstname: string;
   lastname: string;
   password: string;
-  birthDate: Date | null;
+  dateOfBirth: Date | null;
   country: string;
   postalCode: string;
   residentialAddress: string;
@@ -53,7 +53,7 @@ const WalletSetUp = () => {
   const {userDetail} = useContext(UserContext);
   const methods = useForm<WalletSetUpInput>({
     defaultValues: {
-      birthDate: userDetail.birthDate
+      dateOfBirth: userDetail.dateOfBirth
     }
   }); // react hook useForm with wallet setup type
   const {
@@ -150,16 +150,16 @@ const WalletSetUp = () => {
             />
           </div>
         </div>
-        {/* container for birthdate */}
+        {/* container for dateOfBirth */}
         <div className="mb-6">
-          {/* date input wrapper for birthdate */}
+          {/* date input wrapper for dateOfBirth */}
           <InputDateWrapper
-            id="birthdate"
+            id="dateOfBirth"
             leftIcon={<CalendarIcon />}
             placeholder="DD/MM/YYYY"
             label="Date of birth"
-            name="birthDate"
-            errorMessage={errors.birthDate?.message}
+            name="dateOfBirth"
+            errorMessage={errors.dateOfBirth?.message}
             validateDate={validateDate}
           />
         </div>
@@ -269,15 +269,15 @@ const validateName = (value: string) => {
 // date validation function
 const validateDate = (value: Date) => {
   const today = new Date(); // current date
-  const birthDate = new Date(value); // birth date
+  const dateOfBirth = new Date(value); // birth date
 
-  const age = today.getFullYear() - birthDate.getFullYear(); // calculate age
-  const monthDifference = today.getMonth() - birthDate.getMonth(); // calculate month difference
+  const age = today.getFullYear() - dateOfBirth.getFullYear(); // calculate age
+  const monthDifference = today.getMonth() - dateOfBirth.getMonth(); // calculate month difference
 
    // Check if the birthday hasn't occurred yet this year
   if (
     monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    (monthDifference === 0 && today.getDate() < dateOfBirth.getDate())
   ) {
      // If the birthday hasn't occurred this year, reduce the age by 1 and check if it's at least 18
     return age - 1 >= 18 ? true : "Players must be over 18";

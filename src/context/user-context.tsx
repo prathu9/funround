@@ -1,3 +1,5 @@
+"use client";
+import { useGetUser } from "@/hooks/queries/useAuth";
 import {
   createContext,
   ReactNode,
@@ -7,21 +9,31 @@ import {
   SetStateAction,
 } from "react";
 
+// type of user detail
+interface UserDetailType {
+  userId: string;
+  username: string;
+  email: string;
+  dateOfBirth: Date | null;
+  termsOfUse: boolean;
+  emailVerified: boolean;
+}
+
 // type for user context
-interface UserContextType{
+interface UserContextType {
   userDetail: UserDetailType;
   setUserDetail: Dispatch<SetStateAction<UserDetailType>>;
-};
+}
 
 // user context to store user information
 export const UserContext = createContext<UserContextType>({
   userDetail: {
+    userId: "",
     username: "",
     email: "",
-    password: "",
-    birthDate: null,
+    dateOfBirth: null,
     termsOfUse: false,
-    isLoggedIn: false,
+    emailVerified: false
   },
   setUserDetail: () => {},
 });
@@ -29,38 +41,37 @@ export const UserContext = createContext<UserContextType>({
 // props type for use provider
 interface UserProviderProps {
   children: ReactNode;
-};
-
-// type of user detail
-interface UserDetailType {
-  username: string;
-  email: string;
-  password: string;
-  birthDate: Date | null;
-  termsOfUse: boolean;
-  isLoggedIn: boolean;
 }
 
 // user provider
 const UserProvider = ({ children }: UserProviderProps) => {
   const [userDetail, setUserDetail] = useState<UserDetailType>({
+    userId: "",
     username: "",
     email: "",
-    birthDate: null,
-    password: "",
+    dateOfBirth: null,
     termsOfUse: false,
-    isLoggedIn: false,
+    emailVerified: false
+  });
+  
+  const { data } = useGetUser({
+    enabled: !Boolean(userDetail.email),
   });
 
   useEffect(() => {
-    // get user detail from localstorage
-    const storedData = localStorage.getItem("user-detail");
-
-    // check if data is available and set the userdetail state
-    if(storedData){
-        setUserDetail(JSON.parse(storedData));
+   console.log(data)
+    if (data) {
+      setUserDetail({
+        userId: data.data.userId,
+        username: data.data.username,
+        email: data.data.email,
+        dateOfBirth: new Date(data.data.dateOfBirth),
+        termsOfUse: data.data.termsOfUse,
+        emailVerified: true
+      });
     }
-  }, []);
+  }, [data]);
+
 
   return (
     <UserContext.Provider value={{ userDetail, setUserDetail }}>

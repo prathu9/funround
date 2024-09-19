@@ -10,6 +10,7 @@ type GradientButtonProps = {
   handleClick?: () => void; // click function for button
   className?: string; // className for link and button
   type?: "button" | "submit" | "reset" | undefined; // button type
+  isDisabled?: boolean;
 };
 
 // button with gradieny background
@@ -20,6 +21,7 @@ const GradientButton = ({
   link,
   className,
   type,
+  isDisabled,
 }: GradientButtonProps) => {
   return (
     <>
@@ -27,8 +29,12 @@ const GradientButton = ({
       {as === "link" && link ? (
         // link component
         <Link
-          className={`bg-btn-gradient-1 hover:bg-btn-gradient-hover-1 ${className}`}
+          className={`bg-btn-gradient-1 hover:bg-btn-gradient-hover-1 ${className} ${
+            isDisabled ? "pointer-events-none":""
+          }`}
           href={link}
+          aria-disabled={isDisabled}
+          tabIndex={isDisabled ? -1 : undefined}
         >
           {children}
         </Link>
@@ -38,6 +44,7 @@ const GradientButton = ({
           type={type}
           className={`bg-btn-gradient-1 whitespace-nowrap hover:bg-btn-gradient-hover-1 ${className}`}
           onClick={handleClick}
+          disabled={isDisabled}
         >
           {children}
         </button>

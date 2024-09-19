@@ -12,13 +12,16 @@ import CalendarIcon from "/public/calendar-icon.svg";
 import TermsOfUseWithAcceptance from "./TermsOfUseWithAcceptance";
 import EmailIcon from "/public/email-icon.svg";
 import UserIcon from "/public/user-icon.svg";
-
+import { useCreateUser } from "@/hooks/queries/useAuth";
+import { getFormattedDate } from "@/utils/getFormattedDate";
+import axios from "axios";
+import { LoadingSpinner } from "../layout/Spinner";
 
 // type for signup input form
-interface SignUpInput {
+export interface SignUpInput {
   email: string;
   username: string;
-  birthDate: Date | null;
+  dateOfBirth: Date | null;
   password: string;
   confirmPassword: string;
 }
@@ -26,29 +29,16 @@ interface SignUpInput {
 //  signup component
 const SignUp = () => {
   const { userDetail, setUserDetail } = useContext(UserContext); // getting user detail from user context
-  const methods = useForm<SignUpInput>({
-    defaultValues: {
-      email: userDetail.email,
-      username: userDetail.username,
-      birthDate: userDetail.birthDate,
-      password: userDetail.password,
-      confirmPassword: userDetail.password
-    }
-  }); // useform with signup input
+  const methods = useForm<SignUpInput>(); // useform with signup input
   const {
     formState: { errors },
+    setError,
     watch,
   } = methods;
   const router = useRouter();
   const [showTerms, setShowTerms] = useState(false); // state to show terms of condition
 
-  // function to set user detail in context while input change
-  const handleInputChange = (name: string, value: string | Date | null) => {
-    setUserDetail({
-      ...userDetail,
-      [name]: value
-    });
-  }
+  const createUser = useCreateUser();
 
   // function to run after sign up form submission
   const onSubmit = (data: SignUpInput) => {
@@ -60,21 +50,23 @@ const SignUp = () => {
       ...{
         email: data.email,
         username: data.username,
-        password: data.password,
-        isLoggedIn: userDetail.termsOfUse,
+        dateOfBirth: data.dateOfBirth,
       },
     });
 
-    // navigate to terms page after sign up
+    // navigate to terms page if not agreed to terms
     if (!userDetail.termsOfUse) {
       setShowTerms(true);
     } else {
       // storing data in local storage for testing
-      localStorage.setItem(
-        "user-detail",
-        JSON.stringify({ ...data, isLoggedIn: true, termsOfUse: true })
-      );
-      router.push("/");
+      createUser.mutate({
+        email: data.email,
+        username: data.username,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        dateOfBirth: getFormattedDate(data.dateOfBirth!),
+        termsOfUse: userDetail.termsOfUse,
+      });
     }
   };
 
@@ -106,7 +98,7 @@ const SignUp = () => {
           <div className="basis-full sm:basis-[48%]">
             {/* input wrapper for email */}
             <InputWrapper
-              leftIcon={<EmailIcon/>}
+              leftIcon={<EmailIcon />}
               type="email"
               placeholder="Email address"
               label="Email address"
@@ -114,8 +106,7 @@ const SignUp = () => {
               errorMessage={errors.email?.message}
               registerOptions={{
                 required: "Please enter email",
-                validate: validateEmail,
-                onChange: (e) => handleInputChange(e.target.name, e.target.value)
+                validate: validateEmail
               }}
             />
           </div>
@@ -123,15 +114,14 @@ const SignUp = () => {
           <div className="basis-full sm:basis-[48%]">
             {/* input wrapper for username */}
             <InputWrapper
-              leftIcon={<UserIcon/>}
+              leftIcon={<UserIcon />}
               type="text"
               placeholder="Username"
               label="Username"
               name="username"
               errorMessage={errors.username?.message}
               registerOptions={{
-                required: "Please enter username",
-                onChange: (e) => handleInputChange(e.target.name, e.target.value)
+                required: "Please enter username"
               }}
             />
           </div>
@@ -140,14 +130,13 @@ const SignUp = () => {
         <div className="mb-6">
           {/* input wrapper for date */}
           <InputDateWrapper
-            id="birthdate"
+            id="dateOfBirth"
             leftIcon={<CalendarIcon />}
             placeholder="DD/MM/YYYY"
             label="Date of birth"
-            name="birthDate"
-            errorMessage={errors.birthDate?.message}
+            name="dateOfBirth"
+            errorMessage={errors.dateOfBirth?.message}
             validateDate={validateDate}
-            handleChange={handleInputChange}
           />
         </div>
         {/* container for password input wrapper */}
@@ -160,8 +149,7 @@ const SignUp = () => {
             errorMessage={errors.password?.message}
             registerOptions={{
               required: "Please enter password",
-              validate: validatePassword,
-              onChange: (e) => handleInputChange(e.target.name, e.target.value)
+              validate: validatePassword
             }}
           />
         </div>
@@ -177,7 +165,6 @@ const SignUp = () => {
               required: "Please enter password",
               validate: (value) =>
                 validateConfirmPassword(value, watch("password")), //watch used to check password matching in real time
-              onChange: (e) => handleInputChange(e.target.name, e.target.value)
             }}
           />
         </div>
@@ -189,12 +176,25 @@ const SignUp = () => {
             Terms of Use.
           </span>
         </p>
+        {/* checking for error from server and displaying error */}
+        {createUser.isError && axios.isAxiosError(createUser.error) && (
+          <p className="text-[#F24D4D]">
+            {createUser.error.response?.data.message}
+          </p>
+        )}
         {/* button for signing up */}
         <GradientButton
           type="submit"
-          className="mb-2 w-full py-6 text-lg text-center rounded-2xl"
+          className="relative mb-2 w-full px-4 py-6 gap-5 text-lg text-center rounded-2xl"
+          isDisabled={createUser.isPending}
         >
-          Sign up
+          {/* show loading spinner while signup in progress */}
+          {createUser.isPending && (
+            <span className="absolute left-4 top-1/2 -translate-y-1/2">
+              <LoadingSpinner />
+            </span>
+          )}
+          <span>Sign up</span>
         </GradientButton>
         {/* button to close signup form */}
         <Link
@@ -254,20 +254,20 @@ const validateConfirmPassword = (value: string, password: string | null) => {
 // date validation function
 const validateDate = (value: Date) => {
   const today = new Date(); // current date
-  const birthDate = new Date(value); // birth date
+  const dateOfBirth = new Date(value); // birth date
 
-  const age = today.getFullYear() - birthDate.getFullYear(); // calculate age
-  const monthDifference = today.getMonth() - birthDate.getMonth(); // calculate month difference
+  const age = today.getFullYear() - dateOfBirth.getFullYear(); // calculate age
+  const monthDifference = today.getMonth() - dateOfBirth.getMonth(); // calculate month difference
 
-   // Check if the birthday hasn't occurred yet this year
+  // Check if the birthday hasn't occurred yet this year
   if (
     monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+    (monthDifference === 0 && today.getDate() < dateOfBirth.getDate())
   ) {
-     // If the birthday hasn't occurred this year, reduce the age by 1 and check if it's at least 18
+    // If the birthday hasn't occurred this year, reduce the age by 1 and check if it's at least 18
     return age - 1 >= 18 ? true : "Players must be over 18";
   }
-   // If the birthday has occurred this year, check if the calculated age is at least 18
+  // If the birthday has occurred this year, check if the calculated age is at least 18
   return age >= 18 ? true : "Players must be over 18";
 };
 

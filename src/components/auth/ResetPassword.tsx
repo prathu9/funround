@@ -2,10 +2,13 @@
 import { FormProvider, useForm } from "react-hook-form";
 import InputWrapper from "../form-elements/InputWrapper";
 import GradientButton from "../form-elements/GradientButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ConfirmEmail from "../ConfirmEmail";
 import ChangePassword from "./ChangePassword";
 import EmailIcon from "/public/email-icon.svg";
+import { useForgotPassword, useVerifyEmail } from "@/hooks/queries/useAuth";
+import { RouterContext } from "@/context/router-context";
+import { useRouter } from "next/navigation";
 
 // type reset password input field
 interface ResetPasswordInput {
@@ -18,32 +21,45 @@ const ResetPassword = () => {
   const {
     formState: { errors },
   } = methods;
-  const [isEmailSent, setIsEmailSent] = useState(false); // email sent state
-  const [isVerified, setIsVerified] = useState(false); // email verification state
+  const [errorMessage, setErrorMessage] = useState(""); // state for error message
+
+  const forgotPassword = useForgotPassword();
+  const verifyRegistrationEmail = useVerifyEmail(setErrorMessage);
+  const {parentRoute} = useContext(RouterContext);
+  const router = useRouter();
+  const email = localStorage.getItem("userEmail");
 
   // submit function for reset password form
   const onSubmit = (data: ResetPasswordInput) => {
     console.log(data);
-    setIsEmailSent(true);
+    localStorage.setItem("userEmail", data.email);
+    forgotPassword.mutate({email: data.email})
   };
 
   // function for email OTP confirmation
   const confirmEmailHandler = (otp: string) => {
     console.log(otp);
-    setIsEmailSent(false);
-    setIsVerified(true);
+    if(email){
+      verifyRegistrationEmail.mutate({
+        email,
+        verificationCode: otp
+      });
+    }
+    else{
+      router.push(parentRoute);
+    }
   };
 
-  // check if otp sent on email and display otp form
-  if (isEmailSent) {
-    return (
-      <ConfirmEmail backLink="/login" submitHandler={confirmEmailHandler} />
-    );
-  }
+    // check if user email is verified and display change password form
+    if (verifyRegistrationEmail.isSuccess) {
+      return <ChangePassword />;
+    }
 
-  // check if user email is verified and display change password form
-  if (isVerified) {
-    return <ChangePassword />;
+  // check if otp sent on email and display otp form
+  if (forgotPassword.isSuccess) {
+    return (
+      <ConfirmEmail email={email} backLink="/login" submitHandler={confirmEmailHandler} />
+    );
   }
 
   return (

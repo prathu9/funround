@@ -10,22 +10,24 @@ import WalletBalance from "../wallet-setup/wallet-balance/WalletBalance";
 
 // header component
 const Header = () => {
-  const {
-    userDetail: { isLoggedIn },
-  } = useContext(UserContext);
+
 
   return (
     <>
       {/* header for desktop screen */}
-      <DesktopHeader isLoggedIn={isLoggedIn} />
+      <DesktopHeader  />
       {/* header for mobile screen */}
-      <MobileHeader isLoggedIn={isLoggedIn} />
+      <MobileHeader />
     </>
   );
 };
 
 // header for desktop screen
-const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+const DesktopHeader = () => {
+  const {
+    userDetail: { email, emailVerified },
+  } = useContext(UserContext);
+
   return (
     // container for desktop header
     <div className="hidden px-[40px] py-4 justify-between items-center shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] xl:px-[120px] sm:flex">
@@ -49,7 +51,7 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         </div>
       </div>
      
-      {isLoggedIn ? (
+      {email && emailVerified ? (
          // container for header right content when logged in
         <>
           {/* wallet balance component */}
@@ -91,8 +93,12 @@ const DesktopHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 };
 
 // header for mobile screen
-const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+const MobileHeader = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false); // state to toggle mobile nav
+
+  const {
+    userDetail: { email, emailVerified },
+  } = useContext(UserContext);
   
   // hide overflow when mobile menu open
   useEffect(() => {
@@ -116,7 +122,7 @@ const MobileHeader = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     // container for mobile header
     <div className="px-8 py-4 flex items-center justify-between shadow-[inset_0_-1px_0_0_rgba(228,228,228,0.1)] bg-[#242731] sm:hidden">
-      {isLoggedIn ? (
+      {email && emailVerified ? (
         // Header Mobile view when logged in
         <>
           <WalletBalance />

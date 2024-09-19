@@ -14,8 +14,8 @@ import Spinner from "../layout/Spinner";
 import { inter } from "@/fonts/fonts";
 import { WalletContext } from "@/context/wallet-context";
 import { BalanceContext } from "@/context/balance-context";
-import walletBalanceData from "@/data/walletBalanceData";
 import { RouterContext } from "@/context/router-context";
+import { useLogoutUser } from "@/hooks/queries/useAuth";
 
 // type for profile form
 interface ProfileInput {
@@ -37,9 +37,11 @@ const Profile = () => {
 
   const { setWalletBalance } = useContext(BalanceContext); // balance context to set wallet balance
 
+  const logoutMutation = useLogoutUser();
+
   // check if user is logged in, if logged in hide loader and show profile form
   useEffect(() => {
-    if (userDetail && userDetail.isLoggedIn) {
+    if (userDetail && userDetail.email) {
       setShowLoader(false);
     } else {
       setShowLoader(true);
@@ -60,26 +62,7 @@ const Profile = () => {
 
   // handle logout button
   const handleLogout = () => {
-    localStorage.setItem("user-detail", JSON.stringify({}));
-    localStorage.setItem("wallet-detail", JSON.stringify({}));
-
-    setWalletBalance(walletBalanceData);
-
-    setWalletDetail({
-      email: "",
-      firstname: "",
-      lastname: "",
-    });
-
-    setUserDetail({
-      username: "",
-      email: "",
-      password: "",
-      birthDate: null,
-      termsOfUse: false,
-      isLoggedIn: false,
-    });
-    router.push(parentRoute);
+    logoutMutation.mutate();
   };
 
   // handle cancel button to close profile modal
@@ -88,7 +71,7 @@ const Profile = () => {
   }
 
   // check loader state and display loader
-  if (showLoader) {
+  if (showLoader || logoutMutation.isPending) {
     return (
       // container for showing loading spinner
       <div className="w-full max-w-[696px] h-[450px] px-12 pt-[47px] pb-[69px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-black sm:border sm:border-white ${archivo.className">
