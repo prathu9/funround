@@ -10,6 +10,9 @@ import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
 import EmailIcon from "/public/email-icon.svg";
 import { useContext } from "react";
 import { UserContext } from "@/context/user-context";
+import { useLoginUser } from "@/hooks/queries/useAuth";
+import axios from "axios";
+import { LoadingSpinner } from "../layout/Spinner";
 
 // type for login form
 interface LoginInput {
@@ -24,23 +27,22 @@ const Login = () => {
   const router = useRouter(); // nextjs router 
   const {userDetail, setUserDetail} = useContext(UserContext);
 
+  const loginUser = useLoginUser();
+
   // handle login form submission
   const onSubmit = (data: LoginInput) => {
     console.log("login",data);
-    localStorage.setItem("user-detail", JSON.stringify({
-      ...data,
-      isLoggedIn: true,
-      termsOfUse: true,
-    }));
 
     setUserDetail({
       ...userDetail,
       email: data.email,
-      isLoggedIn: true,
       termsOfUse: true,
     })
 
-    router.push("/login/confirm");
+    loginUser.mutate({
+      email: data.email,
+      password: data.password
+    })
   };
 
   return (
@@ -86,15 +88,30 @@ const Login = () => {
           />
         </div>
         {/* Agreement text */}
-        <p className="py-6 text-lg text-[#8996A9]">
+        <p className="pt-6 text-lg text-[#8996A9]">
           By creating an account, you agree to the{" "}
           <Link href="/terms-of-use" className="text-white">Terms of Use.</Link>
+        </p>
+        <p className="py-2 text-[#F24D4D] h-8">
+         {/* checking for error from server and displaying error */}
+         {loginUser.isError && axios.isAxiosError(loginUser.error) && (
+          
+            <span>{loginUser.error.response?.data.message}</span>
+          
+        )}
         </p>
         {/* button fro login */}
         <GradientButton
           type="submit"
-          className="w-full py-6 text-lg text-center rounded-2xl"
+          className="relative w-full py-6 text-lg text-center rounded-2xl"
+          isDisabled={loginUser.isPending}
         >
+           {/* show loading spinner while signup in progress */}
+           {loginUser.isPending && (
+            <span className="absolute left-4 top-1/2 -translate-y-1/2">
+              <LoadingSpinner />
+            </span>
+          )}
           Login
         </GradientButton>
         {/* container for signup option */}

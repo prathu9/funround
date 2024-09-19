@@ -2,8 +2,10 @@
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import GradientButton from "../form-elements/GradientButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import InputPasswordWrapper from "../form-elements/InputPasswordWrapper";
+import { useResetPassword } from "@/hooks/queries/useAuth";
+import { RouterContext } from "@/context/router-context";
 
 interface ChangePasswordInput {
   password: string;
@@ -18,16 +20,30 @@ const ChangePassword = () => {
     watch,
   } = methods; // get erros and watch from useForm hook
   
-  const [isUpdated, setIsUpdated] = useState(false); //state for checking if password update is successful
+  const email = localStorage.getItem("userEmail");
+  const resetPassword = useResetPassword();
+  const router = useRouter();
+  const {parentRoute} = useContext(RouterContext);
 
   // run function on submit
   const onSubmit = (data: ChangePasswordInput) => {
     console.log(data);
-    setIsUpdated(true);
+    if(email){
+      resetPassword.mutate({
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        email
+      })
+      localStorage.removeItem("userEmail");
+    }
+    else{
+      router.push(parentRoute);
+    }
+  
   };
 
   // check if password update to display success message
-  if (isUpdated) {
+  if (resetPassword.isSuccess) {
     return <SuccessMessage />;
   }
 

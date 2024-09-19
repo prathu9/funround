@@ -4,6 +4,9 @@ import GradientButton from "./form-elements/GradientButton";
 import Link from "next/link";
 import OTPField from "./form-elements/OTPField";
 import { useEffect } from "react";
+import { LoadingSpinner } from "./layout/Spinner";
+import { redirect, useParams, useSearchParams } from "next/navigation";
+import OTPResend from "./auth/OTPResend";
 
 interface ConfirmEmailInput {
   firstDigit: string,
@@ -13,14 +16,19 @@ interface ConfirmEmailInput {
 }
 
 type ConfirmEmailProps = {
+  email?: string | null,
+  isPending?: boolean,
   errorMessage?: string | undefined,
   backLink: string,
   submitHandler?: (otp: string) => void
 }
 
-const ConfirmEmail = ({errorMessage, backLink, submitHandler}: ConfirmEmailProps) => {
+const ConfirmEmail = ({email, errorMessage, isPending, backLink, submitHandler}: ConfirmEmailProps) => {
   const methods = useForm<ConfirmEmailInput>();
   const {formState: {errors}, setError} = methods;
+  const searchParams = useSearchParams();
+
+  const emailToVerify = email || searchParams.get("email");
 
   useEffect(() => {
     if(errorMessage){
@@ -37,6 +45,10 @@ const ConfirmEmail = ({errorMessage, backLink, submitHandler}: ConfirmEmailProps
     }
   };
 
+  if(!emailToVerify){
+    redirect("/");
+  }
+
   return (
     // context provider for input wrapper
     <FormProvider {...methods}>
@@ -48,17 +60,22 @@ const ConfirmEmail = ({errorMessage, backLink, submitHandler}: ConfirmEmailProps
         <h1 className="mb-3 text-[28px] leading-[30.97px] text-center font-black sm:mb-6 sm:text-5xl">CONFIRM EMAIL</h1>
         <p className="mb-6 text-center text-[15px] leading-[20px] sm:mb-12 sm:text-2xl">
           A 4 digit code has been emailed to you.{" "}
-          <span className="text-[#AB97FF]">
-            Resend
-          </span>
+          <OTPResend email={emailToVerify}/>
         </p>
         <div className="mb-6">
           <OTPField errorMessages={errors}/>
         </div>
         <GradientButton
           type="submit"
-          className="mb-3 w-full py-6 text-lg text-center rounded-2xl"
+          className="relative mb-3 w-full py-6 text-lg text-center rounded-2xl"
+          isDisabled={isPending}
         >
+          {/* show loading spinner while signup in progress */}
+          {isPending && (
+            <span className="absolute left-4 top-1/2 -translate-y-1/2">
+              <LoadingSpinner />
+            </span>
+          )}
           Confirm email
         </GradientButton>
         <Link href={backLink} className="block w-full py-6 text-lg text-center rounded-2xl hover:bg-[#717171]/[66%]">
