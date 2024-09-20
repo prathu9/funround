@@ -59,7 +59,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
   });
 
   useEffect(() => {
-   console.log(data)
+   console.log("d",data, process.env.API_BASE_URL)
     if (data) {
       setUserDetail({
         userId: data.data.userId,
