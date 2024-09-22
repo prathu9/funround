@@ -28,13 +28,13 @@ const Page = () => {
       router.replace("/signup");
     }
     // if wallet balance is zero take to top up page
-    else if (!isBalanceAvailable) {
+    else if (isBalanceAvailable) {
       router.replace("/wallet-setup/top-up");
     }
   }, [isBalanceAvailable, router, email, emailVerified]);
 
   //show loading page if balance is not available or user not logged in
-  if (!isBalanceAvailable || !email || !emailVerified) {
+  if (isBalanceAvailable || !email || !emailVerified) {
     return (
       // container to display message if not logged in or balance not available
       <div className="w-full min-h-[calc(100vh_-_180px)] flex justify-center items-center">
@@ -59,9 +59,7 @@ const Page = () => {
   return (
     // container for play live
     <div className="min-h-[calc(100vh_-_180px)] flex justify-center items-center">
-      <h1 className="text-5xl">
         <UnityGame/>
-      </h1>
     </div>
   );
 };
