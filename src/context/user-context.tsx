@@ -23,6 +23,7 @@ interface UserDetailType {
 interface UserContextType {
   userDetail: UserDetailType;
   setUserDetail: Dispatch<SetStateAction<UserDetailType>>;
+  isFetchingUser: boolean;
 }
 
 // user context to store user information
@@ -36,6 +37,7 @@ export const UserContext = createContext<UserContextType>({
     emailVerified: false
   },
   setUserDetail: () => {},
+  isFetchingUser: false
 });
 
 // props type for use provider
@@ -54,7 +56,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
     emailVerified: false
   });
   
-  const { data } = useGetUser({
+  const { data, isFetching } = useGetUser({
     enabled: !Boolean(userDetail.email),
   });
 
@@ -74,7 +76,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
 
 
   return (
-    <UserContext.Provider value={{ userDetail, setUserDetail }}>
+    <UserContext.Provider value={{ userDetail, setUserDetail, isFetchingUser: isFetching }}>
       {children}
     </UserContext.Provider>
   );
