@@ -5,22 +5,17 @@ import Portal from "@/components/layout/Portal";
 import Spinner from "@/components/layout/Spinner";
 import { RouterContext } from "@/context/router-context";
 import { UserContext } from "@/context/user-context";
-import { redirect, useRouter } from "next/navigation";
-import { Suspense, useContext, useEffect, useLayoutEffect } from "react";
+import { redirect } from "next/navigation";
+import { Suspense, useContext } from "react";
 
 // signup page
 const Page = () => {
   const {userDetail, isFetchingUser} = useContext(UserContext);
   const {parentRoute} = useContext(RouterContext);
 
-  // useLayoutEffect(() => {
-  //   console.log(userDetail.email)
-  //   if(userDetail.email){
-  //     router.push(parentRoute);
-  //   }
-  // },[parentRoute, router, userDetail])
 
-  if(userDetail.email || isFetchingUser){
+  // check if user is already logged in or if user is getting fetched
+  if((userDetail.email && userDetail.emailVerified) || isFetchingUser){
     return redirect(parentRoute)
   }
 

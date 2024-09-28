@@ -93,3 +93,4 @@ export interface resetPasswordResponseDataType{
     error: string,
     message: string,
 }
+

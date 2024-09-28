@@ -50,7 +50,7 @@ export const MobileWallet = ({ data }: MobileWalletPropType) => {
         // container for wallet balance
         <div className="absolute h-[calc(100vh-85px)] top-[85px] left-0 w-full px-[18px] py-[15px] bg-[#242731] z-10 rounded-b-2xl overflow-hidden">
           {/* check if wallet is setup */}
-          {walletDetail.email !== email ? (
+          {!walletDetail.walletId ? (
             // link to set up wallet
             <Link
               href="/wallet-setup"

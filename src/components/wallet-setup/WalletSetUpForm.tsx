@@ -6,7 +6,7 @@ import GradientButton from "../form-elements/GradientButton";
 import { useRouter } from "next/navigation";
 import InputFileWrapper from "../form-elements/InputFileWrapper";
 import { useContext, useEffect, useState } from "react";
-import Spinner from "../layout/Spinner";
+import Spinner, { LoadingSpinner } from "../layout/Spinner";
 import CalendarIcon from "/public/calendar-icon.svg";
 import InputDateWrapper from "../form-elements/InputDateWrapper";
 import CountrySelector from "../form-elements/CountrySelector";
@@ -15,13 +15,15 @@ import { WalletContext } from "@/context/wallet-context";
 import EmailIcon from "/public/email-icon.svg";
 import UserIcon from "/public/user-icon.svg";
 import { CustomOption, CustomSelect } from "../form-elements/CustomSelect";
+import { useCreateWallet } from "@/hooks/queries/useWallet";
+import axios from "axios";
 
 
 
 // set up wallet form input type
 interface WalletSetUpInput {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   password: string;
   dateOfBirth: Date | null;
   country: string;
@@ -29,8 +31,8 @@ interface WalletSetUpInput {
   residentialAddress: string;
   occupation: string;
   documentType: string;
-  documentFrontSide: File;
-  documentBackSide: File;
+  documentFrontSide: File[];
+  documentBackSide: File[];
 }
 
 const DocumentType = [
@@ -53,38 +55,32 @@ const WalletSetUp = () => {
   const {userDetail} = useContext(UserContext);
   const methods = useForm<WalletSetUpInput>({
     defaultValues: {
-      dateOfBirth: userDetail.dateOfBirth
+      dateOfBirth: userDetail.dateOfBirth,
     }
   }); // react hook useForm with wallet setup type
+  console.log("date", userDetail)
   const {
     formState: { errors },
   } = methods;
-  const [showLoader, setShowLoader] = useState(false);
   const router = useRouter();
   const {setWalletDetail} = useContext(WalletContext);
+
+  const createWallet = useCreateWallet();
+
+  useEffect(() => {
+    if(userDetail){
+      methods.reset((prev) => ({...prev, ...userDetail}))
+    }
+  },[methods, userDetail])
 
 
   const onSubmit = (data: WalletSetUpInput) => {
     console.log("wallet setup", data);
-    localStorage.setItem("wallet-detail", JSON.stringify({
-      email: userDetail.email,
-      firstname: data.firstname,
-      lastname: data.lastname
-    }))
 
-    setWalletDetail({
-      email: userDetail.email,
-      firstname: data.firstname,
-      lastname: data.lastname
-    })
-
-    setShowLoader(true);
-    setTimeout(() => {
-      router.push("/wallet-setup/top-up");
-    }, 1000);
+    createWallet.mutate(data);
   };
 
-  if (showLoader) {
+  if (createWallet.isPending) {
     return (
       // container for confirm identity
       <div
@@ -126,7 +122,7 @@ const WalletSetUp = () => {
               placeholder="First name"
               label="First name"
               name="firstname"
-              errorMessage={errors.firstname?.message}
+              errorMessage={errors.firstName?.message}
               registerOptions={{
                 required: "Please enter firstname",
                 validate: validateName,
@@ -142,7 +138,7 @@ const WalletSetUp = () => {
               placeholder="Last name"
               label="Last name"
               name="lastname"
-              errorMessage={errors.lastname?.message}
+              errorMessage={errors.lastName?.message}
               registerOptions={{
                 required: "Please enter lastname",
                 validate: validateName,
@@ -232,7 +228,7 @@ const WalletSetUp = () => {
             <InputFileWrapper
               leftIcon="/upload-icon.svg"
               label="Upload document front-side"
-              name="document-front"
+              name="documentFrontSide"
             />
           </div>
           {/* container for backside of document upload */}
@@ -241,15 +237,29 @@ const WalletSetUp = () => {
             <InputFileWrapper
               leftIcon="/upload-icon.svg"
               label="Upload document back-side"
-              name="document-front"
+              name="documentBackSide"
             />
           </div>
         </div>
+        <p className="py-2 text-[#F24D4D] h-8">
+         {/* checking for error from server and displaying error */}
+         {createWallet.isError && axios.isAxiosError(createWallet.error) && (
+          
+            <span>{createWallet.error.response?.data.message}</span>
+          
+        )}
+        </p>
         {/* Confirm button */}
         <GradientButton
           type="submit"
-          className="w-full py-6 text-lg text-center rounded-2xl"
+          className="relative w-full py-6 text-lg text-center rounded-2xl"
         >
+           {/* show loading spinner while signup in progress */}
+           {createWallet.isPending && (
+            <span className="absolute left-4 top-1/2 -translate-y-1/2">
+              <LoadingSpinner />
+            </span>
+          )}
           Finish
         </GradientButton>
       </form>
