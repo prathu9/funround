@@ -31,12 +31,12 @@ const TopUp = () => {
   // check if wallet setup is done before topup
   useEffect(() => {
 
-    if(walletDetail && walletDetail.email){
+    if(walletDetail && walletDetail.walletId){
       setShowLoader(false);
     }
     else{
       setShowLoader(true);
-      console.log(walletDetail, walletDetail.email)
+      console.log(walletDetail, walletDetail.walletId)
       router.push("/wallet-setup");
     }
   },[router, walletDetail])
