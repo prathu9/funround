@@ -67,7 +67,7 @@ export default function Home() {
               <Image src="/cover-img.png" fill className="object-cover" alt="cover"/>
             </div>
             <div className="absolute aspect-[0.67] z-[-1]">
-              <video className="w-full h-full" autoPlay muted loop>
+              <video className="w-full h-full" autoPlay muted loop playsInline>
                 <source src="/bg-vid.mov" type="video/mp4"/>
               </video>
             </div>
