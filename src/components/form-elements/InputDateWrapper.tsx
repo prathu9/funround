@@ -3,11 +3,12 @@ import {
   Controller,
   FieldValues,
   RegisterOptions,
+  useController,
   useFormContext,
   Validate,
 } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
-import { addMonths, getMonth, getYear, subMonths } from "date-fns";
+import { getMonth, getYear } from "date-fns";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Type for InputDateWrapper props
@@ -23,7 +24,8 @@ type InputDateWrapperProps = {
     | Validate<any, FieldValues>
     | Record<string, Validate<any, FieldValues>>
     | undefined;
-  handleChange?: (name: string, value: string | Date | null) => void
+  handleChange?: (name: string, value: string | Date | null) => void,
+  defaultValue?: Date | null
 };
 
 // InputDateWrapper component for date input
@@ -35,7 +37,7 @@ const InputDateWrapper = ({
   placeholder,
   errorMessage,
   validateDate,
-  handleChange
+  handleChange,
 }: InputDateWrapperProps) => {
   const { control } = useFormContext();
 
@@ -76,7 +78,7 @@ const InputDateWrapper = ({
                 errorMessage && "border border-[#F24D4D]"
               }`}
             />
-          )}
+  )}
         />
         {/* calendar icon */}
         <div className="absolute top-[12px] left-[19px] w-[22px] aspect-[0.8] z-[2]">

@@ -2,9 +2,7 @@ import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState
 
 // wallet detail type
 interface WalletDetailType {
-    email: string,
-    firstname: string,
-    lastname: string,
+    walletId: string,
 }
 
 // wallet context type
@@ -16,9 +14,7 @@ interface WalletContextType {
 // wallet context to store wallet details
 export const WalletContext = createContext<WalletContextType>({
     walletDetail:{
-        email: "",
-        firstname: "",
-        lastname: ""
+        walletId:"",
     },
     setWalletDetail: () => {}
 })
@@ -31,9 +27,7 @@ type WalletProviderProps = {
 // wallet context provider
 const WalletProvider = ({children}: WalletProviderProps) => {
     const [walletDetail, setWalletDetail] = useState<WalletDetailType>({
-        email: "",
-        firstname: "",
-        lastname: ""
+        walletId: ""
     }); // wallet detail state
 
     useEffect(() => {

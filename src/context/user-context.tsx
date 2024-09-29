@@ -1,5 +1,6 @@
 "use client";
 import { useGetUser } from "@/hooks/queries/useAuth";
+import { getFormattedDate } from "@/utils/getFormattedDate";
 import {
   createContext,
   ReactNode,
@@ -61,13 +62,14 @@ const UserProvider = ({ children }: UserProviderProps) => {
   });
 
   useEffect(() => {
-   console.log(data)
     if (data) {
+      console.log("d",data, data.data.dateOfBirth)
+      const dateOfBirth = new Date(data.data.dateOfBirth.split("/").reverse().join("/"));
       setUserDetail({
         userId: data.data.userId,
         username: data.data.username,
         email: data.data.email,
-        dateOfBirth: new Date(data.data.dateOfBirth),
+        dateOfBirth: dateOfBirth,
         termsOfUse: data.data.termsOfUse,
         emailVerified: true
       });

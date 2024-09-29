@@ -41,7 +41,7 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
       <div className="relative hidden basis-[405px] h-[65px] bg-[#2C2E37] rounded-2xl sm:block z-10">
         {/* container for wallet */}
         <div className="h-full flex justify-center bg-[#2C2E37] rounded-2xl z-5">
-          {walletDetail.email !== email ? (
+          {!walletDetail.walletId ? (
             <Link
               href="/wallet-setup"
               className="px-[18px] py-[15px] w-full flex gap-[9px] justify-center items-center"

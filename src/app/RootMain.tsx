@@ -19,12 +19,7 @@ const RootMain = ({ children }: { children: React.ReactNode }) => {
           <BalanceProvider>
             {/* router detail provider */}
             <RouterProvider>
-              {/* header component of page */}
-              <Header />
-              {/* page content */}
-              <div className="min-h-[calc(100vh_-_180px)]">{children}</div>
-              {/* footer component of page */}
-              <Footer />
+             {children}
             </RouterProvider>
           </BalanceProvider>
         </WalletProvider>
