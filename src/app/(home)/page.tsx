@@ -23,6 +23,7 @@ export default function Home() {
     >
       {/* container for title and buttons */}
       <div className="relative pt-[50px] basis-full text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:pt-[240px] xl:pl-[120px]">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/cover-bg-pattern.png')] bg-cover"/>
         {/* subtitle */}
         <h3 className="mb-2 text-[#B4A1FF] text-xs font-bold md:text-[1.25vw] md:text-2xl">
           WELCOME TO FUNROUND BETA
