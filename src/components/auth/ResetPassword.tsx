@@ -9,6 +9,7 @@ import EmailIcon from "/public/email-icon.svg";
 import { useForgotPassword, useVerifyEmail } from "@/hooks/queries/useAuth";
 import { RouterContext } from "@/context/router-context";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 // type reset password input field
 interface ResetPasswordInput {
@@ -24,7 +25,7 @@ const ResetPassword = () => {
   const [errorMessage, setErrorMessage] = useState(""); // state for error message
 
   const forgotPassword = useForgotPassword();
-  const verifyRegistrationEmail = useVerifyEmail(setErrorMessage);
+  const verifyRegistrationEmail = useVerifyEmail();
   const {parentRoute} = useContext(RouterContext);
   const router = useRouter();
   const email = localStorage.getItem("userEmail");
@@ -43,7 +44,14 @@ const ResetPassword = () => {
       verifyRegistrationEmail.mutate({
         email,
         verificationCode: otp
-      });
+      },
+    {
+      onError:(error) => {
+        if(axios.isAxiosError(error)){
+          setErrorMessage(error.response?.data.message)
+        }
+      }
+    });
     }
     else{
       router.push(parentRoute);
