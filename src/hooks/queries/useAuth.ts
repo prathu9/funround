@@ -1,14 +1,15 @@
 import { RouterContext } from "@/context/router-context"
 import { UserContext } from "@/context/user-context"
 import { createUser, forgotPassword, getUser, loginUser, logoutUser, resendOTP, resetPassword, verifyEmail } from "@/services/userServices"
-import { forgotPasswordDataType, GetUserResponseDataType, LoginDataType, LoginResponseType, OTPResendDataType, resetPasswordDataType, SignUpDataType, UserDataType, VerifyEmailType } from "@/type/authRequestType"
+import { forgotPasswordDataType, GetUserResponseDataType, LoginDataType, OTPResendDataType, resetPasswordDataType, SignUpDataType, VerifyEmailType } from "@/type/authRequestType"
 import { useMutation, useQuery, type UseQueryOptions } from "@tanstack/react-query"
-import axios, { AxiosError } from "axios"
-import { usePathname, useRouter } from "next/navigation"
-import { Dispatch, SetStateAction, useContext } from "react"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import { SetStateAction, useContext } from "react"
 import { WalletContext } from "@/context/wallet-context"
 import { BalanceContext } from "@/context/balance-context"
 import walletBalanceData from "@/data/walletBalanceData";
+import { UseFormSetError } from "react-hook-form"
 
 /** Mutations **/
 // hook to create user
@@ -21,7 +22,7 @@ export const useCreateUser = () => {
         onSuccess: (data) => {
            
             const { data: { user } } = data;
-            console.log("signup",data, user)
+  
             setUserDetail({
                 userId: user.userId,
                 username: user.username,
@@ -33,6 +34,9 @@ export const useCreateUser = () => {
 
             router.push(`/signup/confirm?email=${user.email}`);
         },
+        onError: (error) => {
+            console.log("error", error);
+        }
     })
 }
 
@@ -45,15 +49,13 @@ export const useLoginUser = () => {
         onSuccess: (data, userData) => {
             const {email} = userData;
 console.log("login", data)
-            localStorage.setItem("otp-time", data.data.otpCreatedAt)
-            
             router.push(`/login/confirm?email=${email}`);
         }
     })
 }
 
 // hook to verify user
-export const useVerifyEmail = (setErrorMessage: React.Dispatch<SetStateAction<string>>) => {
+export const useVerifyEmail = () => {
     const router = useRouter();
     const { parentRoute } = useContext(RouterContext);
     const {userDetail, setUserDetail} = useContext(UserContext);
@@ -68,12 +70,6 @@ export const useVerifyEmail = (setErrorMessage: React.Dispatch<SetStateAction<st
             })
             router.push(parentRoute);
         },
-        onError: (error) => {
-            console.log("e", error)
-            if (axios.isAxiosError(error)) {
-                setErrorMessage(error.response?.data.message);
-            }
-        }
     })
 }
 
@@ -91,9 +87,7 @@ export const useLogoutUser = () => {
             console.log("logout", data)
             setWalletBalance(walletBalanceData);
             setWalletDetail({
-                email: "",
-                firstname: "",
-                lastname: "",
+                walletId: ""
               });
           
               setUserDetail({
@@ -117,10 +111,6 @@ export const useResendOTP = () => {
     return useMutation({
         mutationKey: ["resend-otp"],
         mutationFn: (userData: OTPResendDataType) => resendOTP(userData),
-        onSuccess: (data) => {
-            const {data: {otpCreatedAt}} = data;
-            localStorage.setItem('otp-time', otpCreatedAt)
-        }
     })
 }
 
@@ -131,9 +121,7 @@ export const useForgotPassword = () => {
     return useMutation({
         mutationKey: ["forgot-password"],
         mutationFn: (userData: forgotPasswordDataType) => forgotPassword(userData),
-        onSuccess: (data) => {
-            const {data: {otpCreatedAt}} = data;
-            localStorage.setItem('otp-time', otpCreatedAt)
+        onSuccess: () => {
             setParentRoute("/login/reset-password");
         }
     })
@@ -161,5 +149,6 @@ export const useGetUser = (queryOptions?: Omit<UseQueryOptions<GetUserResponseDa
         queryFn: getUser,
         staleTime: Infinity,
         refetchOnWindowFocus: false, 
+        retry: false
     })
 }

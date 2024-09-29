@@ -1,5 +1,6 @@
 "use client";
 import { useGetUser } from "@/hooks/queries/useAuth";
+import { getFormattedDate } from "@/utils/getFormattedDate";
 import {
   createContext,
   ReactNode,
@@ -23,6 +24,7 @@ interface UserDetailType {
 interface UserContextType {
   userDetail: UserDetailType;
   setUserDetail: Dispatch<SetStateAction<UserDetailType>>;
+  isFetchingUser: boolean;
 }
 
 // user context to store user information
@@ -36,6 +38,7 @@ export const UserContext = createContext<UserContextType>({
     emailVerified: false
   },
   setUserDetail: () => {},
+  isFetchingUser: false
 });
 
 // props type for use provider
@@ -54,18 +57,19 @@ const UserProvider = ({ children }: UserProviderProps) => {
     emailVerified: false
   });
   
-  const { data } = useGetUser({
+  const { data, isFetching } = useGetUser({
     enabled: !Boolean(userDetail.email),
   });
 
   useEffect(() => {
-   console.log("d",data, process.env.API_BASE_URL)
     if (data) {
+      console.log("d",data, data.data.dateOfBirth)
+      const dateOfBirth = new Date(data.data.dateOfBirth.split("/").reverse().join("/"));
       setUserDetail({
         userId: data.data.userId,
         username: data.data.username,
         email: data.data.email,
-        dateOfBirth: new Date(data.data.dateOfBirth),
+        dateOfBirth: dateOfBirth,
         termsOfUse: data.data.termsOfUse,
         emailVerified: true
       });
@@ -74,7 +78,7 @@ const UserProvider = ({ children }: UserProviderProps) => {
 
 
   return (
-    <UserContext.Provider value={{ userDetail, setUserDetail }}>
+    <UserContext.Provider value={{ userDetail, setUserDetail, isFetchingUser: isFetching }}>
       {children}
     </UserContext.Provider>
   );
