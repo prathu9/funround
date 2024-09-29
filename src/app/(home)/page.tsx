@@ -23,7 +23,6 @@ export default function Home() {
     >
       {/* container for title and buttons */}
       <div className="relative pt-[50px] basis-full text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:pt-[240px] xl:pl-[120px]">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/cover-bg-pattern.png')] bg-cover"/>
         {/* subtitle */}
         <h3 className="mb-2 text-[#B4A1FF] text-xs font-bold md:text-[1.25vw] md:text-2xl">
           WELCOME TO FUNROUND BETA
@@ -52,14 +51,15 @@ export default function Home() {
         {/* container for buttons */}
         <div className="my-12 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col flex-wrap xl:flex-row lg:items-start lg:mb-0">
           {/* play button */}
-          <Link href="/play-live" className="px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px] font-black rounded-full drop-shadow-lg duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6]">
+          <Link href="/play-live" className="relative px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px] font-black rounded-full drop-shadow-lg z-10 duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6]">
             Let's Play
           </Link>
           {/* learn more button */}
-          <Link href="/learn-more" className="px-[90px] py-[28px] bg-white text-[#503CC6] rounded-full duration-500 hover:bg-gray-400 xl:px-12">
+          <Link href="/learn-more" className="relative px-[90px] py-[28px] bg-white text-[#503CC6] rounded-full z-10 duration-500 hover:bg-gray-400 xl:px-12">
             Learn More
           </Link>
         </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/cover-bg-pattern.png')] bg-cover -z-[-1]"/>
       </div>
       {/* Container for cover image and text */}
       <div className="relative flex justify-center items-center basis-full aspect-[0.67] overflow-hidden rounded-t-3xl md:h-auto lg:rounded-none lg:basis-[50%] lg:h-screen">
