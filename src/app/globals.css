@@ -54,12 +54,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
-
-.grad{
-  background-image: radial-gradient(ellipse at 60% 25%, #AB97FF 10%, #7051DCCC 50%, #7051DCCC 80%);
-}
-
-.grad:hover{
-  background-image: radial-gradient(ellipse at 50% 100%,rgba(191, 178, 241, 0.9) 10%, #ffffff 60%, #ffffff 100%);
-  
-}

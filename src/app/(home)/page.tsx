@@ -22,7 +22,7 @@ export default function Home() {
       className="min-h-screen flex flex-wrap items-stretch lg:flex-nowrap"
     >
       {/* container for title and buttons */}
-      <div className="pt-[50px] basis-full text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:pt-[240px] xl:pl-[120px]">
+      <div className="relative pt-[50px] basis-full text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:pt-[240px] xl:pl-[120px]">
         {/* subtitle */}
         <h3 className="mb-2 text-[#B4A1FF] text-xs font-bold md:text-[1.25vw] md:text-2xl">
           WELCOME TO FUNROUND BETA
@@ -45,16 +45,13 @@ export default function Home() {
            {" "}crypto.
         </h1>
         {/* decription */}
-        <p className="mt-[34px] mx-auto w-full text-lg md:w-[69%] md:text-[1.25vw] md:leading-[1.35vw] lg:mx-0">
+        <p className="mt-[34px] mx-auto w-[90%] text-lg md:w-[69%] lg:text-[1.25vw] lg:leading-[1.35vw] lg:mx-0">
           We’ve created the ultimate competition - 60 seconds race between you and real players around the world. the winner takes the bet!
         </p>
         {/* container for buttons */}
         <div className="my-12 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col flex-wrap xl:flex-row lg:items-start lg:mb-0">
           {/* play button */}
-          {/* <GradientButton as="link" link="/play-live" className="min-w-[181px] w-[48%] px-[51px] py-[26px] text-sm rounded-2xl font-bold tracking-[0.04em] whitespace-nowrap md:text-[1.25vw] md:max-w-none md:px-[3.8vw] md:py-[1.9vw]">
-            LET'S PLAY
-          </GradientButton> */}
-          <Link href="/play-live" className="grad px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px] font-black rounded-full drop-shadow-lg duration-500 hover:text-[#503CC6]">
+          <Link href="/play-live" className="px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px] font-black rounded-full drop-shadow-lg duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6]">
             Let's Play
           </Link>
           {/* learn more button */}
@@ -64,11 +61,11 @@ export default function Home() {
         </div>
       </div>
       {/* Container for cover image and text */}
-      <div className="relative flex justify-center items-center bg-[rgba(255,255,255)]/[0.6] basis-full overflow-hidden rounded-t-3xl lg:rounded-none lg:basis-[50%]">
-            <div className="relative w-[65.6%] aspect-square">
+      <div className="relative flex justify-center items-center basis-full aspect-[0.67] overflow-hidden rounded-t-3xl md:h-auto lg:rounded-none lg:basis-[50%] lg:h-screen">
+            <div className="relative w-[80%] aspect-square -translate-y-28 lg:translate-y-0 md:w-[65.6%]">
               <Image src="/cover-img.png" fill className="object-cover" alt="cover"/>
             </div>
-            <div className="absolute w-full aspect-[1.79] z-[-1] lg:h-full lg:w-auto">
+            <div className="absolute aspect-[0.67] z-[-1]">
               <video className="w-full h-full" autoPlay muted loop>
                 <source src="/bg-vid.mov" type="video/mp4"/>
               </video>

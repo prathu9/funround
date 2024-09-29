@@ -38,9 +38,10 @@ const LearnMorePage = () => {
           </p>
         </div>
         {/* container for image */}
-        <div className="relative basis-full aspect-[1.85] rounded-2xl overflow-hidden bg-gradient-to-r from-black to-transparent sm:basis-[33%]">
+        <div className="relative basis-full aspect-[1.85] rounded-2xl overflow-hidden sm:basis-[33%]">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[rgb(47, 48, 49)] to-transparent z-10"/>
           <Image
-            src="/cover-img.png"
+            src="/learn-more-cover.png"
             className="object-cover object-[0%_20%]"
             fill
             alt="cover"
