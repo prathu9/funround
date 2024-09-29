@@ -22,7 +22,7 @@ export default function Home() {
       className="min-h-screen flex flex-wrap items-stretch lg:flex-nowrap"
     >
       {/* container for title and buttons */}
-      <div className="relative pt-[50px] basis-full text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:pt-[240px] xl:pl-[120px]">
+      <div className="relative pt-[50px] basis-full flex justify-center flex-col text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:py-0 xl:pl-[120px]">
         {/* subtitle */}
         <h3 className="mb-2 text-[#B4A1FF] text-xs font-bold md:text-[1.25vw] md:text-2xl">
           WELCOME TO FUNROUND BETA
@@ -59,7 +59,7 @@ export default function Home() {
             Learn More
           </Link>
         </div>
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/cover-bg-pattern.png')] bg-cover -z-[-1]"/>
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/cover-bg-pattern.png')] bg-cover -z-[1]"/>
       </div>
       {/* Container for cover image and text */}
       <div className="relative flex justify-center items-center basis-full aspect-[0.67] overflow-hidden rounded-t-3xl md:h-auto lg:rounded-none lg:basis-[50%] lg:h-screen">
