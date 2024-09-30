@@ -229,6 +229,9 @@ const WalletSetUp = () => {
               leftIcon="/upload-icon.svg"
               label="Upload document front-side"
               name="documentFrontSide"
+              registerOptions={{
+                required: "Please select file",
+              }}
             />
           </div>
           {/* container for backside of document upload */}
@@ -238,6 +241,9 @@ const WalletSetUp = () => {
               leftIcon="/upload-icon.svg"
               label="Upload document back-side"
               name="documentBackSide"
+              registerOptions={{
+                required: "Please s;ect file",
+              }}
             />
           </div>
         </div>
