@@ -4,7 +4,7 @@ import Link from "next/link";
 const HomeFooter = () => {
   return (
     // container for footer
-    <div className="w-full px-6 py-[23px] bottom-0 flex border-t border-white justify-between gap-[12px] md:px-8 md:justify-normal lg:absolute xl:px-[120px] lg:gap-10 xl:gap-[99px]">
+    <div className="w-full px-6 py-[23px] bottom-0 flex border-t border-white justify-between gap-[12px] md:px-8 md:justify-normal lg:absolute xl:px-[120px] lg:gap-10 xl:gap-[99px] customlg:py-[12px]">
       {/* Container for footer logo */}
       <div className="basis-1/3 h-[38.95px] md:basis-[91px]">
         <Link href="/">
