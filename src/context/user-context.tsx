@@ -1,6 +1,6 @@
 "use client";
 import { useGetUser } from "@/hooks/queries/useAuth";
-import { getFormattedDate } from "@/utils/getFormattedDate";
+
 import {
   createContext,
   ReactNode,
@@ -9,21 +9,16 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-
-// type of user detail
-interface UserDetailType {
-  userId: string;
-  username: string;
-  email: string;
-  dateOfBirth: Date | null;
-  termsOfUse: boolean;
-  emailVerified: boolean;
-}
+import { UserDetailType, WalletDetailType } from "./type";
+import { connectWallet, getWalletAddress } from "@/utils/wallet-utils";
+import { useAssociateWallet } from "@/hooks/queries/useWallet";
 
 // type for user context
 interface UserContextType {
   userDetail: UserDetailType;
   setUserDetail: Dispatch<SetStateAction<UserDetailType>>;
+  walletDetail: WalletDetailType;
+  setWalletDetail: Dispatch<SetStateAction<WalletDetailType>>;
   isFetchingUser: boolean;
 }
 
@@ -35,10 +30,15 @@ export const UserContext = createContext<UserContextType>({
     email: "",
     dateOfBirth: null,
     termsOfUse: false,
-    emailVerified: false
+    emailVerified: false,
   },
+  walletDetail: {
+    walletId: "",
+    walletAddress: null,
+  },
+  setWalletDetail: () => {},
   setUserDetail: () => {},
-  isFetchingUser: false
+  isFetchingUser: false,
 });
 
 // props type for use provider
@@ -54,31 +54,68 @@ const UserProvider = ({ children }: UserProviderProps) => {
     email: "",
     dateOfBirth: null,
     termsOfUse: false,
-    emailVerified: false
+    emailVerified: false,
   });
-  
-  const { data, isFetching } = useGetUser({
+
+  const [walletDetail, setWalletDetail] = useState<WalletDetailType>({
+    walletId: "",
+    walletAddress: "",
+  });
+
+  const { data: userData, isFetching } = useGetUser({
     enabled: !Boolean(userDetail.email),
   });
 
-  useEffect(() => {
-    if (data) {
-      console.log("d",data, data.data.dateOfBirth)
-      const dateOfBirth = new Date(data.data.dateOfBirth.split("/").reverse().join("/"));
-      setUserDetail({
-        userId: data.data.userId,
-        username: data.data.username,
-        email: data.data.email,
-        dateOfBirth: dateOfBirth,
-        termsOfUse: data.data.termsOfUse,
-        emailVerified: true
-      });
-    }
-  }, [data]);
+  const {mutate: associateMutate} = useAssociateWallet();
 
+  useEffect(() => {
+    const connectWalletAsync = async () => {
+      const walletAddress = await getWalletAddress();
+      if (walletAddress) {
+        setWalletDetail((prevWalletDetail) => ({
+          ...prevWalletDetail,
+          walletAddress,
+        }));
+
+        associateMutate({ walletAddress });
+      }
+    };
+
+    if (userData) {
+      const dateOfBirth = new Date(
+        userData.data.dateOfBirth.split("/").reverse().join("/")
+      );
+
+      setUserDetail({
+        userId: userData.data.userId,
+        username: userData.data.username,
+        email: userData.data.email,
+        dateOfBirth: dateOfBirth,
+        termsOfUse: userData.data.termsOfUse,
+        emailVerified: true,
+      });
+
+      setWalletDetail((prevWalletDetail) => ({
+        ...prevWalletDetail,
+        walletId: userData.data.walletId,
+      }));
+console.log("check", userData.data.walletId)
+      if (userData.data.walletId) {
+        connectWalletAsync();
+      }
+    }
+  }, [associateMutate, userData]);
 
   return (
-    <UserContext.Provider value={{ userDetail, setUserDetail, isFetchingUser: isFetching }}>
+    <UserContext.Provider
+      value={{
+        userDetail,
+        setUserDetail,
+        walletDetail,
+        setWalletDetail,
+        isFetchingUser: isFetching,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

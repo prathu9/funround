@@ -19,7 +19,7 @@ const DesktopHeader = () => {
   const {
     userDetail: { email, emailVerified },
   } = useContext(UserContext);
-
+  
   return (
     // container for header
     <div className="hidden px-8 pt-[30px] w-full h-[86px]  justify-between items-end z-10 lg:absolute sm:flex xl:px-[120px] customlg:pt-[20px] customlg:h-[50px]">

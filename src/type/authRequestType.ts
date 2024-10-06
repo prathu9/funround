@@ -4,7 +4,8 @@ export interface SignUpDataType {
     dateOfBirth: string,
     password: string,
     confirmPassword: string,
-    termsOfUse: boolean
+    termsOfUse: boolean,
+    walletId: string
 }
 
 export interface LoginDataType {
@@ -22,7 +23,8 @@ export interface UserDataType {
     username: string,
     email: string,
     dateOfBirth: string,
-    termsOfUse: boolean
+    termsOfUse: boolean,
+    walletId: string
 }
 
 export interface OTPResendDataType{
@@ -52,7 +54,8 @@ export interface SignUpResponseType{
             username: string,
             dateOfBirth: string,
             emailVerified: boolean,
-            termsOfUse: boolean
+            termsOfUse: boolean,
+            walletId: string
         }
     }
 }

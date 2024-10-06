@@ -66,6 +66,7 @@ const SignUp = () => {
         confirmPassword: data.confirmPassword,
         dateOfBirth: getFormattedDate(data.dateOfBirth!),
         termsOfUse: userDetail.termsOfUse,
+        walletId: "",
       });
     }
   };
@@ -106,7 +107,7 @@ const SignUp = () => {
               errorMessage={errors.email?.message}
               registerOptions={{
                 required: "Please enter email",
-                validate: validateEmail
+                validate: validateEmail,
               }}
             />
           </div>
@@ -121,7 +122,7 @@ const SignUp = () => {
               name="username"
               errorMessage={errors.username?.message}
               registerOptions={{
-                required: "Please enter username"
+                required: "Please enter username",
               }}
             />
           </div>
@@ -149,7 +150,7 @@ const SignUp = () => {
             errorMessage={errors.password?.message}
             registerOptions={{
               required: "Please enter password",
-              validate: validatePassword
+              validate: validatePassword,
             }}
           />
         </div>

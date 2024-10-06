@@ -3,7 +3,7 @@ export interface CreateWalletDataType{
     firstName: string;
     lastName: string;
     password: string;
-    dateOfBirth: Date | null;
+    dateOfBirth: string;
     country: string;
     postalCode: string;
     residentialAddress: string;
@@ -11,6 +11,10 @@ export interface CreateWalletDataType{
     documentType: string;
     documentFrontSide: File[];
     documentBackSide: File[];
+}
+
+export interface AssociateWalletDataType {
+    walletAddress: string
 }
 
 // Response data type

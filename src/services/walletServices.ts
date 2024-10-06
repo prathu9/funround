@@ -1,4 +1,4 @@
-import { CreateWalletDataType, CreateWalletResponseDataType } from "@/type/walletRequestType";
+import { AssociateWalletDataType, CreateWalletDataType, CreateWalletResponseDataType } from "@/type/walletRequestType";
 import axiosInstance from "./api";
 
 // function to send request to create wallet
@@ -24,4 +24,9 @@ export const createWallet = async (walletData: CreateWalletDataType) => {
             "Content-Type": "multipart/form-data"
         }
     })).data;
+}
+
+// function to send request to store wallet address
+export const associateWallet = async (walletAddressData: AssociateWalletDataType) => {
+  return (await axiosInstance.post("wallet/associate-wallet", walletAddressData)).data
 }

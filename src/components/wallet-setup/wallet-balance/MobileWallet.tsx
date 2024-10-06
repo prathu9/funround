@@ -1,7 +1,6 @@
 import { useContext, useMemo, useState } from "react";
 import { WalletItemType } from "./WalletBalance";
 import { UserContext } from "@/context/user-context";
-import { WalletContext } from "@/context/wallet-context";
 import WalletIcon from "/public/wallet-icon.svg";
 import Link from "next/link";
 import WalletItem from "./walletItem";
@@ -18,10 +17,7 @@ export const MobileWallet = ({ data }: MobileWalletPropType) => {
 
   const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]); // gets currency with max amount
 
-  const {
-    userDetail: { email },
-  } = useContext(UserContext); // get email from user context
-  const { walletDetail } = useContext(WalletContext); // get wallet detail from wallet context
+  const { walletDetail: {walletId} } = useContext(UserContext); // get walletId from user context
 
   // function to toggle wallet currency and balance 
   const toggleShowWallets = () => {
@@ -50,7 +46,7 @@ export const MobileWallet = ({ data }: MobileWalletPropType) => {
         // container for wallet balance
         <div className="absolute h-[calc(100vh-85px)] top-[85px] left-0 w-full px-[18px] py-[15px] bg-[#242731] z-10 rounded-b-2xl overflow-hidden">
           {/* check if wallet is setup */}
-          {!walletDetail.walletId ? (
+          {!walletId ? (
             // link to set up wallet
             <Link
               href="/wallet-setup"

@@ -28,7 +28,7 @@ export default function Home() {
           WELCOME TO FUNROUND BETA
         </h3>
         {/* title */}
-        <h1 className="mx-auto max-w-[90%] font-black text-[21px] leading-[23.23px] md:m-0 md:text-[32px] md:leading-[34px] lg:text-[2.5vw] lg:leading-[2.76vw] md:tracking-[0.04em] customlg:text-xl">
+        <h1 className="mx-auto max-w-[90%] font-black text-[21px] leading-[23.23px] lg:mx-0 md:text-[32px] md:leading-[34px] lg:text-[2.5vw] lg:leading-[2.76vw] md:tracking-[0.04em] customlg:text-xl">
           Play mini-games against real players,{" "}
           <span className="relative">
             win
@@ -51,11 +51,11 @@ export default function Home() {
         {/* container for buttons */}
         <div className="my-12 customlg:my-5 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col flex-wrap xl:flex-row lg:items-start lg:mb-0 customlg:flex-row">
           {/* play button */}
-          <Link href="/play-live" className="relative px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px]  font-black rounded-full z-10 duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6] customlg:px-[40px] customlg:py-[14px] customlg:text-[24px]">
+          <Link href="/play-live" className="relative px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px]  font-black rounded-full z-[1] duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6] customlg:px-[40px] customlg:py-[14px] customlg:text-[24px]">
             Let's Play
           </Link>
           {/* learn more button */}
-          <Link href="/learn-more" className="relative px-[90px] py-[28px] bg-white text-[#503CC6] text-[24px] leading-[26.44px]  rounded-full z-10 duration-500 hover:bg-gray-400 xl:px-12 customlg:px-[40px] customlg:py-[18px]">
+          <Link href="/learn-more" className="relative px-[90px] py-[28px] bg-white text-[#503CC6] text-[24px] leading-[26.44px]  rounded-full z-[1] duration-500 hover:bg-gray-400 xl:px-12 customlg:px-[40px] customlg:py-[18px]">
             Learn More
           </Link>
         </div>

@@ -3,7 +3,7 @@ import ConfirmEmail from "@/components/ConfirmEmail";
 import ModalOverlay from "@/components/layout/ModalOverlay";
 import Portal from "@/components/layout/Portal";
 import { UserContext } from "@/context/user-context";
-import { useVerifyEmail } from "@/hooks/queries/useAuth";
+import { useVerifyEmail, useVerifyLoginEmail } from "@/hooks/queries/useAuth";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
@@ -16,11 +16,11 @@ const Page = () => {
     userDetail: { email },
   } = useContext(UserContext);
 
-  const verifyRegistrationEmail = useVerifyEmail();
+  const verifyLoginEmail = useVerifyLoginEmail();
 
   // submit function
   const submitHandler = (otp: string) => {
-    verifyRegistrationEmail.mutate(
+    verifyLoginEmail.mutate(
       {
         email,
         verificationCode: otp,
@@ -42,7 +42,7 @@ const Page = () => {
       <ModalOverlay>
         {/* confirm email component */}
         <ConfirmEmail
-          isPending={verifyRegistrationEmail.isPending}
+          isPending={verifyLoginEmail.isPending}
           errorMessage={errorMessage}
           submitHandler={submitHandler}
           backLink="/login"
