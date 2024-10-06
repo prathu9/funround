@@ -1,7 +1,6 @@
 import { useContext, useMemo, useRef, useState } from "react";
 import { WalletItemType } from "./WalletBalance";
 import { UserContext } from "@/context/user-context";
-import { WalletContext } from "@/context/wallet-context";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
 import { AnimatePresence } from "framer-motion"
@@ -25,10 +24,7 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
 
     const maxValueCrypto = useMemo(() => getMaxValueCrypto(data),[data]); // get crypto with max value
   
-    const {
-      userDetail: { email },
-    } = useContext(UserContext); //get email from user context
-    const { walletDetail } = useContext(WalletContext); // get wallet detail from wallet context
+    const { walletDetail: {walletId} } = useContext(UserContext); // get walletId from user context
 
   
     // function to toggle drop down
@@ -41,7 +37,7 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
       <div className="relative hidden basis-[405px] h-[65px] bg-[#2C2E37] rounded-2xl sm:block z-10">
         {/* container for wallet */}
         <div className="h-full flex justify-center bg-[#2C2E37] rounded-2xl z-5">
-          {!walletDetail.walletId ? (
+          {!walletId ? (
             <Link
               href="/wallet-setup"
               className="px-[18px] py-[15px] w-full flex gap-[9px] justify-center items-center"
@@ -86,7 +82,7 @@ export const DesktopWallet = ({ data }: DesktopWalletPropType) => {
               <AnimatePresence>
               {showDropDown && (
                 // container for dropdown with animate height component for height animation
-                <AnimateHeight className="w-full -mt-[10px] px-[18px] py-[15px] bg-[#2C2E37] z-10 rounded-b-2xl">
+                <AnimateHeight className="w-full max-h-[80vh] min-h-[80vh] -mt-[10px] px-[18px] py-[15px] bg-[#2C2E37] z-10 overflow-auto rounded-b-2xl">
                   {/* link to withdraw form page */}
                   <Link
                     href="/wallet-setup/withdraw"

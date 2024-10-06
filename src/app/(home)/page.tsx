@@ -24,12 +24,12 @@ export default function Home() {
       {/* container for title and buttons */}
       <div className="relative pt-[50px] basis-full flex justify-center flex-col text-center lg:basis-[50%] lg:pl-8 lg:text-left lg:py-0 xl:pl-[120px]">
         {/* subtitle */}
-        <h3 className="mb-2 text-[#B4A1FF] text-xs font-bold md:text-[1.25vw] md:text-2xl">
+        <h3 className="mb-2 text-[#B4A1FF] text-xs font-bold md:text-[1.25vw] md:text-2xl customlg:text-sm">
           WELCOME TO FUNROUND BETA
         </h3>
         {/* title */}
-        <h1 className="font-black text-[21px] leading-[23.23px] md:text-[32px] md:leading-[34px] lg:text-[2.5vw] lg:leading-[2.76vw] md:tracking-[0.04em]">
-          Play mini-games against<br/> real players,{" "}
+        <h1 className="mx-auto max-w-[90%] font-black text-[21px] leading-[23.23px] lg:mx-0 md:text-[32px] md:leading-[34px] lg:text-[2.5vw] lg:leading-[2.76vw] md:tracking-[0.04em] customlg:text-xl">
+          Play mini-games against real players,{" "}
           <span className="relative">
             win
             {/* container for crown image */}
@@ -45,17 +45,17 @@ export default function Home() {
            {" "}crypto.
         </h1>
         {/* decription */}
-        <p className="mt-[34px] mx-auto w-[90%] text-lg md:w-[69%] lg:text-[1.25vw] lg:leading-[1.35vw] lg:mx-0">
+        <p className="mt-[34px] mx-auto w-[90%] text-lg md:w-[69%] lg:text-[1.25vw] lg:leading-[1.35vw] lg:mx-0 customlg:text-lg">
           We’ve created the ultimate competition - 60 seconds race between you and real players around the world. the winner takes the bet!
         </p>
         {/* container for buttons */}
-        <div className="my-12 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col flex-wrap xl:flex-row lg:items-start lg:mb-0">
+        <div className="my-12 customlg:my-5 flex items-center text-center gap-8 text-2xl leading-[26.54px] flex-col flex-wrap xl:flex-row lg:items-start lg:mb-0 customlg:flex-row">
           {/* play button */}
-          <Link href="/play-live" className="relative px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px] font-black rounded-full drop-shadow-lg z-10 duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6]">
+          <Link href="/play-live" className="relative px-[65px] py-[24px] border-4 border-white outline outline-[#AB97FF] text-[32px]  font-black rounded-full z-[1] duration-500 bg-btn-gradient-2 hover:bg-btn-gradient-hover-2 text-shadow-btn-text hover:text-shadow-btn-text-hover hover:text-[#503CC6] customlg:px-[40px] customlg:py-[14px] customlg:text-[24px]">
             Let's Play
           </Link>
           {/* learn more button */}
-          <Link href="/learn-more" className="relative px-[90px] py-[28px] bg-white text-[#503CC6] rounded-full z-10 duration-500 hover:bg-gray-400 xl:px-12">
+          <Link href="/learn-more" className="relative px-[90px] py-[28px] bg-white text-[#503CC6] text-[24px] leading-[26.44px]  rounded-full z-[1] duration-500 hover:bg-gray-400 xl:px-12 customlg:px-[40px] customlg:py-[18px]">
             Learn More
           </Link>
         </div>

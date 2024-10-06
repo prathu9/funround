@@ -32,7 +32,6 @@ const Login = () => {
   // handle login form submission
   const onSubmit = (data: LoginInput) => {
     console.log("login",data);
-
     setUserDetail({
       ...userDetail,
       email: data.email,

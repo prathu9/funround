@@ -6,15 +6,22 @@ export const createUser = async (userData: SignUpDataType) => {
     return (await axiosInstance.post<SignUpResponseType>("auth/create", userData)).data;
 }
 
-// function sends request to login user
-export const loginUser = async (userData: LoginDataType) => {
-    return (await axiosInstance.post<LoginResponseType>("auth/login", userData)).data;
-}
 
 // function sends request to verify user email
 export const verifyEmail = async (verifyEmailData: VerifyEmailType) => {
     return (await axiosInstance.post("auth/verify-email", verifyEmailData)).data;
 }
+
+// function sends request to login user
+export const loginUser = async (userData: LoginDataType) => {
+    return (await axiosInstance.post<LoginResponseType>("auth/login", userData)).data;
+}
+
+// function sends request to verify login email
+export const verifyLoginEmail = async (verifyEmailData: VerifyEmailType) => {
+    return (await axiosInstance.post("auth/verify-login-otp", verifyEmailData)).data;
+}
+
 
 // function sends request to get user data
 export const getUser = async () => {

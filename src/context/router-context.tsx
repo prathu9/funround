@@ -15,7 +15,6 @@ interface RouterProvideProps{
 const RouterProvider = ({children}: RouterProvideProps) => {
 
     const [parentRoute, setParentRoute] = useState("/");
-console.log(parentRoute)
     return(
         <RouterContext.Provider value={{parentRoute, setParentRoute}}>
             {children}
